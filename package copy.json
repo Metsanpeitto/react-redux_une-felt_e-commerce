@@ -1,0 +1,77 @@
+{
+    "homepage": "http://grassrootemarket.com",
+  "name": "une-felt",
+  "main":"src/index.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@reduxjs/toolkit": "^1.4.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "animejs": "^3.2.0",
+    "aos": "^2.3.4",
+    "axios": "^0.21.0",
+    "classnames": "^2.2.6",
+    "emailjs-com": "^2.6.3",
+    "gsap": "^3.5.1",
+    "html-react-parser": "^0.14.1",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-gsap": "^2.2.1",
+    "react-helmet": "^6.1.0",
+    "react-infinite-scroll-component": "^5.1.0",
+    "react-number-format": "^4.4.1",
+    "react-pace-progress": "^2.0.0",
+    "react-paypal-express-checkout": "^1.0.5",
+    "react-redux": "^7.2.1",
+    "react-redux-multilingual": "^2.0.4",
+    "react-router-dom": "^5.2.0",
+    "react-router-scroll-4": "^1.0.0-beta.2",
+    "react-scripts": "^3.4.3",
+    "react-scrollmagic": "^2.2.0",
+    "react-slick": "^0.27.11",
+    "react-sticky-mouse-tooltip": "0.0.1",
+    "react-stripe-elements": "^6.1.2",
+    "react-svg-drawing": "^1.0.1",
+    "react-svg-morph": "^0.2.1",
+    "react-toastify": "^6.0.9",
+    "scrollmagic": "^2.0.7",
+    "simple-react-validator": "^1.5.1",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.2.0",
+    "woocommerce-api": "^1.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "url-loader": "^4.1.0"
+  }
+}

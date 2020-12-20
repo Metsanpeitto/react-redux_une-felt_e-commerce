@@ -1,0 +1,39 @@
+body {
+  font-family: "PontanoSans-Regular", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $color-grey-dark;
+}
+
+@font-face {
+  font-family: "Didot";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Didot") url(/assets/fonts/didot/Didot-Regular.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Didot-Medium";
+  font-style: medium;
+  font-weight: 400;
+  src: local("Didot-Medium"),
+    url(/assets/fonts/didot/Didot-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Didot-Italic";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Didot-Bold-Italic"),
+    url(/assets/fonts/didot/Didot-Bold-Italic.ttf) format("truetype");
+}
+
+$font-didot: "Didot";
+$font-didot-italic: "Didot-Italic";
+$font-big-title: 7rem;
+$font-medium-title: 5rem;
+$font-big-text: 2rem;
+$font-medium-text: 1.7rem;
+$font-small: 1.4rem;

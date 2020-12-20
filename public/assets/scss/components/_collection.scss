@@ -1,0 +1,235 @@
+.c-collection {
+  background-color: $color-secondary-light;
+  display: block;
+  width: 100%;
+  padding-top: 15vh;
+  padding-bottom: 5%;
+  position: relative;
+  animation: arriveLeft 2s ease-in-out;
+
+  &__header {
+    margin-top: 3%;
+    text-align: center;
+    font-family: $font-didot;
+    font-size: 7rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 1rem;
+    color: #d28e77;
+    animation: arriveRight 3s ease-in-out;
+  }
+
+  &__product-list {
+    width: 90%;
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 10rem;
+    grid-column-gap: 10rem;
+    column-gap: 10rem;
+    grid-row-gap: 10rem;
+    row-gap: 10rem;
+    animation: rise 4s ease-in-out;
+
+    .product-box {
+      width: 30rem;
+      height: 45rem;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: $color-secondary-light;
+      transition: all 0.25s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05) translate(10px, 10px);
+        background-color: $color-secondary-dark;
+        animation: radiate 5s ease-in-out infinite;
+
+        @keyframes radiate {
+          0%,
+          100% {
+            box-shadow: 0rem 0rem 0rem 0rem $color-secondary-dark;
+          }
+
+          50% {
+            box-shadow: 1px 1px 3px 3px $color-secondary-dark;
+          }
+        }
+      }
+
+      img {
+        width: 30rem;
+      }
+      &__title {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 90%;
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 2%;
+        h5 {
+          font-size: 1.5rem;
+          letter-spacing: 0.3rem;
+          color: $color-primary-dark;
+        }
+        a {
+          grid-column-start: 3;
+          justify-self: end;
+          svg {
+            transition: all 1s ease-in-out;
+            &:hover {
+              animation: small-pulse 2s ease-in-out infinite;
+            }
+          }
+        }
+      }
+      &__description {
+        display: flex;
+        width: 90%;
+        margin: auto;
+        color: $color-primary-light;
+
+        p {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.c-collection-scroll {
+  background-color: $color-secondary-light;
+  display: block;
+  width: 100%;
+  padding-top: 15vh;
+  padding-bottom: 5%;
+  position: absolute;
+  animation: arriveLeft 2s ease-in-out;
+
+  &__header {
+    margin-top: 3%;
+    text-align: center;
+    font-size: 7rem;
+    letter-spacing: 1rem;
+    color: #d28e77;
+    animation: arriveRight 3s ease-in-out;
+  }
+
+  #pinContainer {
+    height: 100vh;
+    padding-top: 15vh;
+    // background: url(/assets/img/hero.jpg) no-repeat;
+
+    .product-canvas {
+      display: grid;
+      grid-template-columns: 10rem 1fr 1fr 10rem;
+      grid-template-rows: 10rem auto 10rem;
+      width: 90%;
+      height: 90vh;
+      margin-left: auto;
+      margin-right: auto;
+      background-image: linear-gradient(
+          to right bottom,
+          rgba($color-primary-light, 0.8),
+          rgba($color-primary-dark, 0.8)
+        ),
+        url(/assets/img/hero.jpg);
+      background-size: cover;
+
+      .frame {
+        grid-column-start: 2;
+        grid-row-start: 2;
+      }
+
+      .circle {
+        background: $color-secondary-light;
+        border-radius: 50%;
+        justify-self: center;
+        width: 50rem;
+        height: 50rem;
+        transition: all 3s;
+
+        img {
+          transition: all 5s;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+
+          img {
+            transform: translateY(4rem) scale(1.3);
+          }
+        }
+      }
+
+      .frame-text {
+        grid-column-start: 3;
+        grid-row-start: 2;
+        justify-self: center;
+        margin-top: 5%;
+        width: 80%;
+        color: #d28e77;
+        h3 {
+          font-family: $font-didot-italic;
+          font-size: 5rem;
+          letter-spacing: 0.8rem;
+          transform: translate3d(0.4003px, 0px, 0px);
+          margin-bottom: 5%;
+        }
+        p {
+          font-family: $font-didot;
+          font-size: 2rem;
+          transform: translate3d(0.4003px, 0px, 0px);
+        }
+      }
+    }
+  }
+}
+
+@keyframes arriveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes arriveRight {
+  0% {
+    opacity: 0;
+    transform: translateX(200rem);
+  }
+
+  50% {
+    transform: translateX(200rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(500rem);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(500rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,57 @@
+.l-workshops {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 15vh;
+  position: relative;
+  background: $color-secondary-light;
+  display: grid;
+  grid-template-rows: 15rem auto 1fr;
+  animation: arriveLeft 2s ease-in-out;
+
+  h1 {
+    position: relative;
+    align-self: center;
+    color: $color-primary-dark;
+    font-size: 5rem;
+    font-family: $font-didot;
+    font-weight: 900;
+    letter-spacing: 1.3rem;
+    grid-row-start: 1;
+    justify-self: center;
+    animation: arriveRight 3s ease-in-out;
+    z-index: 2;
+  }
+
+  &__content {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    p {
+      color: $color-primary-dark;
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: 700;
+      position: absolute;
+      top: 70vh;
+      left: 50vw;
+      transform: translateX(-50%);
+    }
+
+    .bg-video {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0.5;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+
+      &__content {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

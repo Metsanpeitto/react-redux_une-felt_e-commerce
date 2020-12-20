@@ -1,0 +1,168 @@
+.l-frames {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+
+  .frame {
+    background-color: $color-secondary-light;
+    display: grid;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: 100%;
+
+    .frame-image {
+      position: relative;
+      width: max-content;
+      margin-top: 10%;
+      animation: floatFrame 6s ease-in-out 3s infinite;
+    }
+
+    .frame-text {
+      color: $color-primary-dark;
+      width: 45vw;
+      height: 79vh;
+      margin-top: 15%;
+      padding: 10rem;
+      padding-left: 0rem;
+      position: relative;
+      animation: fromRight 2s ease-in-out;
+      text-transform: capitalize;
+
+      h3 {
+        font-size: 5rem;
+        letter-spacing: 1.3rem;
+        font-weight: 900;
+        font-family: $font-didot-italic;
+      }
+      p {
+        font-size: 2rem;
+        word-spacing: 0.4rem;
+        margin-top: 5%;
+        font-family: $font-didot;
+      }
+    }
+
+    &--1 {
+      .frame-image {
+        left: 20%;
+        order: 1;
+      }
+      .frame-text {
+        margin-left: auto;
+        padding-top: 15%;
+        padding-left: 15%;
+        padding-right: 15%;
+        order: 0;
+      }
+    }
+
+    &--2 {
+      .frame-image {
+        left: 20%;
+        order: 0;
+      }
+      .frame-text {
+        padding-top: 15%;
+        padding-left: 15%;
+        padding-right: 15%;
+        order: 1;
+      }
+    }
+
+    &--3 {
+      .frame-image {
+        margin-left: 20%;
+        margin-right: auto;
+        order: 1;
+      }
+      .frame-text {
+        margin-left: auto;
+        padding-top: 15%;
+        padding-left: 15%;
+        padding-right: 15%;
+        order: 0;
+      }
+    }
+
+    &--4 {
+      .frame-image {
+        left: 20%;
+        order: 0;
+      }
+      .frame-text {
+        padding-top: 15%;
+        padding-left: 15%;
+        padding-right: 15%;
+        order: 1;
+      }
+    }
+  }
+}
+
+.l-moving {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: yellow;
+
+  .blue {
+    background-color: rgb(0, 68, 255);
+  }
+  .red {
+    background-color: rgb(255, 0, 55);
+  }
+  .pink {
+    background-color: rgb(222, 94, 233);
+  }
+  #pinContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .panel {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    h1 {
+      position: absolute;
+      top: 20%;
+      left: 30%;
+      z-index: 3;
+      color: black;
+    }
+  }
+}
+
+.circle {
+  background: rgba($color-secondary-dark, 80%);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+@keyframes fromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes floatFrame {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+
+  70% {
+    transform: translateX(1rem) translateY(1rem);
+  }
+  35% {
+    transform: translateX(-1rem) translateY(-1rem);
+  }
+}

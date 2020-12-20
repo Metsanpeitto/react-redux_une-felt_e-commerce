@@ -1,0 +1,342 @@
+.c-checkout {
+  background-color: $color-secondary-light;
+  padding: 10rem;
+  padding-top: 10rem;
+  padding-bottom: 20rem;
+  display: grid;
+  grid-template-rows: auto auto;
+
+  &__title {
+    text-align: center;
+    font-family: "Didot";
+    font-size: 7rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 1rem;
+    color: #d28e77;
+    animation: menu-down 2s ease-in-out;
+    grid-row-start: 1;
+  }
+
+  &__menus {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    .left-menu {
+      grid-row-start: 2;
+      background-color: $color-secondary-dark;
+      padding: 5rem;
+      width: 90%;
+      animation: land-from-left 2s ease-in-out;
+      &--title {
+        font-size: 2.5rem;
+        color: $color-primary-dark;
+        margin-bottom: 5rem;
+        text-align: center;
+        letter-spacing: 0.7rem;
+      }
+      form {
+        .form-group {
+          font-size: 1.4rem;
+          font-weight: 200;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding-left: 1rem;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 1.3rem;
+          width: 50rem;
+          height: 3rem;
+
+          .field-label {
+            align-self: center;
+            justify-self: start;
+            color: $color-primary-light;
+            font-weight: 600;
+          }
+
+          input {
+            appearance: textfield;
+            background-color: $color-secondary-light;
+            border-style: unset;
+            border-color: unset;
+            border-image: unset;
+            color: $color-primary-dark !important;
+            cursor: text;
+            display: inline-block;
+            font: inherit;
+            font-size: 1.5rem;
+            font-weight: 700;
+            justify-self: start;
+            letter-spacing: normal;
+            padding-left: 1rem;
+            text-align: start;
+            text-indent: 0px;
+            text-rendering: auto;
+            text-transform: none;
+            text-shadow: none;
+            margin: 0em;
+            min-height: 3.5rem;
+            max-height: 3.5rem;
+            -webkit-appearance: textfield;
+            -webkit-rtl-ordering: logical;
+            -webkit-writing-mode: horizontal-tb !important;
+            word-spacing: normal;
+
+            &:focus {
+              background-color: $color-secondary-light;
+              padding: 2%;
+              outline: none;
+            }
+
+            &::placeholder {
+              color: $color-primary-light !important;
+              font-size: $font-small;
+            }
+          }
+
+          .srv-validation-message {
+            position: relative !important;
+            top: -1rem !important;
+            color: $color-primary-light !important;
+          }
+        }
+
+        .account {
+          grid-template-columns: 3rem 1fr;
+
+          input {
+            align-self: center;
+            grid-column-start: 1;
+            grid-row-start: 1;
+          }
+          label {
+            align-self: center;
+            color: $color-primary-light;
+            font-weight: 600;
+            grid-column-start: 2;
+            grid-row-start: 1;
+          }
+        }
+      }
+    }
+
+    .right-menu {
+      grid-row-start: 2;
+      background-color: $color-secondary-dark;
+      padding: 5rem;
+
+      animation: land-from-right 2s ease-in-out;
+
+      &--title {
+        font-size: 2.5rem;
+        color: $color-primary-dark;
+        margin-bottom: 5rem;
+        text-align: center;
+        letter-spacing: 0.7rem;
+      }
+
+      .checkout-details {
+        color: $color-primary-light;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.2rem;
+        text-transform: capitalize;
+        padding: 5rem;
+        padding-top: 0rem;
+
+        .order-box {
+          padding-bottom: 5rem;
+          .title-box {
+            border-bottom: 1px solid $color-tertiary-dark;
+            font-size: 2rem;
+            margin-top: 5rem;
+            margin-bottom: 2rem;
+          }
+          .qty {
+            list-style: none;
+            border-bottom: 1px solid $color-tertiary-dark;
+
+            display: grid;
+            row-gap: 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+            .title-box {
+              border-bottom: 1px solid $color-secondary-dark;
+            }
+
+            li {
+              display: grid;
+              grid-template-columns: 13rem 3rem 5rem 1fr;
+              & > * {
+                align-self: center;
+                justify-self: center;
+                font-size: 1.4rem;
+
+                &:nth-child(1) {
+                  justify-self: start;
+                }
+
+                &:nth-child(4) {
+                  justify-self: start;
+                }
+              }
+            }
+          }
+
+          .sub-total {
+            list-style: none;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+            &__number {
+              padding-bottom: 1rem;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+
+              span {
+                color: #d28e77;
+                font-size: 1.5rem;
+                font-weight: 600;
+              }
+            }
+
+            &__shipping {
+              display: grid;
+              grid-template-rows: 2rem 1fr;
+              grid-template-columns: 10rem auto;
+              margin-top: 3rem;
+              padding-top: 3rem;
+              border-top: 1px solid $color-tertiary-dark;
+              .shipping {
+                grid-column-start: 2;
+                grid-row-start: 2;
+                .shopping-option {
+                  justify-self: center;
+                  display: grid;
+                  grid-template-columns: 3rem auto;
+                  grid-column-start: 2;
+                  grid-row-start: 2;
+                  &:nth-child(2) {
+                    grid-column-start: 2;
+                    grid-row-start: 2;
+                  }
+
+                  input {
+                    align-self: center;
+                  }
+
+                  p {
+                    align-self: center;
+                  }
+                }
+              }
+            }
+          }
+          .total {
+            list-style: none;
+            padding-bottom: 1rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            span {
+              color: #d28e77;
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .payment-box {
+          .payment-options {
+            display: grid;
+            grid-template-columns: auto auto;
+
+            .radio-option {
+              display: grid;
+              grid-template-columns: 2rem auto;
+              input {
+                align-self: center;
+              }
+            }
+
+            .upper-box {
+              margin-bottom: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.checkout-form {
+  display: grid;
+  grid-template-rows: auto 5rem;
+  margin-top: 3rem;
+  padding: 3rem;
+  background: #fffaf0;
+  background-color: #fffaf0;
+  width: 130%;
+  height: 30rem;
+  transform: translateX(-13%);
+  border-radius: 2rem;
+
+  &__form {
+    .checkout {
+      &--text {
+        color: $color-primary-dark;
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+      }
+      &--total {
+        display: grid;
+        grid-template-columns: 7rem auto;
+        p {
+          color: $color-primary-dark;
+          grid-column-start: 2;
+        }
+      }
+
+      &--item {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      &--expiration {
+        display: grid;
+        grid-template-columns: auto auto;
+      }
+    }
+  }
+  &__button {
+    margin-top: 2rem;
+    align-self: center;
+    justify-self: end;
+    .f-bp {
+      min-width: 15rem;
+      max-width: 15rem;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.3rem;
+      font-weight: 500;
+      position: relative;
+      align-items: center;
+      display: inline-flex;
+      background-color: #d28e77;
+      padding: -1px 3.125vw 0 4.688vw;
+      padding-left: 4rem;
+      line-height: 5rem;
+      text-transform: uppercase;
+      transition: background-color 0.4s ease-out;
+      transform-origin: 0px 0px;
+      transition: all 2s ease-out;
+      opacity: 1;
+    }
+  }
+}
+
+.paypal-button {
+  margin-top: 2rem;
+}

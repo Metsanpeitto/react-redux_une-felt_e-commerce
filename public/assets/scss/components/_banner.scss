@@ -1,0 +1,122 @@
+.c-banner {
+  display: grid;
+  grid-template-columns: 50vw 50vw;
+  min-height: 100vh;
+  padding-top: 10%;
+  padding-bottom: 5%;
+  animation: appear 9s ease-in-out;
+
+  &__left {
+    width: 40%;
+    margin-left: 25%;
+    margin-top: 10vh;
+    color: $color-primary-dark;
+
+    .c-banner-text {
+      margin: auto;
+      margin-top: 0vh;
+      text-align: left;
+
+      &__header {
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-bottom: 10rem;
+      }
+
+      &__big {
+        font-weight: 200;
+        font-size: 7rem;
+        font-family: $font-didot;
+        line-height: 8rem;
+
+        span {
+          font-weight: 900;
+          font-size: 7rem;
+          font-family: $font-didot-italic;
+          line-height: 8rem;
+        }
+      }
+
+      &__long {
+        margin-top: 15%;
+        margin-bottom: 10%;
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  .c-banner-img {
+    display: flex;
+
+    &__large {
+      position: absolute;
+      top: 75%;
+      right: 5%;
+      max-width: 655px;
+      max-height: 700px;
+      margin-top: 10%;
+      margin: auto;
+    }
+
+    &__small {
+      display: flex;
+      width: 300px;
+      height: 200px;
+      position: absolute;
+      top: 78%;
+      right: 39%;
+
+      margin-top: 10%;
+      margin: auto;
+    }
+  }
+}
+
+.c-banner-figure {
+  width: calc(100vw / 20 * 8);
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  .c-banner-src {
+    overflow: hidden;
+    position: relative;
+    perspective: 100px;
+    transform: matrix(1, 0, 0, 1, 0, 61.5159);
+
+    &:nth-child(1) {
+      width: calc(100vw / 20 * 3);
+      height: 22.5vw;
+      z-index: 1;
+      position: absolute;
+    }
+
+    &:nth-child(2) {
+      width: calc(100vw / 20 * 6);
+      height: 45vw;
+      margin: 0 0 0 calc(100vw / 20 * 2);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__scale {
+      -webkit-animation: scale-img 20s ease 6s;
+      -moz-animation: scale-img 20s ease 6s;
+      animation: scale-img 20s ease 6s;
+
+      @keyframes scale-img {
+        0% {
+          transform: scale(1);
+        }
+
+        100% {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+}

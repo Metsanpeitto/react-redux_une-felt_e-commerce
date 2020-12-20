@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.section {
+  min-width: 100vw;
+  background: linear-gradient(
+    94deg,
+    $color-secondary-light,
+    $color-primary-light
+  );
+  background-size: 400% 400%;
+
+  -webkit-animation: animatedGradient 5s ease infinite;
+  -moz-animation: animatedGradient 5s ease infinite;
+  animation: animatedGradient 5s ease infinite;
+
+  &__pattern {
+    position: absolute;
+    width: 100%;
+    animation: swing 20s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  &__header {
+    position: relative;
+    animation: menu-down 0.5s ease-in-out;
+    z-index: 3;
+  }
+
+  &__footer {
+    position: relative;
+  }
+
+  &__1 {
+    height: 100vh;
+    background: $color-secondary-light;
+    animation: fade-out 3s ease-in 7s;
+
+    @keyframes fade-out {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.9);
+        opacity: 0;
+        display: none;
+      }
+    }
+
+    .react-svg-drawing {
+      position: relative;
+      width: max-content !important;
+      height: max-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 35vh;
+      fill: none;
+      stroke: black;
+      stroke-width: 0.5;
+    }
+  }
+
+  &__2 {
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+    transform: translateY(0%);
+    animation: fade-in 6s ease-in-out;
+
+    .tween-canvas {
+      position: absolute;
+      padding-top: 25%;
+      padding-left: 30%;
+      z-index: 3;
+      color: white;
+
+      .tween-text {
+        & > div {
+          margin: 3rem;
+        }
+      }
+    }
+
+    .front-img {
+      width: 100%;
+      height: 100%;
+      transition: all 2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  .section__3 {
+    position: relative;
+    background-color: $color-secondary-dark;
+    width: 100vw;
+  }
+}

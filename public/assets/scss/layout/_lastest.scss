@@ -1,0 +1,98 @@
+.l-lastest {
+  background-color: $color-secondary-light;
+  display: block;
+  width: 100%;
+  padding-top: 15vh;
+  padding-bottom: 5%;
+  position: relative;
+  animation: arriveLeft 2s ease-in-out;
+
+  &__header {
+    margin-top: 3%;
+    text-align: center;
+    font-family: $font-didot;
+    font-size: 7rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 1rem;
+    color: #d28e77;
+    animation: arriveRight 3s ease-in-out;
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: 30rem 1fr 30rem;
+    p {
+      color: $color-primary-dark;
+      text-align: center;
+      font-size: 1.7rem;
+      grid-column-start: 2;
+    }
+
+    img:nth-child(1) {
+      width: 70rem;
+      object-fit: cover;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: center;
+      position: relative;
+    }
+
+    img:nth-child(2) {
+      width: 70rem;
+      object-fit: cover;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: center;
+      position: relative;
+    }
+
+    img:nth-child(3) {
+      width: 70rem;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: start;
+      position: relative;
+    }
+
+    img:nth-child(4) {
+      width: 50rem;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: end;
+      position: relative;
+    }
+
+    img:nth-child(5) {
+      width: 70rem;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: start;
+      position: relative;
+    }
+
+    img:nth-child(6) {
+      width: 70rem;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: end;
+      position: relative;
+    }
+
+    img:nth-child(7) {
+      width: 70rem;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: start;
+      position: relative;
+    }
+
+    img:nth-child(8) {
+      width: 70rem;
+      object-fit: contain;
+      grid-column-start: 2;
+      margin-top: 10rem;
+      justify-self: center;
+      position: relative;
+    }
+  }
+}

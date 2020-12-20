@@ -1,0 +1,68 @@
+.l-contact-canvas {
+  background-color: $color-secondary-light;
+  min-height: 85vh;
+  padding-top: 15vh;
+  padding-bottom: 5vh;
+  color: #d28e77;
+
+  .title {
+    color: inherit;
+    margin-bottom: 5vh;
+    text-align: center;
+    font-family: $font-didot;
+    font-size: 7rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 1rem;
+
+    animation: arriveRight 3s ease-in-out;
+  }
+
+  .l-contact {
+    display: grid;
+    grid-template-columns: auto 80rem 20rem auto;
+
+    iframe {
+      width: 80rem !important;
+      height: 40rem !important;
+      grid-column-start: 2;
+    }
+
+    &__address {
+      grid-column-start: 3;
+      align-self: end;
+      padding: 2rem;
+      font-size: $font-small;
+      color: inherit;
+    }
+  }
+
+  .l-contact-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+
+    .main--social {
+      justify-self: center;
+      h3 {
+        text-align: center;
+      }
+
+      .social--icons {
+        margin-top: 2rem;
+
+        a {
+          margin: 2rem;
+        }
+      }
+    }
+
+    .email {
+      justify-self: center;
+      font-size: $font-small;
+    }
+  }
+}

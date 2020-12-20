@@ -1,0 +1,352 @@
+.l-story {
+  background: $color-secondary-dark;
+  column-gap: 3rem;
+  display: grid;
+  grid-template-rows: 15rem auto;
+  grid-column-gap: 3rem;
+  grid-row-gap: 5rem;
+  padding: 5rem;
+  padding-top: 15vh;
+  z-index: 1;
+
+  .section__pattern {
+  }
+
+  h1 {
+    align-self: center;
+    text-align: center;
+    font-family: $font-didot;
+    font-size: 7rem;
+    font-weight: 800;
+    grid-row-start: 1;
+    text-transform: capitalize;
+    letter-spacing: 1rem;
+    color: $color-primary-dark;
+    animation: arriveRight 3s ease-in-out;
+  }
+
+  &__main {
+    display: grid;
+    grid-template-rows: auto auto;
+
+    column-gap: 3rem;
+
+    &--banner {
+      position: relative;
+      grid-row-start: 1;
+      width: 80rem;
+      height: 50rem;
+      margin-left: auto;
+      margin-right: auto;
+
+      .pon-canvas {
+        z-index: 2;
+        position: absolute;
+        width: 80rem !important;
+        height: 50rem !important;
+        display: inline;
+        //  animation: moveInUp 8s ease-in-out;
+
+        #pon-svg {
+          position: relative;
+          top: 15rem;
+          left: 5rem;
+        }
+
+        .text-balloon {
+          color: #d28e77;
+
+          font-family: $font-didot;
+          position: absolute;
+        }
+
+        .speech {
+          color: $color-primary-dark;
+          font-family: "Didot";
+          font-size: 2.5rem;
+          font-weight: 900;
+          position: absolute;
+          top: 0;
+          text-align: center;
+          left: -10rem;
+          z-index: 0;
+          visibility: hidden;
+
+          .s1 {
+            display: none;
+            position: absolute;
+            top: 6rem;
+            left: 8rem;
+            width: 27rem;
+            height: 17rem;
+            visibility: "hidden";
+          }
+        }
+
+        .speech-right {
+          color: $color-primary-dark;
+          font-family: "Didot";
+          font-size: 2.3rem;
+          font-weight: 900;
+          position: absolute;
+          top: 0;
+          text-align: center;
+          right: -10rem;
+          z-index: 0;
+          fill: transparent;
+          stroke-dashoffset: 0px !important;
+          stroke-width: 0.6px !important;
+          stroke: $color-primary-dark;
+          visibility: hidden;
+
+          .s1-right {
+            display: none;
+            position: absolute;
+            top: 4rem;
+            right: 18rem;
+            width: 27rem;
+            height: 17rem;
+          }
+        }
+
+        #speech-balloon {
+          width: 76rem !important;
+          height: 36rem !important;
+          position: absolute;
+          top: -6rem;
+          left: -35rem;
+          #speech {
+            stroke-dashoffset: 0px !important;
+            stroke-width: 0.6px !important;
+            stroke: $color-primary-dark;
+          }
+        }
+
+        #speech-balloon-right {
+          #speech-right {
+            stroke-dashoffset: 0px !important;
+            stroke-width: 0.6px !important;
+            stroke: $color-primary-dark !important;
+          }
+        }
+
+        #thought-canvas {
+          position: absolute;
+          top: 0;
+          right: -10rem;
+          visibility: hidden;
+          z-index: 0;
+          transform: translate3d(0);
+          animation: floating 5s ease-in infinite;
+
+          #thought-svg {
+            width: 42rem !important;
+            height: 21rem !important;
+            position: absolute;
+            top: -30px;
+            right: 12rem;
+            stroke: $color-primary-dark !important;
+            #thought {
+              stroke: $color-primary-dark !important;
+              stroke-dashoffset: 0px !important;
+              stroke-width: 1px !important;
+            }
+            #thought-small {
+              stroke: $color-primary-dark !important;
+              stroke-dashoffset: 0px !important;
+              stroke-width: 1px !important;
+              animation: floating-small 5s ease-in infinite;
+            }
+          }
+          #hugger {
+            width: 18rem !important;
+            height: 21rem !important;
+            position: relative;
+            top: -30px;
+            left: -23rem;
+            stroke: #d28e77 !important;
+          }
+        }
+
+        svg {
+          width: 60rem;
+          height: 32rem;
+          #pon {
+            transform-origin: center;
+            transform-box: fill-box;
+            display: inline;
+            max-width: 20rem;
+          }
+          #eye-right-close {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            transform: scale(1);
+            //   animation: closed-eyes 2s ease-in-out infinite;
+            stroke-dashoffset: 0px !important;
+            visibility: hidden;
+          }
+          #eye-left-close {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            transform: scale(1);
+            // animation: closed-eyes 2s ease-in-out infinite;
+            stroke-dashoffset: 0px !important;
+            visibility: hidden;
+          }
+          #eye-right {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            transform: translateX(0px);
+            // animation: closed-eyes 12s ease-in-out infinite;
+            stroke-dashoffset: 0px !important;
+            visibility: hidden;
+          }
+          #eye-left {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            transform: translateX(0px);
+            //  animation: closed-eyes 12s ease-in-out infinite;
+            stroke-dashoffset: 0px !important;
+            visibility: hidden;
+          }
+          #nose {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+          }
+
+          #mouth-open {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            transform: scale(0.2);
+            animation: closed-mouth 3s ease-in-out infinite;
+            stroke-dashoffset: 0px !important;
+          }
+          #mouth-close {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            visibility: hidden;
+            stroke-dashoffset: 0px !important;
+          }
+          #arm-down {
+            visibility: hidden;
+            path:nth-child(2) {
+              stroke-dashoffset: 0px !important;
+            }
+          }
+          #arm-up {
+            transform-origin: right;
+            transform-box: fill-box;
+            display: inline;
+            transform: rotate(0);
+            animation: swing 2s ease-in-out infinite;
+            visibility: hidden;
+
+            path {
+              stroke-dashoffset: 0px !important;
+            }
+          }
+        }
+      }
+    }
+
+    &--text {
+      color: $color-primary-dark;
+      display: grid;
+      grid-row-start: 2;
+      grid-template-rows: 5rem 1fr 1fr;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      background: $color-tertiary-dark;
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 2px solid $color-primary-dark;
+      z-index: 3;
+      h4 {
+        align-self: center;
+        font-size: $font-big-text;
+        font-weight: 700;
+        letter-spacing: 0.5rem;
+      }
+
+      p {
+        font-size: $font-medium-text;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+.animation-touch-nose {
+  animation: touch-nose 2s ease-in-out infinite;
+}
+
+.animation-swing {
+  animation: swing 2s ease-in-out infinite;
+}
+.animation-talk {
+  animation: closed-mouth 4s ease-in-out infinite;
+}
+
+@keyframes touch-nose {
+  0% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  100% {
+    transform: rotate(69deg) translateX(19px);
+  }
+}
+
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes closed-mouth {
+  0%,
+  100% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+@keyframes closed-eyes {
+  0%,
+  100% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes close-eyes {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}

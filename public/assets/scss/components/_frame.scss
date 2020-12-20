@@ -1,0 +1,48 @@
+.c-frame {
+  background-color: aqua;
+
+  .c-frame-image {
+    display: inline-block;
+    position: absolute;
+    width: 51rem;
+    height: 70rem;
+    transform: translateY(0);
+    opacity: 1;
+    animation: fromLeft 2s ease-in-out;
+
+    @keyframes fromLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+
+      85% {
+        opacity: 1;
+        transform: translateX(5%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+
+    svg {
+      position: relative;
+      top: 0vh;
+      left: 0%;
+      width: 51rem;
+      height: 70rem;
+      z-index: 1;
+    }
+    img {
+      position: relative;
+      top: -100%;
+
+      margin-top: 13rem;
+      max-width: 40rem;
+      max-height: 43rem;
+      z-index: 0;
+    }
+  }
+}

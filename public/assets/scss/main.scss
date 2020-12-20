@@ -1,0 +1,182 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name:Pon-Site    
+    Description: This is an E-commerce website
+    Author: Waldenberg-Creations
+    Author URI: https://waldenberg-creations.com
+
+----------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------
+   
+   Folder Architecture
+   
+   0._main_____
+               |
+               |
+               |___1. abstract___      
+               |                 |
+               |                 |
+               |                 |___ 1.b. mixins
+               |                 | 
+               |                 |
+               |                 |
+               |                 |___ 1.c. variables
+               |
+               |
+               |
+               |___2. base ______
+               |                 |
+               |                 |
+               |                 |___ 2.a. animations 
+               |                 |
+               |                 |
+               |                 |___ 2.b. base
+               |                 |
+               |                 |
+               |                 |___ 2.c. effects    
+               |                 |
+               |                 |                              
+               |                 |___ 2.d. typographic
+               |                 | 
+               |                 |
+               |                 |___ 2.e. utilities
+               |
+               |
+               |
+               |
+               |___3. components
+               |                 |
+               |                 |
+               |                 |___ 3.a. banner    
+               |                 |
+               |                 |
+               |                 |___ 3.b. button   
+               |                 |
+               |                 |
+               |                 |___ 3.c. buttonLight   
+               |                 |
+               |                 |
+               |                 |___ 3.d. cart 
+               |                 |
+               |                 |
+               |                 |___ 3.e. checkout               
+               |                 |
+               |                 |
+               |                 |___ 3.f. collection
+               |                 |            
+               |                 |
+               |                 |___ 3.g. footer 
+               |                 |            
+               |                 |
+               |                 |___ 3.h. frame 
+               |                 |
+               |                 |
+               |                 |___ 3.i. header    
+               |                 |
+               |                 |
+               |                 |___ 3.j. slider   
+               |                 |
+               |                 |
+               |                 |___ 3.k. product
+               |                 |
+               |                 |
+               |                 |___ 3.l. posts               
+               |                 |
+               |                 |
+               |                 |___ 3.m. wishlist                               
+               |
+               |
+               |___4. layout ____
+               |                 | 
+               |                 |
+               |                 |___ 4.a. app
+               |                 |            
+               |                 |
+               |                 |___ 4.b. categories
+               |                 |            
+               |                 |
+               |                 |___ 4.b. contact               
+               |                 |
+               |                 |
+               |                 |___ 4.d. grid
+               |                 | 
+               |                 |
+               |                 |___ 4.e. frames               
+               |                 | 
+               |                 |
+               |                 |___ 4.f. drawingsvg
+               |                 | 
+               |                 |
+               |                 |___ 4.g. navigation
+               |                 | 
+               |                 |
+               |                 |___ 4.h. landing  
+               |                 | 
+               |                 |
+               |                 |___ 4.i. lastest                               
+               |                 | 
+               |                 |
+               |                 |___ 4.j. privacy 
+               |                 | 
+               |                 |
+               |                 |___ 4.k. register  
+               |                 | 
+               |                 |
+               |                 |___ 4.l. story
+               |                 | 
+               |                 |
+               |                 |___ 4.m. workshops  
+               |                 | 
+               |                 |
+               |                 |___ 4.n. 404                                                       
+               |
+               |
+               |___5. pages _____
+                                 |
+                                 |
+                                 |___ 5.a. home
+                                 |
+                                 |
+                                 |___ 5.b. hugger
+   
+*/
+@import "abstract/mixins.scss";
+@import "abstract/variables.scss";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+@import "base/effects.scss";
+
+@import "components/cart";
+@import "components/checkout";
+@import "components/collection";
+@import "components/banner";
+@import "components/button";
+@import "components/buttonLight";
+@import "components/frame";
+@import "components/footer";
+@import "components/header";
+@import "components/slider";
+@import "components/posts";
+@import "components/product";
+@import "components/wishlist";
+
+@import "layout/app";
+@import "layout/categories";
+@import "layout/contact";
+@import "layout/grid";
+@import "layout/frames";
+@import "layout/drawingsvg";
+@import "layout/navigation";
+@import "layout/landing";
+@import "layout/lastest";
+@import "layout/privacy";
+@import "layout/register";
+@import "layout/story";
+@import "layout/workshops";
+@import "layout/404";
+
+@import "pages/home";
+@import "pages/hugger";

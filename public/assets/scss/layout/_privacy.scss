@@ -1,0 +1,53 @@
+.l-privacy {
+  background-color: $color-secondary-dark;
+  padding-top: 15vh;
+
+  h1 {
+    align-self: center;
+    text-align: center;
+    font-family: $font-didot;
+    font-size: $font-big-title;
+    font-weight: 800;
+    grid-row-start: 1;
+    text-transform: capitalize;
+    letter-spacing: 1rem;
+    color: $color-primary-dark;
+    animation: arriveRight 3s ease-in-out;
+  }
+
+  &--canvas {
+    color: $color-primary-dark;
+    padding: 5%;
+    animation: land-from-left 3s ease-in-out;
+
+    .MuiTypography-body1 {
+      font-size: $font-big-text !important;
+      font-family: inherit !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+      letter-spacing: 0.00938em !important;
+    }
+
+    .MuiSvgIcon-root {
+      width: 3em !important;
+      height: 2em !important;
+    }
+
+    .MuiList-subheader {
+      border-bottom: 1px solid $color-tertiary-dark;
+      margin-bottom: 2%;
+    }
+
+    .card-body {
+      padding: 2%;
+      padding-top: 0%;
+      width: 60%;
+
+      p {
+        font-size: $font-medium-text;
+        padding: 2%;
+        padding-top: 2%;
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+.l-register {
+  background-color: $color-secondary-light;
+  color: $color-primary-light;
+  column-gap: 10rem;
+  display: grid;
+  grid-template-columns: 10% 1fr 1fr 10%;
+  width: 100%;
+  height: 100vh;
+  padding-top: 30vh;
+
+  .f-bp {
+    min-width: 25rem;
+    max-width: 25rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.813vw;
+    position: relative;
+    align-items: center;
+    margin-top: unset;
+    display: inline-flex;
+    background-color: #d28e77;
+    padding: 0 3.125vw 0 4.688vw;
+    line-height: 3.75vw;
+    letter-spacing: 0.104vw;
+    text-transform: uppercase;
+    transition: background-color 0.4s ease-out;
+    transform-origin: 0px 0px;
+    transition: all 2s ease-out;
+    opacity: 1;
+  }
+
+  .input {
+    margin: unset;
+    max-width: 100%;
+    font-size: 1.6rem;
+    z-index: 0;
+  }
+
+  &__login {
+    grid-column-start: 2;
+    color: $color-primary-dark;
+    display: grid;
+    grid-template-rows: 5rem 20rem 5rem;
+    grid-row-gap: 5rem;
+    row-gap: 5rem;
+
+    h3 {
+      font-size: 2.6rem;
+      grid-row-start: 1;
+    }
+
+    form {
+      display: grid;
+      grid-template-rows: 5rem 5rem;
+      row-gap: 5rem;
+      #mail {
+        grid-row-start: 2;
+      }
+      #password {
+        grid-row-start: 3;
+      }
+    }
+
+    .action {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-row-start: 3;
+      row-gap: 1rem;
+
+      .remember {
+        grid-row-start: 1;
+        display: grid;
+        grid-template-columns: 1fr 1rem auto 3rem;
+
+        .MuiCheckbox-colorSecondary.Mui-checked {
+          color: $color-primary-dark !important;
+        }
+        .f-bp {
+          grid-column-start: 1;
+          grid-row-start: 1;
+        }
+
+        div {
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-column-start: 3;
+
+          > * {
+            align-self: center;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
+      a {
+        grid-row-start: 5;
+        p {
+          margin-top: 2.5rem;
+        }
+      }
+    }
+  }
+
+  &__register {
+    display: grid;
+    grid-column-start: 3;
+    color: #d28e77;
+    display: grid;
+    grid-template-rows: 5rem 20rem 5rem;
+    grid-row-gap: 5rem;
+    row-gap: 5rem;
+
+    h3 {
+      color: $color-primary-dark;
+      font-size: 2.6rem;
+
+      grid-row-start: 1;
+    }
+
+    form {
+      display: grid;
+      grid-template-rows: 5rem 5rem;
+      row-gap: 5rem;
+    }
+
+    .action {
+      grid-row-start: 3;
+    }
+  }
+}

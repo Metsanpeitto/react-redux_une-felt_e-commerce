@@ -1,0 +1,186 @@
+.hugger-canvas {
+  border: 2px solid pink;
+  bottom: 0%;
+  max-height: 90rem;
+  min-width: 100%;
+  min-height: 90rem;
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    max-height: max-content;
+    min-height: max-content;
+    max-width: max-content;
+    min-width: max-content;
+  }
+  &__background {
+    background-color: black;
+    position: absolute;
+    min-height: 89rem;
+    min-width: 100%;
+    z-index: -1;
+  }
+
+  .mountains {
+    position: absolute;
+    bottom: -0%;
+    left: 0%;
+    z-index: 3;
+  }
+
+  .hugger {
+    z-index: 2;
+    position: absolute;
+    animation: hugger-rises 10s ease;
+    bottom: 11rem;
+    left: 21rem;
+
+    #ray-right {
+      animation: ray-moves-right 2s ease 10s infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+      opacity: 0;
+    }
+
+    #ray-left {
+      animation: ray-moves-left 2s ease 10s infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+      opacity: 0;
+    }
+
+    #eye-left {
+      animation: moveInLeft 3s ease 1.5s infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    #eye-right {
+      animation: moveInLeft 3s ease 1.5s infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    @keyframes ray-moves-right {
+      from {
+        opacity: 1;
+        transform: scale(0) translateX(0rem);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateX(7rem);
+      }
+    }
+
+    @keyframes ray-moves-left {
+      from {
+        opacity: 1;
+        transform: scale(0) translateX(0rem);
+      }
+      to {
+        opacity: 1;
+
+        transform: scale(1) translateX(-7rem);
+      }
+    }
+
+    @keyframes hugger-rises {
+      from {
+        bottom: 0rem;
+      }
+      to {
+        bottom: 10rem;
+      }
+    }
+
+    @keyframes moveInLeft {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-0.25rem);
+      }
+
+      50% {
+        transform: translateX(0);
+      }
+
+      75% {
+        transform: translateX(0.25rem);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes hugger-rises {
+      // 4s
+      0% {
+        bottom: -16rem;
+        left: -6rem;
+      }
+
+      5% {
+        bottom: -3rem;
+        left: -8rem;
+      }
+
+      15% {
+        bottom: -3rem;
+        left: -8rem;
+      }
+      20% {
+        bottom: -16rem;
+        left: -6rem;
+      }
+
+      30% {
+        bottom: 2rem;
+        left: 6rem;
+      }
+      40% {
+        bottom: -3rem;
+        left: 10rem;
+      }
+
+      60% {
+        bottom: 5rem;
+        left: 13rem;
+      }
+
+      80% {
+        bottom: 10rem;
+        left: 17rem;
+      }
+
+      100% {
+        bottom: 11rem;
+        left: 21rem;
+      }
+    }
+  }
+
+  @keyframes canvas-fly {
+    // 4s
+    0% {
+      position: absolute;
+      left: 0rem;
+    }
+
+    98% {
+      position: absolute;
+      left: 0rem;
+    }
+    99% {
+      position: absolute;
+      left: -20rem;
+    }
+    100% {
+      position: absolute;
+      left: -300rem;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//   even and odd help to tell which element is an even or odd number   //
+@mixin even() {
+  &:nth-child(even) {
+    @content;
+  }
+}
+
+@mixin odd() {
+  &:nth-child(odd) {
+    @content;
+  }
+}
+
+//MEDIA QUERY MANAGER
+/* 
+0      -  600px  :          Phone
+600px  -  900px  :          Tablet Portrait
+900px  -  1200px :          Tablet Landscape
+1200px -  1800px :  <-----  Our normal style applies here
+1800px +         :          Large Screens
+
+
+ORDER: Base + typography > general layout  +  grid   >  page layout  > components
+
+1em = 16px
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      // 600px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      // 900px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-landscape {
+    @media only screen and (max-width: 75em) {
+      // 1200px
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      // 1800px
+      @content;
+    }
+  }
+}
