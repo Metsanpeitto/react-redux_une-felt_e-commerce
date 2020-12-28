@@ -21,11 +21,13 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.state.user.log.userId) {
-      // alert(this.state.username + " you are currently logged in !");
-      //  this.props.history.push("/");
-      console.log(this.props);
-      this.props.history.push(`${process.env.PUBLIC_URL}/`);
+    if (this.props.state.user.log) {
+      if (this.props.state.user.log.userId) {
+        // alert(this.state.username + " you are currently logged in !");
+        //  this.props.history.push("/");
+        console.log(this.props);
+        this.props.history.push(`${process.env.PUBLIC_URL}/`);
+      }
     }
   }
 

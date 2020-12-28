@@ -37,7 +37,6 @@
     row-gap: 10rem;
     animation: rise 4s ease-in-out;
 
-
     .post-card {
       color: $color-primary-dark;
       display: grid;
@@ -85,12 +84,16 @@
 
     .mohe {
       grid-column-start: 2;
-    justify-self: center;
-    font-size: 4.3rem;
-    .menu {
-&__item-name {     font-size: 2rem; }
-&__item-label {     font-size: 2rem; }
-    }
+      justify-self: center;
+      font-size: 4.3rem;
+      .menu {
+        &__item-name {
+          font-size: 2rem;
+        }
+        &__item-label {
+          font-size: 2rem;
+        }
+      }
     }
 
     #older-posts {
@@ -516,10 +519,10 @@
   }
 
   .content--layout {
-    
     img {
       width: 75rem;
       height: 60rem;
+      margin: 2rem;
       opacity: 1;
     }
 

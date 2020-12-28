@@ -11,18 +11,21 @@ class Lastest extends Component {
       name: null,
       pictures: [],
     };
+    this.processProps = this.processProps.bind(this);
   }
 
   componentDidMount() {
-    console.log(this.props);
+    this.processProps();
   }
 
   componentDidUpdate() {
-    console.log(this.props);
+    this.processProps();
+  }
+
+  processProps = () => {
     if (this.props) {
       if (this.props.state.extras) {
         const extras = this.props.state.extras.extras;
-        console.log(extras);
         if (extras[0]) {
           if (extras[0].id !== this.state.id) {
             this.setState(() => {
@@ -37,7 +40,7 @@ class Lastest extends Component {
         }
       }
     }
-  }
+  };
 
   render() {
     if (this.state.id) {

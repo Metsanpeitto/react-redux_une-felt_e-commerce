@@ -13,6 +13,9 @@
   line-height: 3.75vw;
   letter-spacing: 0.104vw;
   text-transform: uppercase;
+  outline: 0 !important;
+  border: none !important;
+  outline: none !important;
 
   &:hover {
     .f-bs-arrow {

@@ -10,6 +10,7 @@ import { StripeProvider } from "react-stripe-elements";
 import Collection from "./components/shop/Collection";
 import Product from "./components/shop/Product";
 import Cart from "./components/shop/Cart";
+import CheckoutSucess from "./components/shop/checkout/Checkout-success";
 import Checkout from "./components/shop/checkout/Checkout";
 import Wishlist from "./components/shop/Wishlist";
 import Posts from "./components/posts/Posts";
@@ -88,6 +89,10 @@ class Root extends React.Component {
                     <Route
                       path={`${process.env.PUBLIC_URL}/checkout`}
                       component={Checkout}
+                    />
+                    <Route
+                      path={`${process.env.PUBLIC_URL}/checkout-success`}
+                      component={CheckoutSucess}
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/wishlist`}

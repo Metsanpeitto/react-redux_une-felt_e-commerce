@@ -24,10 +24,30 @@
     perspective: (1000px);
     position: relative;
 
+    .logo {
+      max-width: 265px;
+      max-height: 60px;
+      -webkit-animation: rotate1 0.5s ease-in 3s;
+      animation: rotate1 0.5s ease-in 3s;
+
+      &:hover {
+        -webkit-animation: rotate1 0.5s ease-in 3s;
+
+        animation: rotate1 0.5s ease-in 3s;
+      }
+    }
+
     .rotate {
       max-width: 265px;
       max-height: 60px;
       -webkit-animation: rotate1 0.5s ease-in 3s;
+      animation: rotate1 0.5s ease-in 3s;
+
+      &:hover {
+        -webkit-animation: rotate1 0.5s ease-in 3s;
+
+        animation: rotate1 0.5s ease-in 3s;
+      }
     }
 
     .burger {

@@ -107,7 +107,7 @@ const getProducts = () => {
 };
 
 const getExtras = () => {
-  return WooCommerce.getAsync(`products?per_page=5&category=56`)
+  return WooCommerce.getAsync(`products?per_page=5&category=73`)
     .then((res) => {
       return res.toJSON().body;
     })
@@ -134,7 +134,6 @@ const getExtras = () => {
           name: name,
           pictures: newImages,
         };
-
         return extras.push(items);
       });
 

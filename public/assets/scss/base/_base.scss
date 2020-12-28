@@ -7,6 +7,10 @@
   box-sizing: inherit;
 }
 
+*:focus {
+  outline: 0 !important;
+}
+
 html {
   // This defines what 1 rem is
   font-size: 62.5%; // 1 rem= 10px; 10px/16px = 62.5%s

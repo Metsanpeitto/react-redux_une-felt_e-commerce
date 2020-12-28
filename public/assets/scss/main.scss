@@ -140,6 +140,8 @@
                                  |___ 5.b. hugger
    
 */
+@charset "UTF-8";
+
 @import "abstract/mixins.scss";
 @import "abstract/variables.scss";
 
@@ -180,3 +182,17 @@
 
 @import "pages/home";
 @import "pages/hugger";
+
+//  ----  Toastify Files Start  ---- //
+
+@import "toastify/toastVariables";
+@import "toastify/toastContainer";
+@import "toastify/toast";
+@import "toastify/closeButton";
+@import "toastify/progressBar";
+
+// entrance and exit animations
+@import "toastify/animations/bounce.scss";
+@import "toastify/animations/zoom.scss";
+@import "toastify/animations/flip.scss";
+@import "toastify/animations/slide.scss";

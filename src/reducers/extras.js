@@ -7,6 +7,7 @@ const initialState = {
 const extrasReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_EXTRAS:
+      console.log(action.extras);
       return {
         extras: action.extras,
       };

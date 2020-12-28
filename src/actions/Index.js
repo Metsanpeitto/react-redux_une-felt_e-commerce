@@ -3,10 +3,10 @@ import user from "../api/user";
 import posts from "../api/posts";
 import contact from "../api/mailChimp";
 import * as types from "../constants/ActionTypes";
-
+import BlankHeart from "../icons/BlankHeart";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import "react-toastify/dist/ReactToastify.css";
+//import "react-toastify/dist/ReactToastify.min.css";
+//import "react-toastify/dist/ReactToastify.css";
 
 /**           POSTS                    */
 
@@ -181,7 +181,16 @@ export const receiveLogin = (log) => ({
 export const login = (userData) => (dispatch) => {
   dispatch(fetchLoginBegin());
   user.login(userData).then((log) => {
-    toast.success("Account logged-in successfullly");
+    toast.success("🤗 Account logged-in successfullly", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    //toast.success("Account logged-in successfullly");
     dispatch(receiveLogin(log));
     return log;
   });
@@ -189,7 +198,16 @@ export const login = (userData) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch(closeConnection());
-  toast.error("User logged out");
+  toast.error("👋 User logged out", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  // toast.error("User logged out");
   dispatch(clearCart());
   dispatch(clearWishlist());
   dispatch(clearCompare());
@@ -211,7 +229,16 @@ export const receiveSignup = (log) => ({
 export const signup = (userData) => (dispatch) => {
   dispatch(signupBegin());
   user.signup(userData).then((log) => {
-    toast.success("Account created successfully");
+    toast.success("🎉 Account created successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    // toast.success("Account created successfully");
     dispatch(receiveSignup(log));
     return log;
   });
@@ -224,7 +251,16 @@ export const receiveUpdatedAccount = (log) => ({
 
 export const updateAccount = (userData, userOldData) => (dispatch) => {
   user.updateAccount(userData, userOldData).then((log) => {
-    toast.success("Account updated successfully");
+    toast.success("🍭 Account updated successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    //toast.success("Account updated successfully");
     dispatch(receiveUpdatedAccount(log));
     return log;
   });
@@ -246,7 +282,16 @@ export const receiveOrderReceipt = (rec) => ({
 export const placeOrder = (orderData) => (dispatch) => {
   dispatch(orderBegin());
   user.order(orderData).then((rec) => {
-    toast.success("Order placed successfully");
+    toast.success("👌 Order placed successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    //  toast.success("Order placed successfully");
     dispatch(receiveOrderReceipt(rec));
     return rec;
   });
@@ -256,11 +301,29 @@ export const placeOrder = (orderData) => (dispatch) => {
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => (dispatch) => {
-  toast.success("Item Added to Cart");
+  toast.success("🎁 Item Added to Cart!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  //toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
 export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
-  toast.success("Item Added to Cart");
+  toast.success("🎁 Item Added to Cart!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  // toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
   dispatch(removeFromWishlist(product));
 };
@@ -270,7 +333,16 @@ export const addToCartUnsafe = (product, qty) => ({
   qty,
 });
 export const removeFromCart = (product_id) => (dispatch) => {
-  toast.error("Item Removed from Cart");
+  toast.error("😔 Item Decrement Qty to Cart", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  //toast.error("Item Removed from Cart");
   dispatch({
     type: types.REMOVE_FROM_CART,
     product_id,
@@ -278,12 +350,30 @@ export const removeFromCart = (product_id) => (dispatch) => {
 };
 
 export const incrementQty = (product, qty) => (dispatch) => {
-  toast.success("Item Added to Cart");
+  toast.success("😊 Item Added to Cart!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  // toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
 
 export const decrementQty = (productId) => (dispatch) => {
-  toast.warn("Item Decrement Qty to Cart");
+  toast.error("😔 Item Decrement Qty to Cart", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  // toast.warn("Item Decrement Qty to Cart");
   dispatch({
     type: types.DECREMENT_QTY,
     productId,
@@ -297,7 +387,16 @@ export const clearCart = () => (dispatch) => {
 
 //it seems that I should probably use this as the basis for "Wishlist"
 export const addToWishlist = (product) => (dispatch) => {
-  toast.success("Item Added to Wishlist");
+  toast.success("❤️ Item Added to Wishlist!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  // toast.success("Item Added to Wishlist");
   dispatch(addToWishlistUnsafe(product));
 };
 
@@ -307,7 +406,16 @@ export const addToWishlistUnsafe = (product) => ({
 });
 
 export const removeFromWishlist = (product_id) => (dispatch) => {
-  toast.error("Item Removed from Wishlist");
+  toast.error("😢 Item Removed from Wishlist", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+  //toast.error("Item Removed from Wishlist");
   dispatch({
     type: types.REMOVE_FROM_WISHLIST,
     product_id,
@@ -378,7 +486,16 @@ export const subscribeNewsletter = (email, firstname, lastname) => (
   dispatch
 ) => {
   contact(email, firstname, lastname).then((res) => {
-    toast.success("Subscribtion done successfullly");
+    toast.success("👯 Subscribtion done successfullly", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    //toast.success("Subscribtion done successfullly");
     dispatch(subscriptionDone(res));
   });
 };

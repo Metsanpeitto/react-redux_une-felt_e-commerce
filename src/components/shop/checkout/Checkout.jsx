@@ -213,7 +213,7 @@ class checkOut extends Component {
     // Paypal Integration
     const onSuccess = (payment) => {
       this.props.history.push({
-        pathname: "/order-success",
+        pathname: "/checkout-success",
         state: {
           payment: payment,
           items: cartItems,

@@ -23,7 +23,7 @@ const urlCharge = `https://une-felt.com/stripe`;
 
 const newTo = (data) => {
   return {
-    pathname: `${process.env.PUBLIC_URL}/order-success`,
+    pathname: `${process.env.PUBLIC_URL}/checkout-success`,
     data: data,
   };
 };

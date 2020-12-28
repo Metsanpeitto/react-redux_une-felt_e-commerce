@@ -1,17 +1,23 @@
 import React, { Component } from "react";
+import { IntlActions } from "react-redux-multilingual";
 import { withTranslate } from "react-redux-multilingual";
 import { connect } from "react-redux";
-import Input from "../../effects/input/Input";
+import store from "../../app/store";
 import HoverMohe from "../../effects/hover/HoverMohe";
 import Pinterest from "../../icons/Pinterest";
 import Youtube from "../../icons/Youtube";
 import Instagram from "../../icons/Instagram";
 import Facebook from "../../icons/Facebook";
+import Contact from "./Contact";
 
 class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = { mobile: null };
+  }
+
+  changeLanguage(lang) {
+    store.dispatch(IntlActions.setLocale(lang));
   }
 
   render() {
@@ -51,13 +57,7 @@ class Footer extends Component {
       <div className="c-footer">
         {" "}
         <footer className="c-footer__main">
-          <div className="main--subscribe">
-            <h3>{translate("subscribe")}</h3>
-
-            <Input type="email" name="email" id="email" label="email here" />
-
-            <p>{translate("enter_email")}</p>
-          </div>
+          <Contact />
 
           <div className="main--support">
             <h3>{translate("support")}</h3>
@@ -105,11 +105,11 @@ class Footer extends Component {
         <div className="c-footer__under">
           <h6>©une</h6>
           <div className="under--lang">
-            <a href="#">
+            <a href="#" onClick={() => this.changeLanguage("en")}>
               <h5>eng</h5>
             </a>
             <p>/</p>
-            <a href="#">
+            <a href="#" onClick={() => this.changeLanguage("ch")}>
               <h5>ch</h5>
             </a>
           </div>

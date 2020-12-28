@@ -21,9 +21,11 @@ class Signup extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.state.user.log.username) {
-      alert(this.state.username + " you are currently logged in !");
-      this.props.history.push("/");
+    if (this.props.state.user.log) {
+      if (this.props.state.user.log.username) {
+        alert(this.state.username + " you are currently logged in !");
+        this.props.history.push("/");
+      }
     }
   }
 
@@ -47,17 +49,11 @@ class Signup extends Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.username.length > 0 && this.state.password > 0) {
-      const {
-        username,
-
-        password,
-      } = this.state;
+      const { username, password } = this.state;
 
       const userData = {
         username: username,
-
         password: password,
-
         email: username,
       };
       this.props.signup(userData);

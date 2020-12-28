@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { clearCart } from "../../actions/indexO";
+import { clearCart } from "../../../actions/Index";
 import { withTranslate } from "react-redux-multilingual";
 
-class orderSuccess extends Component {
+class CheckoutSuccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +16,7 @@ class orderSuccess extends Component {
   }
 
   componentWillMount() {
+    /*
     if (this.props.history.location.data) {
       if (this.props.history.location.data) {
         var receipt = this.props.history.location.data[0].charge;
@@ -39,9 +40,11 @@ class orderSuccess extends Component {
         });
       }
     }
+    */
   }
 
   componentDidUpdate() {
+    /*
     if (this.props.history.location.data) {
       if (this.state.orderTotal !== this.props.state.order.rec.total) {
         if (this.props.history.location.data) {
@@ -67,11 +70,12 @@ class orderSuccess extends Component {
         }
       }
     }
+    */
   }
 
   render() {
-    const { payment, items, symbol, orderTotal, order } = this.state;
-    const { translate } = this.props;
+    var { payment, items, symbol, orderTotal, order } = this.state;
+    var { translate } = this.props;
     var options = {
       weekday: "long",
       year: "numeric",
@@ -80,167 +84,179 @@ class orderSuccess extends Component {
     };
     var current = new Date();
     var next5days = new Date(Date.now() + 5 * 86400000);
-    let CheckDate = current.toLocaleDateString("en-US", options).toString();
-    let deliveryDate = next5days
+    var CheckDate = current.toLocaleDateString("en-US", options).toString();
+    var deliveryDate = next5days
       .toLocaleDateString("en-US", options)
       .toString();
 
-    return payment.orderId ? (
-      <div>
-        <section className="section-b-space light-layout">
-          <div className="container w-mx">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="success-text">
-                  <i className="fa fa-check-circle" aria-hidden="true" />
+    items = [
+      {
+        name: "Pako",
+        quantity: "3",
+        price: "60",
+        total: "180",
+        symbol: "eur",
+        subtotal: "90",
+        shipping: "20",
+        tax: "3",
+        total: "500",
+      },
+    ];
 
-                  <h2>{translate("thank_you")}</h2>
-                  <p>{translate("payment_revived")}</p>
-                  <p>
-                    {translate("transaction_id")}
-                    {payment.paymentID ? payment.paymentID : payment.id}
-                  </p>
+    payment = {
+      paymentID: "9998888",
+      payerID: "28384823",
+      paymentToken: "93452345",
+      id: "2345235",
+      orderId: "12",
+    };
+
+    order = {
+      billing: {
+        first_name: "juako",
+        last_name: "Molono",
+        address_1: "Askola",
+        state: "SADAS",
+        postcode: "33444",
+        phone: "83898789834",
+      },
+    };
+
+    deliveryDate = "12-23-23";
+
+    return payment.orderId ? (
+      <div className="c-checkout-success">
+        <div className="c-checkout-success__head">
+          <i className="fa fa-check-circle" aria-hidden="true" />
+
+          <h2 className="thanks">{translate("thank_you")}</h2>
+          <p>{translate("payment_received")}</p>
+          <p>
+            {translate("transaction_id")}
+            {payment.paymentID ? payment.paymentID : payment.id}
+          </p>
+        </div>
+
+        <section className="c-checkout-success__body">
+          <div className="product-order">
+            <h3 className="title">{translate("order_details")}</h3>
+            {items
+              ? items.map((item, index) => {
+                  return (
+                    <div className=" product-order-detail" key={index}>
+                      <div className=" order_detail">
+                        <h4>{translate("product_name")}</h4>
+                        <h5>{item.name}</h5>
+                      </div>
+                      <div className=" order_detail ">
+                        <h4>{translate("quantity")}</h4>
+                        <h5>{item.quantity}</h5>
+                      </div>
+                      <div className=" order_detail">
+                        <h4 className="text-end">{translate("price")}</h4>
+                        <h5>
+                          {item.total} {symbol}
+                        </h5>
+                      </div>
+                    </div>
+                  );
+                })
+              : null}
+            <div className="total-sec">
+              <div className=" order_detail ">
+                <h4>{translate("subtotal")}</h4>
+                <h5>
+                  {" "}
+                  <span>
+                    {orderTotal} {symbol}
+                  </span>
+                </h5>
+              </div>
+              <div className=" order_detail">
+                <h4>{translate("shipping")}</h4>
+                <h5>
+                  <span>$0</span>
+                </h5>
+              </div>
+              <div className=" order_detail">
+                <h4>{translate("tax")}</h4>
+                <h5>Patata</h5>
+              </div>
+            </div>
+            <div className="final-total">
+              <h3 className="title">
+                {translate("total")}
+                <span>
+                  {symbol}
+                  {orderTotal}
+                </span>
+              </h3>
+            </div>
+          </div>
+
+          <div className=" order-success-sec">
+            <h4>{translate("payment_information")}</h4>
+            <div className="order-detail">
+              {payment.paymentID ? (
+                <div>
+                  <div className=" order_detail">
+                    <h4>{translate("payer_id")}</h4>
+                    <h5>{payment.payerID}</h5>
+                  </div>
+                  <div className="order_detail">
+                    <h4> {translate("payment_id")}</h4>
+                    <h5>{payment.payerID}</h5>
+                  </div>
+                  <div className=" order_detail">
+                    <h4>{translate("payment_token")}</h4>
+                    <h5>{payment.paymentToken}</h5>
+                  </div>
                 </div>
+              ) : (
+                <div className="order_detail">
+                  <h4>{translate("order_id")}</h4>
+                  <h5>{payment.id}</h5>
+                </div>
+              )}
+
+              <div className="order_detail">
+                <h4> {translate("order_date")}</h4>
+                <h5>{CheckDate}</h5>
+              </div>
+              <div className="order_detail">
+                <h4> {translate("order_total")}</h4>
+                <h5>
+                  {" "}
+                  {orderTotal} {symbol}
+                </h5>
               </div>
             </div>
           </div>
-        </section>
+          <div className="shipping">
+            <h3 className="title"> {translate("shipping_address")}</h3>
 
-        <section className="section-b-space">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="product-order">
-                  <h3>{translate("order_details")}</h3>
-                  {items
-                    ? items.map((item, index) => {
-                        return (
-                          <div className="row product-order-detail" key={index}>
-                            <div className="col-3 order_detail">
-                              <div className="w-mx">
-                                <h4>{translate("product_name")}</h4>
-                                <h5>{item.name}</h5>
-                              </div>
-                            </div>
-                            <div className="col-3 order_detail ma-lr">
-                              <div className="txt-center w-mx">
-                                <h4>{translate("quantity")}</h4>
-                                <h5>{item.quantity}</h5>
-                              </div>
-                            </div>
-                            <div className="col-3 order_detail w-mx">
-                              <div className="w-mx">
-                                <h4 className="text-end">
-                                  {translate("price")}
-                                </h4>
-                                <h5>
-                                  {item.total} {symbol}
-                                </h5>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })
-                    : null}
-                  <div className="total-sec">
-                    <ul>
-                      <li className="m-tb-2-5">
-                        {translate("subtotal")}
-                        <span>
-                          {orderTotal} {symbol}
-                        </span>
-                      </li>
-                      <li className="m-tb-2-5">
-                        {translate("shipping")} <span>$0</span>
-                      </li>
-                      <li>
-                        {translate("tax")} <span>$0</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="final-total">
-                    <h3>
-                      {translate("total")}
-                      <span>
-                        {symbol}
-                        {orderTotal}
-                      </span>
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="row order-success-sec">
-                  <div className="col-sm-6 m-tb-5 w-mx55">
-                    <h4>{translate("payment_information")}</h4>
-                    <ul className="order-detail">
-                      {payment.paymentID ? (
-                        <div>
-                          <li>
-                            {translate("payer_id")}
-                            <span>{payment.payerID}</span>
-                          </li>
-                          <li>
-                            {translate("payment_id")}
-                            <span>{payment.paymentID}</span>
-                          </li>
-                          <li>
-                            {translate("payment_token")}{" "}
-                            <span>{payment.paymentToken}</span>
-                          </li>
-                        </div>
-                      ) : (
-                        <li>
-                          {translate("order_id")} {payment.id}
-                        </li>
-                      )}
+            <h4>
+              {order.billing.first_name} {order.billing.last_name}{" "}
+            </h4>
+            <h4>{order.billing.address_1}</h4>
+            <h4>
+              {order.billing.state} {order.billing.postcode}
+            </h4>
 
-                      <li>
-                        {" "}
-                        {translate("order_date")}
-                        {CheckDate}
-                      </li>
-                      <li>
-                        {translate("order_total")}
-                        {orderTotal} {symbol}
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-sm-6 m-tb-5 w-mx55">
-                    <h4>{translate("shipping_address")}</h4>
-                    <ul className="order-detail">
-                      <li>
-                        <span>
-                          {order.billing.first_name} {order.billing.last_name}{" "}
-                        </span>
-                      </li>
-                      <li>
-                        <span>{order.billing.address_1}</span>
-                      </li>
-                      <li>
-                        <span>
-                          {order.billing.state} {order.billing.postcode}
-                        </span>
-                      </li>
-                      <li>
-                        {translate("contact_phone")} {order.billing.phone}
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="col-sm-12 payment-mode m-tb-5">
-                    <h4>{translate("payment_method")}</h4>
-                    <p>{translate("banking_acceptance")}</p>
-                  </div>
-                  <div className="col-md-12 m-tb-5">
-                    <div className="delivery-sec">
-                      <h3>{translate("delivery_date")}</h3>
-                      <h2>{deliveryDate}</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="order_detail">
+              <h4> {translate("contact_phone")} </h4>
+              <h5>{order.billing.phone}</h5>
             </div>
+          </div>
+
+          <div className="order_detail ">
+            <h4>{translate("payment_method")}</h4>
+            <h5>{translate("banking_acceptance")}</h5>
+          </div>
+
+          <div className="order_detail ">
+            <h4>{translate("delivery_date")}</h4>
+            <h5>{deliveryDate}</h5>
           </div>
         </section>
       </div>
@@ -271,9 +287,6 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    clearCart,
-  }
-)(withTranslate(orderSuccess));
+export default connect(mapStateToProps, {
+  clearCart,
+})(withTranslate(CheckoutSuccess));

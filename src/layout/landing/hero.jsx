@@ -30,6 +30,7 @@ function Hero(data) {
       if (data.data.state.extras) {
         if (data.data.state.extras.extras) {
           extras = data.data.state.extras.extras;
+          console.log(extras);
         }
       }
     }
@@ -77,7 +78,7 @@ function Hero(data) {
                   <p className="c-banner-text__header">LASTEST CREATIONS</p>
                   <h1 className="c-banner-text__big">{extras[0].name}</h1>
                   <p className="c-banner-text__long">
-                    {extras[0].short_description}
+                    {extras[0].description}
                   </p>{" "}
                   <Button
                     label="LEARN MORE"

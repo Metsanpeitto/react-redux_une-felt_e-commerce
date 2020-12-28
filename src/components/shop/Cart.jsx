@@ -135,19 +135,15 @@ class cartComponent extends Component {
               </div>
             </div>
             <div className="c-cart__buttons">
-              <Link
-                to={`${process.env.PUBLIC_URL}/checkout`}
-                key="all_posts"
-                id="check_out"
-              >
-                <Button label={"check_out"} href="#" />
-              </Link>
-              <Link
-                to={`${process.env.PUBLIC_URL}/collection`}
-                id="Back to Shop"
-              >
-                <Button label={"Back to Shop"} href="#" />
-              </Link>
+              <Button
+                label={"check_out"}
+                href={`${process.env.PUBLIC_URL}/checkout`}
+              />
+
+              <Button
+                label={"Back to Shop"}
+                href={`${process.env.PUBLIC_URL}/collection`}
+              />
             </div>
           </section>
         ) : (

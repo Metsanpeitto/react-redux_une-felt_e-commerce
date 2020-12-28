@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import Draw from "./icons/Logo2";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { ToastContainer } from "react-toastify";
 // <section style={style2}>{props.children}</section>
 function App(props) {
   const [section1Visible, set1Visible] = useState(false);
@@ -11,7 +12,6 @@ function App(props) {
   useEffect(
     () => {
       window.scrollTo(0, 0);
-
       if (section1Visible) {
         const delay1 = 10000;
         setTimeout(() => set2Visible(true), delay1);
@@ -30,6 +30,7 @@ function App(props) {
 
   return (
     <div>
+      <ToastContainer />
       <Helmet>
         <title>Une</title>
       </Helmet>

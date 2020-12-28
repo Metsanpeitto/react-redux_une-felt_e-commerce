@@ -1,3 +1,5 @@
+//     -----------   Checkout  Layout  Starts          ---------------------------------------     //
+
 .c-checkout {
   background-color: $color-secondary-light;
   padding: 10rem;
@@ -340,3 +342,94 @@
 .paypal-button {
   margin-top: 2rem;
 }
+
+//     -----------   Checkout  Layout  Ends            ---------------------------------------     //
+
+//     -----------   Checkout Success Layout Starts    ---------------------------------------     //
+
+.c-checkout-success {
+  background-color: $color-secondary-light;
+  display: block;
+  width: 100%;
+  padding-top: 15vh;
+  padding-bottom: 5%;
+  position: relative;
+  font-size: 19px;
+  text-transform: capitalize;
+  color: #d28e77;
+  animation: arriveLeft 2s ease-in-out;
+
+  .title {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  &__head {
+    margin-top: 3%;
+    text-align: center;
+    animation: arriveRight 3s ease-in-out;
+    i {
+      font-size: 6rem;
+    }
+
+    .thanks {
+      margin-top: 3%;
+      text-align: center;
+      font-family: $font-didot;
+      font-size: 7rem;
+      font-weight: 800;
+      text-transform: capitalize;
+      letter-spacing: 1rem;
+    }
+
+    p {
+      font-size: 32px;
+    }
+  }
+
+  &__body {
+    background-color: $color-secondary-dark;
+    border-radius: 2rem;
+    width: 50vw;
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    display: grid;
+    text-align: center;
+    animation: rise 4s ease-in-out;
+
+    .order_detail {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 70%;
+      margin: auto;
+
+      h4 {
+        font-weight: 200;
+        text-align: start;
+      }
+    }
+
+    .product-order {
+      width: 60%;
+      margin: auto;
+
+      .product-order-detail {
+        font-weight: 300;
+      }
+    }
+
+    .shipping {
+      font-weight: 300;
+
+      h4 {
+        font-weight: inherit;
+      }
+    }
+  }
+}
+
+//     -----------   Checkout Success Layout Ends    ---------------------------------------     //

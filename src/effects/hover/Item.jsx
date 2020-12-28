@@ -119,7 +119,7 @@ class Item extends Component {
   }
 
   render() {
-    this.mountScript();
+    // this.mountScript();
 
     if (this.props.name) {
       return (
