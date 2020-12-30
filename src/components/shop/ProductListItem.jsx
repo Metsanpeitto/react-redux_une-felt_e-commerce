@@ -78,10 +78,7 @@ class ProductListItem extends Component {
 
     return (
       <div className="product-box">
-        <Link
-          to={`${process.env.PUBLIC_URL}/product/${product.id}`}
-          className="btn btn-solid"
-        >
+        <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
           <div className="product-box__image">
             <img src={product.pictures[0]} />
           </div>

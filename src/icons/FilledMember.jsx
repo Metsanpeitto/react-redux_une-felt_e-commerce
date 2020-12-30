@@ -9,6 +9,7 @@ function FilledMember() {
       data-name="圖層 1"
       version="1.1"
       viewBox="0 0 40 26.707"
+      className="filledMember"
     >
       <path
         fill="#d28e77"

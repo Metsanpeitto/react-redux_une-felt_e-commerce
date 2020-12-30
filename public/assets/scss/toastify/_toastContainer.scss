@@ -6,6 +6,7 @@
   width: $rt-toast-width;
   box-sizing: border-box;
   color: $color-primary-dark;
+
   &--top-left {
     top: 1em;
     left: 1em;
@@ -38,7 +39,6 @@
   .#{$rt-namespace}__toast-container {
     width: 100vw;
     border-radius: 40px;
-
     padding: 0;
     left: 0;
     margin: 0;

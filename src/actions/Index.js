@@ -181,15 +181,28 @@ export const receiveLogin = (log) => ({
 export const login = (userData) => (dispatch) => {
   dispatch(fetchLoginBegin());
   user.login(userData).then((log) => {
-    toast.success("🤗 Account logged-in successfullly", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    console.log(log);
+    if (log == undefined || log == "error") {
+      toast.error("\xa0\xa0 🙈 \xa0\xa0 Account not recognized.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.success(`\xa0\xa0 🤗 \xa0\xa0 Account logged-in successfullly`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
     //toast.success("Account logged-in successfullly");
     dispatch(receiveLogin(log));
     return log;
@@ -198,7 +211,7 @@ export const login = (userData) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch(closeConnection());
-  toast.error("👋 User logged out", {
+  toast.error("\xa0\xa0 👋 \xa0\xa0 User logged out", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -229,7 +242,7 @@ export const receiveSignup = (log) => ({
 export const signup = (userData) => (dispatch) => {
   dispatch(signupBegin());
   user.signup(userData).then((log) => {
-    toast.success("🎉 Account created successfully", {
+    toast.success("\xa0\xa0 🎉 \xa0\xa0 Account created successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -240,6 +253,7 @@ export const signup = (userData) => (dispatch) => {
     });
     // toast.success("Account created successfully");
     dispatch(receiveSignup(log));
+    dispatch(login(userData));
     return log;
   });
 };
@@ -251,7 +265,7 @@ export const receiveUpdatedAccount = (log) => ({
 
 export const updateAccount = (userData, userOldData) => (dispatch) => {
   user.updateAccount(userData, userOldData).then((log) => {
-    toast.success("🍭 Account updated successfully", {
+    toast.success("\xa0\xa0 🍭 \xa0\xa0 Account updated successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -282,7 +296,7 @@ export const receiveOrderReceipt = (rec) => ({
 export const placeOrder = (orderData) => (dispatch) => {
   dispatch(orderBegin());
   user.order(orderData).then((rec) => {
-    toast.success("👌 Order placed successfully", {
+    toast.success("\xa0\xa0 👌 \xa0\xa0 Order placed successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -301,7 +315,7 @@ export const placeOrder = (orderData) => (dispatch) => {
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => (dispatch) => {
-  toast.success("🎁 Item Added to Cart!", {
+  toast.success("\xa0\xa0 🎁 \xa0\xa0 Item Added to Cart!", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -314,7 +328,7 @@ export const addToCart = (product, qty) => (dispatch) => {
   dispatch(addToCartUnsafe(product, qty));
 };
 export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
-  toast.success("🎁 Item Added to Cart!", {
+  toast.success("\xa0\xa0 🎁 \xa0\xa0Item Added to Cart!", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -333,7 +347,7 @@ export const addToCartUnsafe = (product, qty) => ({
   qty,
 });
 export const removeFromCart = (product_id) => (dispatch) => {
-  toast.error("😔 Item Decrement Qty to Cart", {
+  toast.error("\xa0\xa0 😔 \xa0\xa0 Item Decrement Qty to Cart", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -350,7 +364,7 @@ export const removeFromCart = (product_id) => (dispatch) => {
 };
 
 export const incrementQty = (product, qty) => (dispatch) => {
-  toast.success("😊 Item Added to Cart!", {
+  toast.success("\xa0\xa0 😊 \xa0\xa0 Item Added to Cart!", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -364,7 +378,7 @@ export const incrementQty = (product, qty) => (dispatch) => {
 };
 
 export const decrementQty = (productId) => (dispatch) => {
-  toast.error("😔 Item Decrement Qty to Cart", {
+  toast.error("\xa0\xa0 😔 \xa0\xa0Item Decrement Qty to Cart", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -387,7 +401,7 @@ export const clearCart = () => (dispatch) => {
 
 //it seems that I should probably use this as the basis for "Wishlist"
 export const addToWishlist = (product) => (dispatch) => {
-  toast.success("❤️ Item Added to Wishlist!", {
+  toast.success("\xa0\xa0 ❤️ \xa0\xa0 Item Added to Wishlist!", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -406,7 +420,7 @@ export const addToWishlistUnsafe = (product) => ({
 });
 
 export const removeFromWishlist = (product_id) => (dispatch) => {
-  toast.error("😢 Item Removed from Wishlist", {
+  toast.error("\xa0\xa0 😢 \xa0\xa0 Item Removed from Wishlist", {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -486,7 +500,7 @@ export const subscribeNewsletter = (email, firstname, lastname) => (
   dispatch
 ) => {
   contact(email, firstname, lastname).then((res) => {
-    toast.success("👯 Subscribtion done successfullly", {
+    toast.success("\xa0\xa0 👯 \xa0\xa0 Subscribtion done successfullly", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

@@ -48,11 +48,14 @@ const login = async (user) => {
           return filledFields;
         });
       } else {
-        alert("error");
+        console.log("error");
+        return "error";
       }
     })
     .catch((e) => {
-      alert(e.response.data.message);
+      // alert(e.response.data.message);
+      console.log(e.response.data.message);
+      return "error";
     });
 };
 
@@ -267,7 +270,7 @@ const updateAccount = async (userData, userOldData) => {
           this.login(thisUser);
           return thisUser;
         } else {
-          alert("error");
+          //    alert("error");
         }
       })
       .catch((e) => {

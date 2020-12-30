@@ -4,10 +4,12 @@ import Draw from "./icons/Logo2";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { ToastContainer } from "react-toastify";
+import Account from "./components/register/Account";
+
 // <section style={style2}>{props.children}</section>
 function App(props) {
-  const [section1Visible, set1Visible] = useState(false);
-  const [section2Visible, set2Visible] = useState(true);
+  const [section1Visible, set1Visible] = useState(true);
+  const [section2Visible, set2Visible] = useState(false);
 
   useEffect(
     () => {
@@ -41,7 +43,9 @@ function App(props) {
         <section className="section__header" style={style2}>
           <Header />
         </section>
-        <section style={style2}>{props.children}</section>
+        <section style={style2}>
+          <Account />
+        </section>
         <section className="section__footer" style={style2}>
           <Footer />
         </section>

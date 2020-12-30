@@ -23,8 +23,8 @@ class Signup extends Component {
   componentDidUpdate() {
     if (this.props.state.user.log) {
       if (this.props.state.user.log.username) {
-        alert(this.state.username + " you are currently logged in !");
-        this.props.history.push("/");
+        //  alert(this.state.username + " you are currently logged in !");
+        this.props.history.push(`${process.env.PUBLIC_URL}/`);
       }
     }
   }
@@ -56,6 +56,7 @@ class Signup extends Component {
         password: password,
         email: username,
       };
+      this.props.setLoader("visible");
       this.props.signup(userData);
     }
   }

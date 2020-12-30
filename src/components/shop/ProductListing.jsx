@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+
 import { withTranslate } from "react-redux-multilingual";
 
 import {

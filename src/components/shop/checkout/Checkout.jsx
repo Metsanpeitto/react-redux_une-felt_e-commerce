@@ -398,11 +398,11 @@ class checkOut extends Component {
               </div>
 
               <div className="form-group account  ">
-                <input
-                  type="checkbox"
+                <Checkbox
                   name="create_account"
                   id="account-option"
-                  checked={this.state.create_account}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                  defaultChecked={this.state.create_account}
                   onChange={this.setStateFromCheckbox}
                 />
                 &ensp;{" "}
@@ -504,10 +504,10 @@ class checkOut extends Component {
                 <div className="upper-box">
                   <div className="payment-options">
                     <div className="radio-option stripe">
-                      <input
-                        type="radio"
+                      <Checkbox
                         name="payment-group"
                         id="payment-2"
+                        inputProps={{ "aria-label": "primary checkbox" }}
                         defaultChecked={true}
                         onClick={() => this.checkhandle("stripe")}
                       />
@@ -515,22 +515,14 @@ class checkOut extends Component {
                     </div>
 
                     <div className="radio-option paypal">
-                      <input
-                        type="radio"
+                      <Checkbox
                         name="payment-group"
                         id="payment-1"
+                        inputProps={{ "aria-label": "primary checkbox" }}
                         defaultChecked={false}
                         onClick={() => this.checkhandle("paypal")}
                       />
-                      <label htmlFor="payment-1">
-                        PayPal
-                        <span className="image">
-                          <img
-                            src={`${process.env.PUBLIC_URL}/assets/images/paypal.png`}
-                            alt=""
-                          />
-                        </span>
-                      </label>
+                      <label htmlFor="payment-1">Paypal</label>
                     </div>
                   </div>
                 </div>

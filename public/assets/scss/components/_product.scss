@@ -19,6 +19,8 @@
       margin-left: auto;
       grid-row-start: 2;
       left: 10%;
+      animation: floatFrame 6s ease-in-out 3s infinite;
+
       // This overwrites the source component for this page
       .c-frame .c-frame-image svg {
         position: relative;
@@ -61,6 +63,7 @@
     display: grid;
     grid-template-columns: 5rem 1fr 5rem;
     grid-template-rows: 5rem 5rem 5rem 5rem 25rem 5rem 5rem 5rem;
+    animation: fromRight 2s ease-in-out;
 
     .right-panel {
       &__address {

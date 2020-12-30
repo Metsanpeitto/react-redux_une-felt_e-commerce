@@ -30,7 +30,6 @@ function Hero(data) {
       if (data.data.state.extras) {
         if (data.data.state.extras.extras) {
           extras = data.data.state.extras.extras;
-          console.log(extras);
         }
       }
     }

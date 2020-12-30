@@ -29,12 +29,27 @@ class Item extends Component {
 
   mountScript() {
     const script = document.createElement("script");
+
     script.src = "/charming.min.js";
     script.src = "/anime.min.js";
-    // script.src = "/charming.min.js";
     script.async = true;
     script.onload = () => this.scriptLoaded();
     document.body.appendChild(script);
+  }
+
+  scriptLoaded() {
+    if (this.props.name) {
+      this.el = document;
+      this.name = this.el.getElementById(this.props.name);
+      //this.name = this.el.
+      if (this.name) {
+        if (window.charming) {
+          window.charming(this.name);
+          this.nameLetters = Array.from(this.name.querySelectorAll("span"));
+          this.initEvents();
+        }
+      }
+    }
   }
 
   mouseenterFn = (e) => {
@@ -90,21 +105,6 @@ class Item extends Component {
       });
     }
   };
-
-  scriptLoaded() {
-    if (this.props.name) {
-      this.el = document;
-      this.name = this.el.getElementById(this.props.name);
-      //this.name = this.el.
-      if (this.name) {
-        if (window.charming) {
-          window.charming(this.name);
-          this.nameLetters = Array.from(this.name.querySelectorAll("span"));
-          this.initEvents();
-        }
-      }
-    }
-  }
 
   initEvents() {
     //  this.mouseenterFn();

@@ -32,7 +32,6 @@
 
       &:hover {
         -webkit-animation: rotate1 0.5s ease-in 3s;
-
         animation: rotate1 0.5s ease-in 3s;
       }
     }
@@ -45,7 +44,6 @@
 
       &:hover {
         -webkit-animation: rotate1 0.5s ease-in 3s;
-
         animation: rotate1 0.5s ease-in 3s;
       }
     }
@@ -85,6 +83,12 @@
           font-weight: 700;
           text-decoration: unset;
           text-transform: capitalize;
+
+          .filledMember {
+            position: relative;
+            transform-origin: center center;
+            animation: floating 4s ease-in-out infinite;
+          }
 
           .filledGift {
             position: relative;

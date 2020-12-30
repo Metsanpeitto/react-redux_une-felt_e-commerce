@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withTranslate } from "react-redux-multilingual";
+import Loader from "../effects/loader/Loader";
 
 class Lastest extends Component {
   constructor(props) {
@@ -58,7 +59,7 @@ class Lastest extends Component {
           </div>
         </div>
       );
-    } else return <h1>Loading</h1>;
+    } else return <Loader />;
   }
 }
 
