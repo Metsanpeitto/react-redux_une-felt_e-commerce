@@ -133,19 +133,134 @@
   }
 
   &__account {
-    color: $color-primary-dark;
-    padding-top: 20vh;
-    animation: moveInUp 2s ease-in-out;
+    background-color: $color-secondary-light;
+    display: block;
+    width: 100%;
+    padding-top: 15vh;
+    padding-bottom: 5%;
+    position: relative;
+    animation: arriveLeft 2s ease-in-out;
 
     h3 {
-      font-size: 2.6rem;
-      grid-row-start: 1;
+      margin-top: 3%;
+      text-align: center;
+      font-family: $font-didot;
+      font-size: 7rem;
+      font-weight: 800;
+      text-transform: capitalize;
+      letter-spacing: 1rem;
+      color: #d28e77;
+      animation: arriveRight 3s ease-in-out;
     }
 
-    form {
-      display: grid;
-      grid-template-rows: repeat(12, auto);
-      row-gap: 5rem;
+    .left-menu {
+      grid-row-start: 2;
+      background-color: $color-secondary-dark;
+      padding: 5rem;
+      width: 75rem;
+      min-width: 75rem;
+      margin-left: auto;
+      margin-right: auto;
+      min-height: 65rem;
+      /* border-radius: 4px; */
+      animation: land-from-left 2s ease-in-out;
+
+      &--title {
+        font-size: 2.5rem;
+        color: $color-primary-dark;
+        margin-bottom: 5rem;
+        text-align: center;
+        letter-spacing: 0.7rem;
+      }
+      form {
+        .form-group {
+          font-size: 1.4rem;
+          font-weight: 200;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding-left: 1rem;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 1.3rem;
+          width: 50rem;
+          height: 3rem;
+
+          .field-label {
+            align-self: center;
+            justify-self: start;
+            color: $color-primary-light;
+            font-weight: 600;
+          }
+
+          input {
+            appearance: textfield;
+            background-color: $color-secondary-light;
+            border-style: unset;
+            border-color: unset;
+            border-image: unset;
+            color: $color-primary-dark !important;
+            cursor: text;
+            display: inline-block;
+            font: inherit;
+            font-size: 1.5rem;
+            font-weight: 700;
+            justify-self: start;
+            letter-spacing: normal;
+            padding-left: 1rem;
+            text-align: start;
+            text-indent: 0px;
+            text-rendering: auto;
+            text-transform: none;
+            text-shadow: none;
+            margin: 0em;
+            min-height: 3.5rem;
+            max-height: 3.5rem;
+            -webkit-appearance: textfield;
+            -webkit-rtl-ordering: logical;
+            -webkit-writing-mode: horizontal-tb !important;
+            word-spacing: normal;
+
+            &:focus {
+              background-color: $color-secondary-light;
+              padding: 2%;
+              outline: none;
+            }
+
+            &::placeholder {
+              color: $color-primary-light !important;
+              font-size: $font-small;
+            }
+          }
+
+          .srv-validation-message {
+            position: relative !important;
+            top: -1rem !important;
+            color: $color-primary-light !important;
+          }
+
+          a {
+            grid-column-start: 2;
+            margin-top: 3rem;
+          }
+        }
+
+        .account {
+          grid-template-columns: 3rem 1fr;
+
+          input {
+            align-self: center;
+            grid-column-start: 1;
+            grid-row-start: 1;
+          }
+          label {
+            align-self: center;
+            color: $color-primary-light;
+            font-weight: 600;
+            grid-column-start: 2;
+            grid-row-start: 1;
+          }
+        }
+      }
     }
   }
 }

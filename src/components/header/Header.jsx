@@ -77,7 +77,6 @@ class Header extends Component {
         if (this.props.state.user.log.userId) {
           const name = this.props.state.user.log.email;
           if (name !== this.state.name) {
-            console.log(name);
             this.setState(() => {
               return {
                 name: name,
@@ -112,6 +111,18 @@ class Header extends Component {
       this.setState(() => {
         return {
           categoryTree: categoryTree,
+        };
+      });
+    }
+
+    if (
+      this.props.state.posts.categoryTreePosts !== this.state.categoryTreePosts
+    ) {
+      const categoryTreePosts = this.props.state.posts.categoryTreePosts;
+
+      this.setState(() => {
+        return {
+          categoryTreePosts: categoryTreePosts,
         };
       });
     }
@@ -170,32 +181,20 @@ class Header extends Component {
   }
 
   menuRead() {
-    if (this.props.state.posts) {
-      if (this.props.state.posts.posts) {
-        if (this.props.state.posts.posts !== "empty") {
-          var items = [];
-
-          this.props.state.posts.posts.map((p) => {
-            const item = { title: p.title, key: p.p.id };
-            items.push(item);
-          });
-
+    if (this.state.categoryTreePosts.length > 1) {
+      this.state.categoryTreePosts.map((item) => {
+        if (item.id === "posts") {
+          // Products  id is 55
           this.setState(() => {
-            return {
-              menuOpen: true,
-              menuReadOpen: true,
-              menuShopOpen: null,
-              sideMenu1: items,
-              sideMenu2: null,
-              sideMenu3: null,
-              posts: this.props.state.posts.posts,
-            };
+            return { sideMenu1: item.items, posts: item };
           });
         }
-      }
-      this.closeSubmenu();
-      this.menu1Trigger();
+      });
     }
+    this.menu1Trigger();
+    this.setState(() => {
+      return { menuOpen: true, menuRead: true };
+    });
   }
 
   menuShop() {
@@ -203,8 +202,6 @@ class Header extends Component {
       1 - 1st menu loads all the products direct children  
     */
     if (this.state.categoryTree) {
-      console.log(this.state);
-
       this.state.categoryTree.map((item) => {
         if (item.id === "shop") {
           // Products  id is 55
@@ -275,6 +272,8 @@ class Header extends Component {
 
     var id = null;
     var items = [];
+    var postFlag = null;
+
     this.state.categoryTree.map((item) => {
       if (item.name) {
         if (item.name === name) {
@@ -283,12 +282,51 @@ class Header extends Component {
       }
     });
 
-    if (id) {
-      this.state.categoryTree.map((item) => {
-        if (item.parent === id) {
-          items.push(item);
+    if (!id) {
+      this.state.categoryTreePosts.map((item) => {
+        if (item.name) {
+          if (item.name === name) {
+            id = item.id;
+            postFlag = true;
+          }
         }
       });
+    }
+
+    if (id) {
+      if (postFlag) {
+        this.state.categoryTreePosts.map((item) => {
+          if (item.parent === id) {
+            items.push(item);
+          }
+        });
+        if (!items == []) {
+          this.props.state.posts.posts.map((item) => {
+            const len = item.categories.length;
+            if (len > 1) {
+              item.categories.map((c) => {
+                if (c == id) {
+                  items.push(item);
+                }
+              });
+            } else {
+              if (item.categories == id) {
+                items.push(item);
+              }
+            }
+
+            // if (item.parent === id) {
+            //   items.push(item);
+            // }
+          });
+        }
+      } else {
+        this.state.categoryTree.map((item) => {
+          if (item.parent === id) {
+            items.push(item);
+          }
+        });
+      }
 
       if (level == 1) {
         this.setState(() => {
@@ -364,14 +402,18 @@ class Header extends Component {
                   </li>
                 );
               }
-              if (item.key) {
+              if (item.id_post) {
                 return (
-                  <li key={`${index}`}>
+                  <li key={`${item.id}${index}`}>
                     <Link
-                      to={this.newTo(item.key, "post")}
+                      to={this.newTo(
+                        item.name ? item.name : item.id_post,
+                        data.level > 1 ? "post" : "posts"
+                      )}
                       onClick={this.closeMenuTrigger}
                       onMouseOver={this.hoverItem}
-                      key={index}
+                      key={item.id_post}
+                      name={item.id_post}
                       value={data.level}
                     >
                       {item.title}

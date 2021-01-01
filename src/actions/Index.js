@@ -3,7 +3,6 @@ import user from "../api/user";
 import posts from "../api/posts";
 import contact from "../api/mailChimp";
 import * as types from "../constants/ActionTypes";
-import BlankHeart from "../icons/BlankHeart";
 import { toast } from "react-toastify";
 //import "react-toastify/dist/ReactToastify.min.css";
 //import "react-toastify/dist/ReactToastify.css";
@@ -24,7 +23,6 @@ export const receivePosts = (posts) => ({
 
 export const getPostComments = (postId) => (dispatch) => {
   posts.getComments(postId).then((comments) => {
-    console.log(comments);
     dispatch(receiveComments(comments));
     return comments;
   });
@@ -144,6 +142,35 @@ export const getAllCategories = () => (dispatch) => {
 
 /**      END  CATEGORYTREE ACTIONS          */
 
+/**           CATEGORY TREE OF POSTS ACTIONS          */
+
+export const fetchCategoryTreePostsBegin = () => ({
+  type: types.FETCH_CATEGORYTREE_POSTS_BEGIN,
+});
+
+export const fetchCategoryTreePosts = (categoryPosts) => ({
+  type: types.FETCH_CATEGORYTREE_POSTS,
+  categoryPosts,
+});
+
+export const receiveCategoryTreePosts = (categoryTreePosts) => ({
+  type: types.RECEIVE_CATEGORYTREE_POSTS,
+  categoryTreePosts,
+});
+
+export const getAllCategoriesPosts = () => (dispatch) => {
+  dispatch(fetchCategoryTreePostsBegin());
+  posts.getCategoryTree().then((categoryTreePosts) => {
+    console.log(categoryTreePosts);
+    if (categoryTreePosts) {
+      dispatch(receiveCategoryTreePosts(categoryTreePosts));
+      return categoryTreePosts;
+    }
+  });
+};
+
+/**      END  CATEGORYTREE POSTS ACTIONS          */
+
 /*        GET EXTRAS                        */
 export const fetchExtrasBegin = () => ({
   type: types.FETCH_EXTRAS_BEGIN,
@@ -181,7 +208,6 @@ export const receiveLogin = (log) => ({
 export const login = (userData) => (dispatch) => {
   dispatch(fetchLoginBegin());
   user.login(userData).then((log) => {
-    console.log(log);
     if (log == undefined || log == "error") {
       toast.error("\xa0\xa0 🙈 \xa0\xa0 Account not recognized.", {
         position: "top-right",

@@ -8,8 +8,8 @@ import Account from "./components/register/Account";
 
 // <section style={style2}>{props.children}</section>
 function App(props) {
-  const [section1Visible, set1Visible] = useState(true);
-  const [section2Visible, set2Visible] = useState(false);
+  const [section1Visible, set1Visible] = useState(false);
+  const [section2Visible, set2Visible] = useState(true);
 
   useEffect(
     () => {
@@ -43,9 +43,7 @@ function App(props) {
         <section className="section__header" style={style2}>
           <Header />
         </section>
-        <section style={style2}>
-          <Account />
-        </section>
+        <section style={style2}>{props.children}</section>
         <section className="section__footer" style={style2}>
           <Footer />
         </section>

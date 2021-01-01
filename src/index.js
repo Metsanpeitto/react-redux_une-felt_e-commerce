@@ -37,6 +37,7 @@ import translations from "./constants/translations";
 import {
   getAllProducts,
   getAllCategories,
+  getAllCategoriesPosts,
   getAllExtras,
   getAllPosts,
 } from "./actions/Index";
@@ -49,6 +50,7 @@ class Root extends React.Component {
   render() {
     store.dispatch(getAllProducts());
     store.dispatch(getAllCategories());
+    store.dispatch(getAllCategoriesPosts());
     store.dispatch(getAllExtras());
     store.dispatch(getAllPosts());
 

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import HoverMohe from "../../effects/hover/HoverMohe";
 import { getAllPosts } from "../../actions/Index";
 import store from "../../app/store";
+import Loader from "../../effects/loader/Loader";
 
 class Posts extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Posts extends Component {
   }
 
   loadOlder() {
-    store.dispatch(getAllPosts("all"));
+    this.props.getAllPosts("all");
   }
 
   // This helps to open the selected produt in a dedicated window
@@ -50,7 +51,6 @@ class Posts extends Component {
 
   PostCard = (p) => {
     const post = p.post;
-    console.log(p);
     if (post.p.excerpt) {
       if (post.p.content.rendered) {
         var img = post.thumbnail;
@@ -85,7 +85,6 @@ class Posts extends Component {
   ];
 
   render() {
-    console.log(this.state.posts);
     return (
       <section className="c-posts">
         <h1>Posts</h1>
@@ -98,14 +97,16 @@ class Posts extends Component {
                   return <this.PostCard post={post} key={index} />;
                 })}
                 {this.state.posts.length > 10 ? null : (
-                  <HoverMohe items={this.items} onClick={this.loadOlder} />
+                  <div id="older-posts" onClick={this.loadOlder}>
+                    <HoverMohe items={this.items} />
+                  </div>
                 )}
               </div>
             ) : (
-              <p>Loading</p>
+              <Loader />
             )
           ) : (
-            <p>Loading</p>
+            <Loader />
           )}
         </div>
       </section>

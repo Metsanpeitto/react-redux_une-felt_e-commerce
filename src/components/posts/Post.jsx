@@ -184,6 +184,8 @@ class Post extends Component {
 
   checkProps() {
     if (this.props) {
+      console.log(this.props);
+      console.log(window);
       if (this.props.state.posts && this.props.state.posts !== undefined) {
         if (this.props.item !== this.state.post) {
           const script = document.createElement("script");
@@ -587,12 +589,14 @@ const mapStateToProps = (state, ownProps) => {
   var item = null;
   var next,
     prev = null;
+
   if (ownProps.match) {
+    console.log(ownProps.match);
     postId = parseInt(ownProps.match.params.id);
     if (state.posts.posts) {
       if (state.posts.posts !== "empty") {
         const posts = state.posts.posts;
-
+        console.log(posts);
         posts.map((p, index) => {
           if (p.p.id === postId) {
             item = p;
@@ -607,11 +611,11 @@ const mapStateToProps = (state, ownProps) => {
             return item;
           }
         });
-
+        console.log(item);
         var test = item;
 
         if (!test) {
-          test = state.posts.posts.find((el) => el.id === postId);
+          test = state.posts.posts.find((el) => el.id_post === postId);
           item = test;
         }
 

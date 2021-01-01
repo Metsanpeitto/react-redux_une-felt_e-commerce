@@ -21,17 +21,19 @@ const getPostList = async (amount) => {
         var data = result.request.response;
         Object.json1 = JSON.parse(data);
         var posts = Object.json1;
-
         var postsReady = [];
         posts.map((p) => {
           var render = p.content.rendered;
           var result = render.slice(1, -1);
           var str = p.title.rendered;
           var title = str.replace("&#8211;", ":");
+          var categories = p.categories;
           var mySubString = render.substring(
             result.lastIndexOf("<figure>") + 1,
             result.lastIndexOf("</figure>")
           );
+
+          // Process the categories here
 
           var el = document.createElement("html");
           el.innerHTML = mySubString;
@@ -125,7 +127,9 @@ const getPostList = async (amount) => {
             };
             var postReady = {
               p,
+              id_post: p.id,
               title: title,
+              categories: categories,
               date: formattedDate,
               link: p.link,
               elements: result,
@@ -153,6 +157,96 @@ const chunk = (arr, size) =>
     ),
     []
   );
+
+const getCategoryTree = async () => {
+  var root = `&parent=0`;
+  var level = 1;
+
+  return await getTheCategories(root, level).then((res) => {
+    if (res) {
+      return res;
+    } else return null;
+  });
+};
+
+const getTheCategories = async (parent, level) => {
+  var url = `wp/v2/categories?hide_empty=false&per_page=100`;
+
+  return await axios
+    .get(process.env.REACT_APP_WORDPRESS + `${url}`)
+    .then((result) => {
+      if (result.status === 200) {
+        var data = result.request.response;
+        Object.json1 = JSON.parse(data);
+        var items = Object.json1;
+        console.log(items);
+        var posts = { id: "posts", items: proccessCategories(items) };
+        items.push(posts);
+        return items;
+      }
+    });
+};
+
+const proccessCategories = (categoryTree) => {
+  // Here the categories should be setup at the development stage
+  const categories = categoryTree;
+
+  //  These are for posts
+  const about = categorySorter(categories, 2);
+  const exhibition = categorySorter(categories, 4);
+  const u_feltedwool = categorySorter(categories, 5);
+  const u_mag = categorySorter(categories, 6);
+  const u_tool = categorySorter(categories, 7);
+  const Uncategorized = categorySorter(categories, 1);
+  const workshop = categorySorter(categories, 8);
+  const u_case = categorySorter(categories, 3);
+
+  var posts = [
+    { id: "about", items: about },
+    { id: "u_case", items: u_case },
+    { id: "exhibition", items: exhibition },
+    { id: "u_feltedwool", items: u_feltedwool },
+    { id: "u_mag", items: u_mag },
+    { id: "u_tool", items: u_tool },
+    { id: "Uncategorized", items: Uncategorized },
+    { id: "workshop", items: workshop },
+  ];
+
+  return posts;
+};
+
+const categorySorter = (categories, categoryId) => {
+  var items = [];
+  //This looks for all the subcategories of pieces/sculptures(54),tools(64) or painting(75)
+  if (categories.length > 1) {
+    categories.map((c) => {
+      if (c.parent === categoryId) {
+        //    <-- Looks for the category
+        const group = {
+          item: c,
+          items: [],
+          id: c.name,
+        };
+        items.push(group);
+      }
+    });
+    var subItems = [];
+    var newItems = items;
+
+    //This are all the items in for example tools .
+    //They should be sorted again
+    items.map((subItem, index) => {
+      categories.map((c) => {
+        if (c.parent === subItem.item.id) {
+          subItems.push(c);
+        }
+      });
+      newItems[index].items.push(subItems);
+      subItems = [];
+    });
+    return newItems;
+  } else return null;
+};
 
 const doPost = async () => {
   return await axios
@@ -200,7 +294,6 @@ const deletePost = async (id) => {
   return await axios
     .delete(process.env.REACT_APP_WORDPRESS + `wp/v2/posts/${id}`)
     .then((result) => {
-      console.log(result);
       if (result.status === 200) {
       } else {
         alert("error");
@@ -265,7 +358,6 @@ const createComment = async (id) => {
   return await axios
     .post(process.env.REACT_APP_WORDPRESS + `wp/v2/comments/${id}`)
     .then((result) => {
-      console.log(result);
       if (result.status === 200) {
       } else {
         alert("error");
@@ -280,7 +372,6 @@ const deleteComment = async (id) => {
   return await axios
     .post(process.env.REACT_APP_WORDPRESS + `wp/v2/comments/${id}`)
     .then((result) => {
-      console.log(result);
       if (result.status === 200) {
       } else {
         alert("error");
@@ -298,4 +389,5 @@ export default {
   updatePost,
   deletePost,
   getComments,
+  getCategoryTree,
 };

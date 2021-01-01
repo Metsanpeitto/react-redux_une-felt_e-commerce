@@ -55,12 +55,17 @@ const CheckoutForm = ({
         console.log(e);
       });
     var receiptUrl = "";
-    receiptUrl = order.data;
+    if (order) {
+      receiptUrl = order.data;
+      doOrder(true);
+      const data = [receiptUrl, clientData];
+      history.push(newTo(data));
+    } else {
+      console.log("error");
+    }
+
     //history.push(`${process.env.PUBLIC_URL}/order-success`);
     //this.props.placeOrder(this.createOrderData());
-    doOrder(true);
-    const data = [receiptUrl, clientData];
-    history.push(newTo(data));
   };
 
   return (

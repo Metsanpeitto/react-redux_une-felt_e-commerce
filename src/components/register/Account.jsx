@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import { withTranslate } from "react-redux-multilingual";
 import { updateAccount } from "../../actions/Index";
-import Input from "../../effects/input/Input";
 import Button from "../Button";
 
 class Account extends Component {
@@ -33,7 +32,9 @@ class Account extends Component {
   componentWillMount() {
     if (this.props.state.user.log) {
       if (this.props.state.user.log.userId) {
+        console.log(this.props.state.user);
         if (this.props.state.user.log.userId !== "error") {
+          this.fillFields(this.props.state.user);
           this.setState({
             name: this.props.state.user.log.userId,
           });
@@ -41,6 +42,77 @@ class Account extends Component {
       }
     }
   }
+
+  fillFields = (props) => {
+    console.log(props);
+    if (props.log) {
+      if (props.log.userId) {
+        const {
+          first_name,
+          last_name,
+          phone,
+          email,
+          country,
+          address_1,
+          city,
+          state,
+          postcode,
+        } = props.log;
+
+        this.setState(() => {
+          return {
+            first_name: first_name,
+            last_name: last_name,
+            phone: phone,
+            email: email,
+            country: country,
+            address_1: address_1,
+            city: city,
+            state: state,
+            postcode: postcode,
+          };
+        });
+      }
+    }
+  };
+
+  setStateFromInput = (event) => {
+    var obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  };
+
+  callUpdate = () => {
+    if (this.state.create_account) {
+      const {
+        first_name,
+        last_name,
+        phone,
+        email,
+        country,
+        address_1,
+        city,
+        state,
+        postcode,
+      } = this.state;
+
+      const userData = {
+        username: this.state.username,
+        first_name: first_name,
+        password: this.state.password,
+        last_name: last_name,
+        phone: phone,
+        email: email,
+        country: country,
+        address_1: address_1,
+        city: city,
+        state: state,
+        postcode: postcode,
+      };
+      this.props.updateAccount(userData);
+    }
+  };
+
   /**
  * 
  *  componentDidUpdate() {
@@ -57,64 +129,10 @@ class Account extends Component {
  * 
  */
 
-  componentWillReceiveProps() {
-    console.log(this.props);
-  }
-
-  fillFields() {
-    const {
-      username,
-      first_name,
-      password,
-      last_name,
-      phone,
-      email,
-      country,
-      address_1,
-      city,
-      state,
-      postcode,
-      userId,
-    } = this.props.state.user.log;
-    console.log(this.props.state.user.log);
-    this.setState(() => {
-      return {
-        username: username,
-        first_name: first_name,
-        password: password,
-        last_name: last_name,
-        phone: phone,
-        email: email,
-        country: country,
-        address_1: address_1,
-        city: city,
-        state: state,
-        postcode: postcode,
-        id: userId,
-      };
-    });
-  }
-
-  handleChange = (e) => {
-    var value = e.currentTarget.value;
-    const name = e.currentTarget.name;
-    if (e.currentTarget.name) {
-      if (name === "postcode" || name === "phone") {
-        this.setState(() => {
-          return { [name]: value.replace(/\D/, "") };
-        });
-      } else {
-        this.setState(() => {
-          return { [name]: value };
-        });
-      }
-    } else return null;
-  };
-
   handleSubmit(event) {
     console.log(event);
     event.preventDefault();
-    if (this.state.first_name.length > 0) {
+    if (this.state.email.length > 0) {
       const {
         id,
         username,
@@ -149,159 +167,216 @@ class Account extends Component {
       this.props.updateAccount(userData, userOldData);
     }
   }
+
+  Username = () => {
+    if (this.state.create_account) {
+      return (
+        <div className="d-c">
+          <div className="form-group col-md-6 col-sm-6 col-xs-12">
+            <div className="field-label">User Name</div>
+            <input
+              type="text"
+              name="username"
+              className="form-control"
+              value={this.state.username}
+              onChange={this.setStateFromInput}
+            />
+            {this.validator.message(
+              "username",
+              this.state.username,
+              "required|alpha"
+            )}
+          </div>
+          <div className="form-group col-md-6 col-sm-6 col-xs-12">
+            <div className="field-label">Password</div>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              value={this.state.password}
+              onChange={this.setStateFromInput}
+            />
+            {this.validator.message(
+              "password",
+              this.state.password,
+              "required"
+            )}
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   render() {
     const { translate } = this.props;
     return (
       <div className="l-register__account">
         <h3>Account Manager</h3>
-        <form onSubmit={this.handleSubmit}>
-          <Input
-            type="email"
-            name="name"
-            id="mail"
-            label="mail"
-            value={this.state.name}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "name",
-            this.state.username,
-            "required|alpha"
-          )}
+        <div className="left-menu">
+          <div className="left-menu--title">
+            <h3>{translate("billing")}</h3>
+          </div>
+          <form className="form">
+            <div className="form-group ">
+              <div className="field-label">{translate("first_name")}</div>
+              <input
+                type="text"
+                name="first_name"
+                placeholder="First Name"
+                required=""
+                className="form-control"
+                value={this.state.first_name}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "first_name",
+                this.state.first_name,
+                "required|alpha"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("last_name")}</div>
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Last Name"
+                className="form-control"
+                value={this.state.last_name}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "last_name",
+                this.state.last_name,
+                "required|alpha"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("phone")}</div>
+              <input
+                type="text"
+                name="phone"
+                className="form-control"
+                placeholder="Phone"
+                value={this.state.phone}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "phone",
+                this.state.phone,
+                "required|phone"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("email")}</div>
+              <input
+                type="text"
+                name="email"
+                placeholder="Email"
+                className="form-control"
+                value={this.state.email}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "email",
+                this.state.email,
+                "required|email"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("country")}</div>
+              <input
+                type="text"
+                name="country"
+                placeholder="Country"
+                className="form-control"
+                value={this.state.country}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "country",
+                this.state.country,
+                "required"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("address")}</div>
+              <input
+                id="address_1"
+                type="text"
+                className="form-control"
+                placeholder="Address"
+                required=""
+                name="address_1"
+                value={this.state.address_1}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "address_1",
+                this.state.address_1,
+                "required|min:2|max:120"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("city")}</div>
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                className="form-control"
+                value={this.state.city}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "city",
+                this.state.city,
+                "required|alpha"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("state")}</div>
+              <input
+                type="text"
+                name="state"
+                placeholder="State"
+                className="form-control"
+                value={this.state.state}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "state",
+                this.state.state,
+                "required|alpha"
+              )}
+            </div>
+            <div className="form-group ">
+              <div className="field-label">{translate("postal")}</div>
+              <input
+                type="text"
+                name="postcode"
+                placeholder="Postal Code"
+                className="form-control"
+                value={this.state.postcode}
+                onChange={this.setStateFromInput}
+              />
+              {this.validator.message(
+                "postcode",
+                this.state.postcode,
+                "required|integer"
+              )}
+            </div>
 
-          <Input
-            type="text"
-            name="first_name"
-            id="first_name"
-            label="first name"
-            value={this.state.first_name}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "first_name",
-            this.state.first_name,
-            "required|alpha"
-          )}
-
-          <Input
-            type="text"
-            name="last_name"
-            id="last_name"
-            label="last name"
-            value={this.state.last_name}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "last_name",
-            this.state.last_name,
-            "required|alpha"
-          )}
-
-          <h3>Billing Details{translate("")}</h3>
-          <Input
-            type="text"
-            name="country"
-            id="country"
-            label="country"
-            value={this.state.country}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "country",
-            this.state.country,
-            "required|alpha"
-          )}
-
-          <Input
-            id="phone"
-            type="tel"
-            pattern="[0-9]{9}"
-            maxLength="9"
-            required=""
-            name="phone"
-            label="Enter phone number"
-            value={this.state.phone}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "phone",
-            this.state.country,
-            "required|alpha"
-          )}
-
-          <Input
-            id="address_1"
-            type="text"
-            label="Address"
-            required=""
-            name="address_1"
-            value={this.state.address_1}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "address_1 ",
-            this.state.address_1,
-            "required|alpha"
-          )}
-
-          <Input
-            id="city"
-            type="text"
-            className="form-control"
-            label="City"
-            required=""
-            name="city"
-            value={this.state.city}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message("city", this.state.city, "required|alpha")}
-
-          <Input
-            id="state"
-            type="text"
-            label="State / Province "
-            required=""
-            name="state"
-            value={this.state.state}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message("state ", this.state.state, "required|alpha")}
-
-          <Input
-            id="state"
-            type="text"
-            label="State / Province "
-            required=""
-            name="state"
-            value={this.state.state}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message("state ", this.state.state, "required|alpha")}
-
-          <Input
-            id="postcode"
-            type="tel"
-            pattern="[0-9]{5}"
-            maxLength="5"
-            label="Postal"
-            required=""
-            name="postcode"
-            value={this.state.postcode}
-            handleChange={this.handleChange}
-          />
-          {this.validator.message(
-            "postal",
-            this.state.postcode,
-            "required|alpha"
-          )}
-
-          <Button
-            label="Update"
-            type="submit"
-            handler={this.handleSubmit}
-            href="#"
-          />
-        </form>
+            <div className="form-group ">
+              <Button
+                label="Update"
+                type="submit"
+                handler={this.handleSubmit}
+                href="#"
+              />
+            </div>
+          </form>{" "}
+        </div>
       </div>
     );
   }
