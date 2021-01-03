@@ -59,6 +59,8 @@ class Post extends Component {
       posts: [],
       elements: [],
       comments: [],
+      author: null,
+      name: null,
     };
 
     const TiltObj = (el, options) => {
@@ -184,27 +186,26 @@ class Post extends Component {
 
   checkProps() {
     if (this.props) {
-      console.log(this.props);
-      console.log(window);
-      if (this.props.state.posts && this.props.state.posts !== undefined) {
-        if (this.props.item !== this.state.post) {
-          const script = document.createElement("script");
-          script.src = "/anime.min.js";
-          script.src = "/backgroundShape.js";
-          script.async = true;
-          script.onload = () => this.scriptLoaded();
-          document.body.appendChild(script);
-          const posts = this.props.state.posts.posts;
-          console.log(this.props.item);
-
-          this.setState(() => {
-            return {
-              posts: posts,
-              prev: this.props.prev,
-              post: this.props.item,
-              next: this.props.next,
-            };
-          });
+      if (this.props.state) {
+        if (this.props.state.posts && this.props.state.posts !== undefined) {
+          if (this.props.item !== this.state.post) {
+            const script = document.createElement("script");
+            script.src = "/anime.min.js";
+            script.src = "/backgroundShape.js";
+            script.async = true;
+            script.onload = () => this.scriptLoaded();
+            document.body.appendChild(script);
+            const posts = this.props.state.posts.posts;
+            console.log(posts);
+            this.setState(() => {
+              return {
+                posts: posts,
+                prev: this.props.prev,
+                post: this.props.item,
+                next: this.props.next,
+              };
+            });
+          }
         }
       }
     }
@@ -248,8 +249,6 @@ class Post extends Component {
   }
 
   CommentBox = (data) => {
-    console.log(data);
-    console.log(this.props.state);
     return (
       <form className="c-post__comment-form">
         <h3 id="reply-title" className="comment-reply-title">
@@ -472,6 +471,7 @@ class Post extends Component {
   }
 
   Layout = (data) => {
+    console.log(data);
     const layoutN = `content--layout-${data.index + 1}`;
     const srcImg = data.srcs;
     return (
@@ -502,6 +502,7 @@ class Post extends Component {
   };
 
   render() {
+    console.log(this.state);
     if (this.state.post) {
       const title = this.state.post.title;
       const prev = this.state.prev;
@@ -591,12 +592,10 @@ const mapStateToProps = (state, ownProps) => {
     prev = null;
 
   if (ownProps.match) {
-    console.log(ownProps.match);
     postId = parseInt(ownProps.match.params.id);
     if (state.posts.posts) {
       if (state.posts.posts !== "empty") {
         const posts = state.posts.posts;
-        console.log(posts);
         posts.map((p, index) => {
           if (p.p.id === postId) {
             item = p;
@@ -611,7 +610,6 @@ const mapStateToProps = (state, ownProps) => {
             return item;
           }
         });
-        console.log(item);
         var test = item;
 
         if (!test) {

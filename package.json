@@ -35,6 +35,7 @@
     "react-svg-drawing": "^1.0.1",
     "react-svg-morph": "^0.2.1",
     "react-toastify": "^6.2.0",
+    "react-tooltip": "^4.2.11",
     "simple-react-validator": "^1.6.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1",

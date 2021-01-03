@@ -99,6 +99,19 @@
       }
     }
   }
+
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 1200px) and (min-width: 767px) {
+    .product-list {
+      grid-template-columns: repeat(1, 1fr);
+
+      .product-box {
+        width: fit-content;
+        height: unset;
+      }
+    }
+  }
+  //      Ipad & Tablet Styles Ends Here
 }
 
 .c-collection-scroll {

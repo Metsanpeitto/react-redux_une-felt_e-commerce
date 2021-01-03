@@ -45,7 +45,10 @@ class Contact extends Component {
     return (
       <div>
         <form style={style} onSubmit={this.onSubmitLocation.bind(this)}>
-          <div className="main--subscribe">
+          <div
+            className="main--subscribe"
+            data-tip="Input your email and press Enter to submit"
+          >
             <h3>{translate("subscribe")}</h3>
             <Input
               type="email"

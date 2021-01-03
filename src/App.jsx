@@ -4,7 +4,7 @@ import Draw from "./icons/Logo2";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { ToastContainer } from "react-toastify";
-import Account from "./components/register/Account";
+import ReactTooltip from "react-tooltip";
 
 // <section style={style2}>{props.children}</section>
 function App(props) {
@@ -33,6 +33,7 @@ function App(props) {
   return (
     <div>
       <ToastContainer />
+      <ReactTooltip backgroundColor="#dbb59d" arrowColor="#dbb59d" />
       <Helmet>
         <title>Une</title>
       </Helmet>

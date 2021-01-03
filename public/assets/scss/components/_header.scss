@@ -256,14 +256,16 @@
           }
 
           .input {
-            height: 15rem;
+            height: 150px;
+
             .input__field {
-              top: -1rem;
+              top: -55px;
+              min-height: 60px;
             }
 
             .input__label--nao {
-              top: 10rem;
-
+              top: 70px;
+              font-size: 18px;
               padding: 0em;
             }
           }
@@ -278,6 +280,16 @@
       }
     }
   }
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 1200px) and (min-width: 767px) {
+    .header {
+      height: 150px;
+      .navbar {
+        grid-template-columns: auto auto 70vw;
+      }
+    }
+  }
+  //      Ipad & Tablet Styles Ends Here
 }
 .visible {
   visibility: visible !important;

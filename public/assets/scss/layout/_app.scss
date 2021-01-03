@@ -5,6 +5,9 @@
 }
 .section {
   min-width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+
   background: linear-gradient(
     94deg,
     $color-secondary-light,
@@ -106,4 +109,9 @@
     background-color: $color-secondary-dark;
     width: 100vw;
   }
+
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 991px) and (min-width: 767px) {
+  }
+  //      Ipad & Tablet Styles Ends Here
 }

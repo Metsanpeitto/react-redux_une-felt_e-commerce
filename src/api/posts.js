@@ -9,11 +9,9 @@ import axios from "axios";
  */
 
 const getPostList = async (amount) => {
-  var allPosts = `wp/v2/posts?per_page=100`;
-  var url = `wp/v2/posts`;
-  if (amount == "all") {
-    url = allPosts;
-  }
+  var url = `wp/v2/posts?per_page=100`;
+  //var url = `wp/v2/posts`;
+
   return await axios
     .get(process.env.REACT_APP_WORDPRESS + `${url}`)
     .then((result) => {
@@ -139,7 +137,6 @@ const getPostList = async (amount) => {
             postsReady.push(postReady);
           }
         });
-
         return postsReady;
       } else {
         alert("error");
@@ -158,18 +155,18 @@ const chunk = (arr, size) =>
     []
   );
 
-const getCategoryTree = async () => {
+const getCategoryTree = async (allPosts) => {
   var root = `&parent=0`;
   var level = 1;
 
-  return await getTheCategories(root, level).then((res) => {
+  return await getTheCategories(root, level, allPosts).then((res) => {
     if (res) {
       return res;
     } else return null;
   });
 };
 
-const getTheCategories = async (parent, level) => {
+const getTheCategories = async (parent, level, allPosts) => {
   var url = `wp/v2/categories?hide_empty=false&per_page=100`;
 
   return await axios
@@ -179,72 +176,74 @@ const getTheCategories = async (parent, level) => {
         var data = result.request.response;
         Object.json1 = JSON.parse(data);
         var items = Object.json1;
-        console.log(items);
-        var posts = { id: "posts", items: proccessCategories(items) };
+        var posts = {
+          id: "posts",
+          items: proccessCategories(items, allPosts),
+        };
         items.push(posts);
         return items;
-      }
+      } else return null;
     });
 };
 
-const proccessCategories = (categoryTree) => {
+const proccessCategories = (categoryTree, allPosts) => {
   // Here the categories should be setup at the development stage
   const categories = categoryTree;
-
   //  These are for posts
-  const about = categorySorter(categories, 2);
-  const exhibition = categorySorter(categories, 4);
-  const u_feltedwool = categorySorter(categories, 5);
-  const u_mag = categorySorter(categories, 6);
-  const u_tool = categorySorter(categories, 7);
-  const Uncategorized = categorySorter(categories, 1);
-  const workshop = categorySorter(categories, 8);
-  const u_case = categorySorter(categories, 3);
+  const about = categorySorter(categories, 2, allPosts);
+  const exhibition = categorySorter(categories, 4, allPosts);
+  const u_feltedwool = categorySorter(categories, 5, allPosts);
+  const u_mag = categorySorter(categories, 6, allPosts);
+  const u_tool = categorySorter(categories, 7, allPosts);
+  const Uncategorized = categorySorter(categories, 1, allPosts);
+  const workshop = categorySorter(categories, 8, allPosts);
+  const u_case = categorySorter(categories, 3, allPosts);
 
   var posts = [
-    { id: "about", items: about },
-    { id: "u_case", items: u_case },
-    { id: "exhibition", items: exhibition },
-    { id: "u_feltedwool", items: u_feltedwool },
-    { id: "u_mag", items: u_mag },
-    { id: "u_tool", items: u_tool },
-    { id: "Uncategorized", items: Uncategorized },
-    { id: "workshop", items: workshop },
+    { id: "about", items: about, idNumber: 2 },
+    { id: "exhibition", items: exhibition, idNumber: 4 },
+    { id: "u_feltedwool", items: u_feltedwool, idNumber: 5 },
+    { id: "u_mag", items: u_mag, idNumber: 6 },
+    { id: "u_tool", items: u_tool, idNumber: 7 },
+    { id: "Uncategorized", items: Uncategorized, idNumber: 1 },
+    { id: "workshop", items: workshop, idNumber: 8 },
+    { id: "u_case", items: u_case, idNumber: 3 },
   ];
+  var filteredPosts = [];
 
-  return posts;
+  posts.map((p) => {
+    if (p.items.length > 0) {
+      filteredPosts.push(p);
+    }
+  });
+
+  if (filteredPosts.length == 0) {
+    filteredPosts = null;
+  }
+
+  return filteredPosts;
 };
 
-const categorySorter = (categories, categoryId) => {
+const categorySorter = (categories, categoryId, posts) => {
   var items = [];
   //This looks for all the subcategories of pieces/sculptures(54),tools(64) or painting(75)
-  if (categories.length > 1) {
-    categories.map((c) => {
-      if (c.parent === categoryId) {
-        //    <-- Looks for the category
-        const group = {
-          item: c,
-          items: [],
-          id: c.name,
-        };
-        items.push(group);
-      }
-    });
-    var subItems = [];
-    var newItems = items;
-
-    //This are all the items in for example tools .
-    //They should be sorted again
-    items.map((subItem, index) => {
-      categories.map((c) => {
-        if (c.parent === subItem.item.id) {
-          subItems.push(c);
+  if (posts) {
+    if (posts.length > 1) {
+      posts.map((p) => {
+        if (p.categories.length > 1) {
+          p.categories.map((c) => {
+            if (c == categoryId) {
+              items.push(p);
+            }
+          });
+        } else {
+          if (p.categories == categoryId) {
+            items.push(p);
+          }
         }
       });
-      newItems[index].items.push(subItems);
-      subItems = [];
-    });
-    return newItems;
+      return items;
+    } else return null;
   } else return null;
 };
 

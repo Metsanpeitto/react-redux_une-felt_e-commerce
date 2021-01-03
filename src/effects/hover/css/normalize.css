@@ -24,14 +24,7 @@ audio:not([controls]) {
 [hidden] {
   display: none;
 }
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-}
+
 a:focus {
   outline: thin dotted;
 }

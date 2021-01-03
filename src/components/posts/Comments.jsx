@@ -39,27 +39,29 @@ class Comments extends Component {
 
   CommentsBox = () => {
     const comments = this.props.posts.comments;
-    const l = comments.length;
-
-    return (
-      <section className="c-post__comment--comments">
-        <h3 className="comment-title">Comments</h3>
-        <div className="box">
-          {comments.map((c, index) => {
-            return (
-              <div className="box-item" key={index}>
-                <p className="author">Posted by {c.author_name}</p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: c.text,
-                  }}
-                ></div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-    );
+    if (comments) {
+      if (comments !== "empty") {
+        return (
+          <section className="c-post__comment--comments">
+            <h3 className="comment-title">Comments</h3>
+            <div className="box">
+              {comments.map((c, index) => {
+                return (
+                  <div className="box-item" key={index}>
+                    <p className="author">Posted by {c.author_name}</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: c.text,
+                      }}
+                    ></div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        );
+      }
+    }
   };
 
   handleChange(e) {

@@ -85,6 +85,14 @@
       animation: move-text 6s forwards;
     }
   }
+
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 1200px) and (min-width: 767px) {
+    &__canvas {
+      padding-top: 260px;
+    }
+  }
+  //      Ipad & Tablet Styles Ends Here
 }
 
 .l-landing-backgroundvideo {

@@ -50,7 +50,7 @@ class Root extends React.Component {
   render() {
     store.dispatch(getAllProducts());
     store.dispatch(getAllCategories());
-    store.dispatch(getAllCategoriesPosts());
+    //store.dispatch(getAllCategoriesPosts());
     store.dispatch(getAllExtras());
     store.dispatch(getAllPosts());
 

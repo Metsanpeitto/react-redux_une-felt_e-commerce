@@ -27,7 +27,7 @@ class Header extends Component {
       sideMenu1: null,
       sideMenu2: null,
       sideMenu3: null,
-      productName: undefined,
+      productName: "",
       productId: null,
     };
     this.menuTrigger = this.menuTrigger.bind(this);
@@ -129,16 +129,17 @@ class Header extends Component {
   }
 
   handleChange = (e) => {
-    if (e.target) {
+    if (e.target.value) {
       if (e.target.value) {
         const name = e.target.value;
-
-        if (name !== undefined) {
-          this.setState(() => {
-            return { productName: name };
-          });
-        }
+        this.setState(() => {
+          return { productName: name };
+        });
       }
+    } else {
+      this.setState(() => {
+        return { productName: "" };
+      });
     }
   };
 
@@ -181,16 +182,19 @@ class Header extends Component {
   }
 
   menuRead() {
-    if (this.state.categoryTreePosts.length > 1) {
-      this.state.categoryTreePosts.map((item) => {
-        if (item.id === "posts") {
-          // Products  id is 55
-          this.setState(() => {
-            return { sideMenu1: item.items, posts: item };
-          });
-        }
-      });
+    if (this.state.categoryTreePosts) {
+      if (this.state.categoryTreePosts.length > 1) {
+        this.state.categoryTreePosts.map((item) => {
+          if (item.id === "posts") {
+            // Products  id is 55
+            this.setState(() => {
+              return { sideMenu1: item.items, posts: item };
+            });
+          }
+        });
+      }
     }
+
     this.menu1Trigger();
     this.setState(() => {
       return { menuOpen: true, menuRead: true };
@@ -475,27 +479,34 @@ class Header extends Component {
                 </a>
               </li>
               <li className="menu__item  fade-in search">
-                <a href="#" onClick={this.menuSearch}>
+                <a href="#" onClick={this.menuSearch} data-tip="Search">
                   <Search />
                 </a>
               </li>
               <li className="menu__item fade-in member">
                 <Link to={`${process.env.PUBLIC_URL}/register`} data-lng="en">
                   {logged ? (
-                    <div className="animation-emerge">
+                    <div
+                      className="animation-emerge"
+                      data-tip={this.state.name}
+                    >
                       <FilledMember />
                     </div>
                   ) : (
-                    <Member />
+                    <div data-tip="User Manager">
+                      <Member />
+                    </div>
                   )}
                 </Link>
               </li>
               <li className="menu__item fade-in whislist">
                 <Link to={`${process.env.PUBLIC_URL}/wishlist`} data-lng="en">
                   {emptyWishlist ? (
-                    <Heart />
+                    <div data-tip="Favourites Empty">
+                      <Heart />
+                    </div>
                   ) : (
-                    <div className="animation-emerge">
+                    <div className="animation-emerge" data-tip="Favourites">
                       <FilledHeart />
                     </div>
                   )}
@@ -504,9 +515,14 @@ class Header extends Component {
               <li className="menu__item fade-in cart ">
                 <Link to={`${process.env.PUBLIC_URL}/cart`} data-lng="en">
                   {emptyCart ? (
-                    <Cart />
+                    <div data-tip="Cart Empty">
+                      <Cart />
+                    </div>
                   ) : (
-                    <div className="animation-emerge">
+                    <div
+                      className="animation-emerge"
+                      data-tip="Products in the Cart"
+                    >
                       <FilledCart />
                     </div>
                   )}
@@ -514,11 +530,15 @@ class Header extends Component {
               </li>
               <li className="menu__item fade-in menu ">
                 {this.state.menuOpen ? (
-                  <a href="#" onClick={this.closeMenuTrigger}>
+                  <a
+                    href="#"
+                    onClick={this.closeMenuTrigger}
+                    data-tip="Close Menus"
+                  >
                     X
                   </a>
                 ) : (
-                  <a href="#" onClick={this.menuTrigger}>
+                  <a href="#" onClick={this.menuTrigger} data-tip="Menu">
                     <Menu />
                   </a>
                 )}

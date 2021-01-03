@@ -68,7 +68,7 @@ var module = {
       explore: "explore",
       faqs: "Faq's",
       first_name: "First name",
-      forget_question: "forget question?",
+      forget_question: "forget password?",
       free_shipping: "Free shipping",
       image: "image",
       last_name: "Last name",

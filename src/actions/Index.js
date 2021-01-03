@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 
 export const getAllPosts = (amount) => (dispatch) => {
   posts.getPostList(amount).then((posts) => {
+    dispatch(getAllCategoriesPosts(posts));
     dispatch(receivePosts(posts));
     return posts;
   });
@@ -34,6 +35,34 @@ export const receiveComments = (comments) => ({
 });
 
 /**        END  POSTS                  */
+
+/**           CATEGORY TREE OF POSTS ACTIONS          */
+
+export const fetchCategoryTreePostsBegin = () => ({
+  type: types.FETCH_CATEGORYTREE_POSTS_BEGIN,
+});
+
+export const fetchCategoryTreePosts = (categoryPosts) => ({
+  type: types.FETCH_CATEGORYTREE_POSTS,
+  categoryPosts,
+});
+
+export const receiveCategoryTreePosts = (categoryTreePosts) => ({
+  type: types.RECEIVE_CATEGORYTREE_POSTS,
+  categoryTreePosts,
+});
+
+export const getAllCategoriesPosts = (data) => (dispatch) => {
+  dispatch(fetchCategoryTreePostsBegin());
+  posts.getCategoryTree(data).then((categoryTreePosts) => {
+    if (categoryTreePosts) {
+      dispatch(receiveCategoryTreePosts(categoryTreePosts));
+      return categoryTreePosts;
+    }
+  });
+};
+
+/**      END  CATEGORYTREE POSTS ACTIONS          */
 
 export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN,
@@ -141,35 +170,6 @@ export const getAllCategories = () => (dispatch) => {
 };
 
 /**      END  CATEGORYTREE ACTIONS          */
-
-/**           CATEGORY TREE OF POSTS ACTIONS          */
-
-export const fetchCategoryTreePostsBegin = () => ({
-  type: types.FETCH_CATEGORYTREE_POSTS_BEGIN,
-});
-
-export const fetchCategoryTreePosts = (categoryPosts) => ({
-  type: types.FETCH_CATEGORYTREE_POSTS,
-  categoryPosts,
-});
-
-export const receiveCategoryTreePosts = (categoryTreePosts) => ({
-  type: types.RECEIVE_CATEGORYTREE_POSTS,
-  categoryTreePosts,
-});
-
-export const getAllCategoriesPosts = () => (dispatch) => {
-  dispatch(fetchCategoryTreePostsBegin());
-  posts.getCategoryTree().then((categoryTreePosts) => {
-    console.log(categoryTreePosts);
-    if (categoryTreePosts) {
-      dispatch(receiveCategoryTreePosts(categoryTreePosts));
-      return categoryTreePosts;
-    }
-  });
-};
-
-/**      END  CATEGORYTREE POSTS ACTIONS          */
 
 /*        GET EXTRAS                        */
 export const fetchExtrasBegin = () => ({
@@ -333,6 +333,7 @@ export const placeOrder = (orderData) => (dispatch) => {
     });
     //  toast.success("Order placed successfully");
     dispatch(receiveOrderReceipt(rec));
+    dispatch(clearCart());
     return rec;
   });
 };
@@ -419,6 +420,7 @@ export const decrementQty = (productId) => (dispatch) => {
     productId,
   });
 };
+
 export const clearCart = () => (dispatch) => {
   dispatch({
     type: types.CLEAR_CART,
