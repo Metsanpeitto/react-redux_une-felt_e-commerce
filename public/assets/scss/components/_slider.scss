@@ -187,36 +187,61 @@
   }
 }
 
-@keyframes landing {
-  from {
-    transform: translateX(110vw);
-  }
-  to {
-    transform: translateX(0vw);
-  }
-}
-
-@keyframes down {
-  0% {
-    padding-top: 25%;
-  }
-  50% {
-    padding-top: 25%;
-  }
-  100% {
-    padding-top: 50%;
-  }
-}
-
-@keyframes falling {
-  0% {
-    transform: translateY(-120%);
-  }
-  40% {
-    transform: translateY(-120%);
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1200px) and (min-width: 767px) {
+  .slick-slide {
+    width: 40vw !important;
   }
 
-  100% {
-    transform: translateY(-50%);
+  .item {
+    width: 40vw !important;
+    height: 60vh;
+
+    &__1 {
+      width: 40vw !important;
+      height: 45vh;
+    }
+    &__2 {
+      width: 40vw !important;
+      height: 30vh;
+    }
+    &__3 {
+      width: 40vw !important;
+      height: 13vh;
+    }
+    &__4 {
+      width: 40vw !important;
+      height: 45vh;
+    }
+    &__5 {
+      width: 40vw !important;
+      height: 30vh;
+    }
+    &__6 {
+      width: 40vw !important;
+      height: 13vh;
+    }
+
+    &__7 {
+      width: 40vw !important;
+      height: 45vh;
+    }
+    &__8 {
+      width: 40vw !important;
+      height: 30vh;
+    }
+    &__9 {
+      width: 40vw !important;
+      height: 13vh;
+    }
+    &__10 {
+      width: 40vw !important;
+      height: 45vh;
+    }
+    &__11 {
+      width: 40vw !important;
+      height: 30vh;
+    }
   }
 }
+//      Ipad & Tablet Styles Ends Here

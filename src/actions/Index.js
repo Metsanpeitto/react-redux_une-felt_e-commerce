@@ -77,6 +77,7 @@ export const getAllProducts = () => (dispatch) => {
   dispatch(fetchProductsBegin());
   shop.getProducts().then((products) => {
     dispatch(receiveProducts(products));
+    dispatch(getAllCategories(products));
     return products;
   });
 };
@@ -159,9 +160,9 @@ export const receiveCategoryTree = (categoryTree) => ({
   categoryTree,
 });
 
-export const getAllCategories = () => (dispatch) => {
+export const getAllCategories = (products) => (dispatch) => {
   dispatch(fetchCategoryTreeBegin());
-  shop.getCategoryTree().then((categoryTree) => {
+  shop.getCategoryTree(products).then((categoryTree) => {
     if (categoryTree) {
       dispatch(receiveCategoryTree(categoryTree));
       return categoryTree;

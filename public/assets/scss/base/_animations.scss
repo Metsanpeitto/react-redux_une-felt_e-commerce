@@ -414,6 +414,40 @@
   }
 }
 
+@keyframes landing {
+  from {
+    transform: translateX(110vw);
+  }
+  to {
+    transform: translateX(0vw);
+  }
+}
+
+@keyframes down {
+  0% {
+    padding-top: 25%;
+  }
+  50% {
+    padding-top: 25%;
+  }
+  100% {
+    padding-top: 50%;
+  }
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-120%);
+  }
+  40% {
+    transform: translateY(-120%);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
 .animation-emerge {
   transform: scale(1);
   transition: all 0.5s ease;

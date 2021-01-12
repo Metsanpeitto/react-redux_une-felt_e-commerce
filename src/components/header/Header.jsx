@@ -373,6 +373,7 @@ class Header extends Component {
     }
     if (menu) {
       if (menu.length > 0) {
+        console.log(menu);
         return (
           <ul>
             {menu[0].key ? (
@@ -387,43 +388,45 @@ class Header extends Component {
               </Link>
             ) : null}
             {menu.map((item, index) => {
-              if (item.id) {
-                return (
-                  <li key={`${item.id}${index}`}>
-                    <Link
-                      to={this.newTo(
-                        item.name ? item.name : item.id,
-                        data.level > 2 ? "product" : "collection"
-                      )}
-                      onClick={this.closeMenuTrigger}
-                      onMouseOver={this.hoverItem}
-                      key={item.name ? item.name : item.id}
-                      name={item.name ? item.name : item.id}
-                      value={data.level}
-                    >
-                      {item.name ? item.name : item.id}
-                    </Link>
-                  </li>
-                );
-              }
-              if (item.id_post) {
-                return (
-                  <li key={`${item.id}${index}`}>
-                    <Link
-                      to={this.newTo(
-                        item.name ? item.name : item.id_post,
-                        data.level > 1 ? "post" : "posts"
-                      )}
-                      onClick={this.closeMenuTrigger}
-                      onMouseOver={this.hoverItem}
-                      key={item.id_post}
-                      name={item.id_post}
-                      value={data.level}
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                );
+              if (item) {
+                if (item.id && !item.idNumber) {
+                  return (
+                    <li key={`${item.id}${index}`}>
+                      <Link
+                        to={this.newTo(
+                          item.name ? item.name : item.id,
+                          data.level > 2 ? "product" : "collection"
+                        )}
+                        onClick={this.closeMenuTrigger}
+                        onMouseOver={this.hoverItem}
+                        key={item.name ? item.name : item.id}
+                        name={item.name ? item.name : item.id}
+                        value={data.level}
+                      >
+                        {item.name ? item.name : item.id}
+                      </Link>
+                    </li>
+                  );
+                }
+                if (item.id_post) {
+                  return (
+                    <li key={`${item.id}${index}`}>
+                      <Link
+                        to={this.newTo(
+                          item.name ? item.name : item.id_post,
+                          data.level > 1 ? "post" : "posts"
+                        )}
+                        onClick={this.closeMenuTrigger}
+                        onMouseOver={this.hoverItem}
+                        key={item.id_post}
+                        name={item.id_post}
+                        value={data.level}
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  );
+                }
               }
             })}
           </ul>

@@ -95,4 +95,13 @@
       position: relative;
     }
   }
+
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 1200px) and (min-width: 767px) {
+    &__content {
+      display: grid;
+      grid-template-columns: 5% 1fr 5%;
+    }
+  }
+  //      Ipad & Tablet Styles Ends Here
 }

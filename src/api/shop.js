@@ -144,18 +144,18 @@ const getExtras = () => {
     });
 };
 
-const getCategoryTree = async () => {
+const getCategoryTree = async (products) => {
   var root = `&parent=55`;
   var root = ``;
   var level = 1;
-  return await getTheCategories(root, level).then((res) => {
+  return await getTheCategories(root, level, products).then((res) => {
     if (res) {
       return res;
     } else return null;
   });
 };
 
-const getTheCategories = (parent, level) => {
+const getTheCategories = (parent, level, products) => {
   getExtras();
   return WooCommerce.getAsync(
     `products/categories?hide_empty=false&per_page=100`
@@ -164,7 +164,7 @@ const getTheCategories = (parent, level) => {
       var data = res.toJSON().body;
       Object.json1 = JSON.parse(data);
       var items = Object.json1;
-      var shop = { id: "shop", items: proccessCategories(items) };
+      var shop = { id: "shop", items: proccessCategories(items, products) };
       items.push(shop);
       return items;
     } else return null;
@@ -173,24 +173,53 @@ const getTheCategories = (parent, level) => {
   return null;
 };
 
-const proccessCategories = (categoryTree) => {
+const proccessCategories = (categoryTree, products) => {
   if (categoryTree) {
     const categories = categoryTree;
-    const pieces = categorySorter(categories, 56);
-    const paintings = categorySorter(categories, 79);
-    const tools = categorySorter(categories, 65);
+    const pieces = categorySorter(categories, 56, products);
+    const paintings = categorySorter(categories, 79, products);
+    const tools = categorySorter(categories, 81, products);
 
-    var shop = [
-      { id: "tools", items: tools },
-      { id: "paintings", items: paintings },
-      { id: "pieces", items: pieces },
-    ];
+    var shop = [];
+    if (tools.length > 0) {
+      shop.push({ id: "tools", items: tools });
+    }
+    if (paintings.length > 0) {
+      shop.push({ id: "paintings", items: paintings });
+    }
+    if (pieces.length > 0) {
+      shop.push({ id: "pieces", items: pieces });
+    }
 
     return shop;
   }
 };
 
-const categorySorter = (categories, categoryId) => {
+const categorySorter = (categories, categoryId, products) => {
+  var items = [];
+  //This looks for all the subcategories of pieces/sculptures(54),tools(64) or painting(75)
+  if (products) {
+    if (products.length > 1) {
+      products.map((p) => {
+        if (p.categories.length > 1) {
+          p.categories.map((c) => {
+            if (c.id == categoryId) {
+              items.push(p);
+            }
+          });
+        } else {
+          if (p.categories == categoryId) {
+            items.push(p);
+          }
+        }
+      });
+      return items;
+    } else return null;
+  } else return null;
+};
+
+/*
+const categorySorter = (categories, categoryId, products) => {
   var items = [];
   //This looks for all the subcategories of pieces/sculptures(54),tools(64) or painting(75)
   categories.map((c) => {
@@ -220,6 +249,7 @@ const categorySorter = (categories, categoryId) => {
   });
   return newItems;
 };
+*/
 
 const postReview = (data) => {
   return WooCommerce.postAsync("products/reviews", data)

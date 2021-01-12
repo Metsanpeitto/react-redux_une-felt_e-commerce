@@ -49,7 +49,7 @@ const pK = "pk_test_xhI1GEX6luUTKEj2qQe8biZX00iH1jvMZe";
 class Root extends React.Component {
   render() {
     store.dispatch(getAllProducts());
-    store.dispatch(getAllCategories());
+    //store.dispatch(getAllCategories());
     //store.dispatch(getAllCategoriesPosts());
     store.dispatch(getAllExtras());
     store.dispatch(getAllPosts());

@@ -200,10 +200,10 @@ const proccessCategories = (categoryTree, allPosts) => {
   const u_case = categorySorter(categories, 3, allPosts);
 
   var posts = [
-    { id: "about", items: about, idNumber: 2 },
-    { id: "exhibition", items: exhibition, idNumber: 4 },
-    { id: "u_feltedwool", items: u_feltedwool, idNumber: 5 },
-    { id: "u_mag", items: u_mag, idNumber: 6 },
+    { id: "about", items: about, idPost: 2 },
+    { id: "exhibition", items: exhibition, idPost: 4 },
+    { id: "u_feltedwool", items: u_feltedwool, idPost: 5 },
+    { id: "u_mag", items: u_mag, idPost: 6 },
     { id: "u_tool", items: u_tool, idNumber: 7 },
     { id: "Uncategorized", items: Uncategorized, idNumber: 1 },
     { id: "workshop", items: workshop, idNumber: 8 },

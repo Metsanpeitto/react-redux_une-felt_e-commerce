@@ -134,6 +134,26 @@
     outline: unset !important;
     color: unset !important;
   }
+
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 1200px) and (min-width: 767px) {
+    height: unset !important;
+    &__main {
+      .subscribe {
+        margin-bottom: 6%;
+        padding-right: unset;
+
+        .p {
+          text-align: center;
+        }
+
+        .input {
+          margin-bottom: 0%;
+        }
+      }
+    }
+  }
+  //      Ipad & Tablet Styles Ends Here
 }
 
 // -------------    Contact Start    --------------------  //
