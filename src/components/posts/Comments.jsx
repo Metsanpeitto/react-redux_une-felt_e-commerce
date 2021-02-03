@@ -2,26 +2,31 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withTranslate } from "react-redux-multilingual";
 import Input from "../../effects/input/Input";
-import { getPostComments } from "../../actions/Index";
+import { getPostComments, postComment } from "../../actions/Index";
+import Button from "../../components/Button";
 
 class Comments extends Component {
   constructor(props) {
     super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
-      name: "",
+      email: "",
       author: "",
       url: "",
+      postComment: "",
+      postId: null,
       text: "",
       comments: "",
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     if (this.props.postId) {
       const postId = this.props.postId;
+      this.setState(() => {
+        return { postId: postId };
+      });
       this.props.getPostComments(postId);
     }
   }
@@ -60,7 +65,11 @@ class Comments extends Component {
             </div>
           </section>
         );
+      } else {
+        return null;
       }
+    } else {
+      return null;
     }
   };
 
@@ -68,14 +77,26 @@ class Comments extends Component {
     const n = e.currentTarget.value;
     const name = e.currentTarget.name;
 
-    if (name === "password") {
+    if (name === "author") {
       this.setState(() => {
-        return { password: n };
+        return { author: n };
       });
     }
-    if (name === "name") {
+    if (name === "email") {
       this.setState(() => {
-        return { name: n };
+        return { email: n };
+      });
+    }
+
+    if (name === "url") {
+      this.setState(() => {
+        return { url: n };
+      });
+    }
+
+    if (name === "postComment") {
+      this.setState(() => {
+        return { postComment: n };
       });
     }
 
@@ -92,6 +113,32 @@ class Comments extends Component {
     }
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    if (this.state.email.length > 0 && this.state.author.length > 0) {
+      if (this.state.postComment) {
+        localStorage.postComment = this.state.postComment;
+        localStorage.email = this.state.email;
+        localStorage.author = this.state.author;
+        localStorage.url = this.state.url;
+      } else {
+        localStorage.postComment = null;
+        localStorage.email = null;
+        localStorage.author = null;
+        localStorage.url = null;
+      }
+      const userData = {
+        postComment: this.state.postComment,
+        email: this.state.email,
+        author: this.state.author,
+        url: this.state.url,
+        postId: this.state.postId,
+      };
+
+      this.props.postComment(userData);
+    }
+  }
+
   render() {
     const { translate } = this.props;
 
@@ -99,13 +146,13 @@ class Comments extends Component {
     return (
       <section className="c-post__comment">
         {comments ? <this.CommentsBox /> : null}
-        <form className="c-post__comment--form">
+        <form className="c-post__comment--form" onSubmit={this.handleSubmit}>
           <h3 id="reply-title" className="comment-reply-title">
             {translate("leave_reply")}
           </h3>
           <textarea
-            id="comment"
-            name="comment"
+            id="postComment"
+            name="postComment"
             title="Enter your comment here..."
             placeholder="Enter your comment here..."
             onChange={this.handleChange}
@@ -113,10 +160,10 @@ class Comments extends Component {
           <div className="comment-form-fields">
             <Input
               type="email"
-              name="name"
+              name="email"
               id="mail"
               label="mail"
-              value={this.state.name}
+              value={this.state.email}
               handleChange={this.handleChange}
             ></Input>
 
@@ -137,6 +184,13 @@ class Comments extends Component {
               value={this.state.url}
               handleChange={this.handleChange}
             ></Input>
+
+            <Button
+              label="Post"
+              type="submit"
+              handler={this.handleSubmit}
+              href="#"
+            />
           </div>
         </form>
       </section>
@@ -148,6 +202,6 @@ const mapStateToProps = (state, ownProps) => {
   return state;
 };
 
-export default connect(mapStateToProps, { getPostComments })(
+export default connect(mapStateToProps, { getPostComments, postComment })(
   withTranslate(Comments)
 );

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withTranslate } from "react-redux-multilingual";
+import LazyLoad from "react-lazyload";
+
 import store from "../../app/store";
 import {
   addToCart,
@@ -202,10 +204,12 @@ class Product extends Component {
                       img={picture}
                       name={index}
                     >
-                      <img
-                        src={picture}
-                        className="product-variant images--1"
-                      />
+                      <LazyLoad>
+                        <img
+                          src={picture}
+                          className="product-variant images--1"
+                        />
+                      </LazyLoad>
                     </a>
                   );
                 } else {
@@ -263,7 +267,10 @@ class Product extends Component {
               </a>
 
               <div className="modal-image">
-                <img src={`${modalImage}`} />
+                <LazyLoad>
+                  {" "}
+                  <img src={`${modalImage}`} />
+                </LazyLoad>
               </div>
             </div>
           </div>
@@ -279,7 +286,10 @@ class Product extends Component {
                       key={index}
                     >
                       <div className="product-box__image">
-                        <img src={p.pictures[0]} />
+                        <LazyLoad>
+                          {" "}
+                          <img src={p.pictures[0]} />
+                        </LazyLoad>
                       </div>
                     </Link>
                   ))

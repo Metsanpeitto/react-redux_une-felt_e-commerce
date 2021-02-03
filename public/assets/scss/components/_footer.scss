@@ -39,8 +39,7 @@
           margin-bottom: 4%;
           max-width: 400px;
           vertical-align: top;
-          width: calc(100% - 2em);
-
+          width: 80%;
           z-index: 1;
         }
         p {
@@ -136,9 +135,17 @@
   }
 
   //      Ipad & Tablet Styles Starts Here
-  @media (max-width: 1200px) and (min-width: 767px) {
+  @media (max-width: 1200px) {
     height: unset !important;
     &__main {
+      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: 5vw auto 5vw;
+
+      div {
+        grid-column-start: 2;
+        margin-bottom: 3%;
+      }
+
       .subscribe {
         margin-bottom: 6%;
         padding-right: unset;
@@ -151,9 +158,35 @@
           margin-bottom: 0%;
         }
       }
+
+      .main--support {
+        margin-bottom: 3%;
+      }
     }
   }
   //      Ipad & Tablet Styles Ends Here
 }
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .c-footer {
+    &__main {
+      .main--subscribe p {
+        max-width: 100%;
+      }
+      div {
+        grid-column-start: 1;
+        row-gap: 6px;
+        margin-bottom: 3%;
+      }
+    }
+
+    .input {
+      max-width: 80vw !important;
+      min-width: 80vw !important;
+    }
+  }
+}
+//      Mobile Styles Ends Here
 
 // -------------    Contact Start    --------------------  //

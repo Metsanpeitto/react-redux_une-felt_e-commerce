@@ -200,20 +200,22 @@ const proccessCategories = (categoryTree, allPosts) => {
   const u_case = categorySorter(categories, 3, allPosts);
 
   var posts = [
-    { id: "about", items: about, idPost: 2 },
-    { id: "exhibition", items: exhibition, idPost: 4 },
-    { id: "u_feltedwool", items: u_feltedwool, idPost: 5 },
-    { id: "u_mag", items: u_mag, idPost: 6 },
-    { id: "u_tool", items: u_tool, idNumber: 7 },
-    { id: "Uncategorized", items: Uncategorized, idNumber: 1 },
-    { id: "workshop", items: workshop, idNumber: 8 },
-    { id: "u_case", items: u_case, idNumber: 3 },
+    { name: "about", items: about, id_post: 2 },
+    { name: "exhibition", items: exhibition, id_post: 4 },
+    { name: "u_feltedwool", items: u_feltedwool, id_post: 5 },
+    { name: "u_mag", items: u_mag, id_post: 6 },
+    { name: "u_tool", items: u_tool, id_post: 7 },
+    { name: "Uncategorized", items: Uncategorized, id_post: 1 },
+    { name: "workshop", items: workshop, id_post: 8 },
+    { name: "u_case", items: u_case, id_post: 3 },
   ];
   var filteredPosts = [];
 
   posts.map((p) => {
-    if (p.items.length > 0) {
-      filteredPosts.push(p);
+    if (p.items) {
+      if (p.items.length > 0) {
+        filteredPosts.push(p);
+      }
     }
   });
 
@@ -353,9 +355,29 @@ const getComments = async (id) => {
     });
 };
 
-const createComment = async (id) => {
+/**
+ *
+ * https://www.example.com/wp-json/wp/v2/comments?author=Your%20Name%20Here
+ * &author_email=your-email-address@website-address-here.com
+ * &author_name=Your%20Name%20Here
+ * &content=Your%20Comment%20Here
+ * &post=1604252
+ */
+
+const createComment = async (data) => {
+  //console.log(data);
+  const email = data.email;
+  const author = data.author;
+  const url = data.url;
+  const comment = data.postComment;
+  const postId = data.postId;
   return await axios
-    .post(process.env.REACT_APP_WORDPRESS + `wp/v2/comments/${id}`)
+    // .post(process.env.REACT_APP_WORDPRESS + `wp/v2/comments/${id}`)
+    .post(
+      process.env.REACT_APP_WORDPRESS +
+        `wp/v2/comments` +
+        `?post=1&content=${comment}&author_name=${author}&author_email=${email}`
+    )
     .then((result) => {
       if (result.status === 200) {
       } else {
@@ -363,7 +385,7 @@ const createComment = async (id) => {
       }
     })
     .catch((e) => {
-      alert(e.response.data.message);
+      // alert(e.response.data.message);
     });
 };
 
@@ -388,5 +410,7 @@ export default {
   updatePost,
   deletePost,
   getComments,
+  createComment,
+  deleteComment,
   getCategoryTree,
 };

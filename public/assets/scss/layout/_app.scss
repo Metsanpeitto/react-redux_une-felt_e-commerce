@@ -64,6 +64,11 @@
       fill: none;
       stroke: black;
       stroke-width: 0.5;
+      svg {
+        width: 90vw !important;
+        margin-left: 5vw !important;
+        margin-right: 5vw !important;
+      }
     }
   }
 
@@ -111,7 +116,19 @@
   }
 
   //      Ipad & Tablet Styles Starts Here
-  @media (max-width: 991px) and (min-width: 767px) {
+  @media (max-width: 1200px) {
+    .frame-canvas {
+      display: none;
+    }
   }
   //      Ipad & Tablet Styles Ends Here
+
+  //      Mobile Styles Starts Here
+  @media (max-width: 765px) and (min-width: 300px) {
+    .react-svg-drawing {
+      width: 100vw !important;
+      display: block;
+    }
+  }
+  //      Mobile Styles Ends Here
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import LazyLoad from "react-lazyload";
 import { withTranslate } from "react-redux-multilingual";
 import Loader from "../effects/loader/Loader";
 
@@ -53,7 +54,9 @@ class Lastest extends Component {
             <p className="description">{this.state.description}</p>
             {this.state.pictures
               ? this.state.pictures.map((picture, index) => (
-                  <img key={index} alt="picures" src={picture}></img>
+                  <LazyLoad>
+                    <img key={index} alt="picures" src={picture}></img>
+                  </LazyLoad>
                 ))
               : null}
           </div>

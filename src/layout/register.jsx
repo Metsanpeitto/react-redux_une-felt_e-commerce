@@ -75,7 +75,6 @@ class Register extends Component {
 
   render() {
     const { loader, logged } = this.state;
-    console.log(logged);
     return loader ? (
       <Loader />
     ) : logged ? (

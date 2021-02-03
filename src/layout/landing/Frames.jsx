@@ -54,9 +54,18 @@ class Frames extends Component {
       FrameProducts: null,
       loaded: null,
     };
+    this.checkProps = this.checkProps.bind(this);
+  }
+
+  componentDidMount() {
+    this.checkProps();
   }
 
   componentDidUpdate() {
+    this.checkProps();
+  }
+
+  checkProps() {
     if (this.props.state.data.products) {
       if (this.props.state.data.products.length > 6) {
         const products = this.props.state.data.products;
@@ -102,12 +111,24 @@ const SectionWipes2 = (props) => {
                 <section className="panel ">
                   <div className=" frame frame--1">
                     <div className="frame-image">
-                      <Frame img={props.products[0].pictures[0]} />
+                      <Frame
+                        img={
+                          process.env.PUBLIC_URL +
+                          "assets/img/ladies/Lady_DesertP.jpg"
+                        }
+                      />
                     </div>
 
                     <div className="frame-text circle">
-                      <h3>{props.products[0].name}</h3>
-                      <p>{props.products[0].description}</p>
+                      <h3>Lady Desert</h3>
+                      <p>
+                        Under The Ocre Color Egg Cover Is A Kind Lady Named Miss
+                        Desert. She Is The Ambassador Of The Desert Kingdom, She
+                        Is Loves Listening The Wind Blowing The Sand Sound, It
+                        Make Her Feel Calm And Freedom. Miss Desert Is Brave And
+                        Independent Lady, Everyone Can Easily Make A Friend With
+                        Her.
+                      </p>
                     </div>
                   </div>
                 </section>
@@ -115,12 +136,24 @@ const SectionWipes2 = (props) => {
                   <section className="panel ">
                     <div className=" frame frame--2">
                       <div className="frame-image">
-                        <Frame img={props.products[1].pictures[0]} />
+                        <Frame
+                          img={
+                            process.env.PUBLIC_URL +
+                            "assets/img/ladies/Lady_ForestP.jpg"
+                          }
+                        />
                       </div>
 
                       <div className="frame-text circle">
-                        <h3>{props.products[1].name}</h3>
-                        <p>{props.products[1].description}</p>
+                        <h3>Lady Forest</h3>
+                        <p>
+                          Under The Green Color Egg Cover Is A Kind And Peaceful
+                          Lady Named Miss Forest. She Is The Ambassador Of The
+                          Forest Kingdom, She Is Warm-Herated And Quiet,
+                          Although She Has The Tenderness Appearance, Miss
+                          Forest Is Very Tough Lady. Quote: Nature Is Not A
+                          Place To Visit, It Is Home
+                        </p>
                       </div>
                     </div>
                   </section>
@@ -129,13 +162,24 @@ const SectionWipes2 = (props) => {
                   <section className="panel green">
                     <div className=" frame frame--3">
                       <div className="frame-image">
-                        <Frame img={props.products[2].pictures[0]} />
+                        <Frame
+                          img={
+                            process.env.PUBLIC_URL +
+                            "assets/img/ladies/Lady_OceanP.jpg"
+                          }
+                        />
                       </div>
 
                       <div>
                         <div className="frame-text circle">
-                          <h3>{props.products[2].name}</h3>
-                          <p>{props.products[2].description}</p>
+                          <h3>Lady Wetland</h3>
+                          <p>
+                            Under The Grass Green Egg Cover Is An Energetic Lady
+                            Named Miss Wetland. She Is The Ambassador Of The
+                            Wetland Kingdom. She Loves Any Animals And Insects,
+                            Especially Butterfly. Miss Wetland Always Is In The
+                            Happy Mood And Share Her Joys With Others.
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -145,12 +189,23 @@ const SectionWipes2 = (props) => {
                   <section className="panel ">
                     <div className=" frame frame--4">
                       <div className="frame-image">
-                        <Frame img={props.products[3].pictures[0]} />
+                        <Frame
+                          img={
+                            process.env.PUBLIC_URL +
+                            "assets/img/ladies/Lady_TundraP.jpg"
+                          }
+                        />
                       </div>
 
                       <div className="frame-text circle">
-                        <h3>{props.products[3].name}</h3>
-                        <p>{props.products[3].description}</p>
+                        <h3>Lady Tundra</h3>
+                        <p>
+                          Under The Sage Green Egg Cover Is A Graceful Lady
+                          Named Miss Tundra. She Is The Ambassador Of The Tundra
+                          Kingdom. She Also Is A Lady Of Few Words, But She Has
+                          Great Charisma And Refinement. Her Aesthetic Sense Is
+                          Outstanding, And She Is Trustworthy Person As Well.
+                        </p>
                       </div>
                     </div>
                   </section>

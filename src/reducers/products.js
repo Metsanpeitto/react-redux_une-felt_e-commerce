@@ -40,10 +40,6 @@ const productReducer = (state = initialState, action) => {
 
     case SEARCH_PRODUCT:
       var item = {};
-      console.log("the history:");
-      console.log(state.history);
-      console.log(action);
-      console.log(state);
       state.products.map((product) => {
         var thisName = product.name.toUpperCase();
         var receivedName = action.productName.toUpperCase();
@@ -55,8 +51,6 @@ const productReducer = (state = initialState, action) => {
       });
 
       if (item.name) {
-        console.log("the product is ..");
-        console.log(item);
         return {
           ...state,
           product_details: item,

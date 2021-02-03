@@ -24,11 +24,11 @@
   &__content {
     width: 90%;
     height: min-content;
-    margin-left: auto;
+    // margin-left: auto;
     margin-right: auto;
     padding-top: 10vh;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 10rem;
     grid-column-gap: 10rem;
@@ -36,6 +36,37 @@
     grid-row-gap: 10rem;
     row-gap: 10rem;
     animation: rise 4s ease-in-out;
+
+    .postcard {
+      color: $color-primary-dark;
+      transform: scale(1.5);
+      font-family: $font-didot-italic;
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+
+      .item-blog {
+        width: 50%;
+      }
+
+      .item__specimen {
+        position: absolute;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 0.9;
+        vertical-align: text-bottom;
+        letter-spacing: 0.1em;
+        color: $color-primary-dark;
+        transform-origin: center;
+        transform: translateY(0%) translateX(0%);
+      }
+
+      .item__reference {
+        font-size: 16px;
+        letter-spacing: 1px;
+        /* writing-mode: vertical-rl; */
+      }
+    }
 
     .post-card {
       color: $color-primary-dark;
@@ -45,7 +76,14 @@
       margin-left: auto;
       margin-right: auto;
       background-color: $color-secondary-light;
+      background-color: unset;
       transition: all 0.25s ease-in-out;
+
+      a:hover,
+      a:focus {
+        color: $color-primary-dark !important;
+        outline: none;
+      }
 
       &:before {
         content: "";
@@ -104,6 +142,7 @@
 
     .post-card:hover {
       overflow: hidden;
+
       &:before {
         visibility: visible;
       }
@@ -114,6 +153,29 @@
 
       .post-card__date {
         visibility: visible;
+      }
+
+      .c-posts__content .postcard .item__specimen {
+        animation: postcard-text-float 2s ease-in-out infinite;
+        transform: translateY(0%) translateX(0%);
+
+        @keyframes postcard-text-float {
+          0% {
+            transform: translateY(0%) translateX(0%);
+          }
+
+          50% {
+            transform: translateY(5%) translateX(-5%);
+          }
+
+          75% {
+            transform: translateY(-5%) translateX(5%);
+          }
+        }
+      }
+
+      .c-posts__content .postcard .item__reference {
+        color: $color-primary-dark !important;
       }
     }
   }
@@ -146,6 +208,10 @@
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
+    background-color: #fffffff5;
+    border: 2px solid #d28e77;
+    border-radius: 1rem;
+    padding: 2rem;
     z-index: 1;
   }
 
@@ -183,6 +249,9 @@
       .info {
         grid-column-start: 3;
         justify-self: center;
+        background-color: #ffffff26;
+        border-radius: 1rem;
+        padding: 2rem;
         z-index: 1;
         h5 {
           font-family: $font-didot-italic !important;
@@ -515,15 +584,27 @@
 
   .content--layout {
     img {
+      border: 2px solid $color-primary-dark;
       width: 75rem;
       height: 60rem;
       margin: 2rem;
       opacity: 1;
+      padding: 2rem;
+      background-color: #ffffff26;
+    }
+
+    .content__title {
+      visibility: hidden;
     }
 
     p {
       margin-top: 10%;
       margin-bottom: 10%;
+      border: 2px solid #d28e7752;
+      padding: 2rem;
+      background-color: #fffffff5;
+      font-weight: 400;
+      text-align: start;
     }
   }
 
@@ -548,5 +629,34 @@
     font-size: 0.85em;
   }
 }
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .c-posts {
+    h1 {
+      margin-top: 15vh;
+    }
+
+    &__content .post-card img {
+      width: 90vw;
+      height: 412px;
+      object-fit: cover;
+    }
+  }
+
+  .c-post {
+    padding-top: 175px;
+    p {
+      width: unset;
+      font-size: 24px;
+    }
+
+    &__navigation .arrows {
+      display: grid;
+      grid-template-columns: 5vw 2.5vw 85vw 2.5vw 5vw;
+    }
+  }
+}
+//      Mobile Styles Ends Here
 
 // Style for the Post Layout Ends

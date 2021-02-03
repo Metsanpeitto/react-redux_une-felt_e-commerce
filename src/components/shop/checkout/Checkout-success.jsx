@@ -16,7 +16,6 @@ class CheckoutSuccess extends Component {
   }
 
   componentWillMount() {
-    /*
     if (this.props.history.location.data) {
       if (this.props.history.location.data) {
         var receipt = this.props.history.location.data[0].charge;
@@ -40,11 +39,9 @@ class CheckoutSuccess extends Component {
         });
       }
     }
-    */
   }
 
   componentDidUpdate() {
-    /*
     if (this.props.history.location.data) {
       if (this.state.orderTotal !== this.props.state.order.rec.total) {
         if (this.props.history.location.data) {
@@ -70,7 +67,6 @@ class CheckoutSuccess extends Component {
         }
       }
     }
-    */
   }
 
   render() {
@@ -88,7 +84,7 @@ class CheckoutSuccess extends Component {
     var deliveryDate = next5days
       .toLocaleDateString("en-US", options)
       .toString();
-
+    /*
     items = [
       {
         name: "Pako",
@@ -123,7 +119,7 @@ class CheckoutSuccess extends Component {
     };
 
     deliveryDate = "12-23-23";
-
+*/
     return payment.orderId ? (
       <div className="c-checkout-success">
         <div className="c-checkout-success__head">

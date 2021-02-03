@@ -11,8 +11,6 @@ const filtersReducerDefaultState = {
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
-  // console.log('Action Result');
-  // console.log(action);
   switch (action.type) {
     case types.FILTER_BRAND:
       return {

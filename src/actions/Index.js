@@ -10,12 +10,40 @@ import { toast } from "react-toastify";
 /**           POSTS                    */
 
 export const getAllPosts = (amount) => (dispatch) => {
-  posts.getPostList(amount).then((posts) => {
-    dispatch(getAllCategoriesPosts(posts));
-    dispatch(receivePosts(posts));
-    return posts;
-  });
+  const items = window.sessionStorage.getItem("posts");
+  var postsCache = Object.items;
+  if (postsCache) {
+    dispatch(getAllCategoriesPosts(postsCache));
+    dispatch(receivePosts(postsCache));
+    return postsCache;
+  } else {
+    posts.getPostList(amount).then((posts) => {
+      dispatch(getAllCategoriesPosts(posts));
+      dispatch(receivePosts(posts));
+      window.sessionStorage.setItem("posts", posts);
+      return posts;
+    });
+  }
 };
+
+/*
+export const getSomePosts = (amount) => (dispatch) => {
+  const items = window.sessionStorage.getItem("posts");
+  var somePostsCache = Object.somteItems;
+  if (somePostsCache) {
+    dispatch(getAllCategoriesPosts(postsCache));
+    dispatch(receivePosts(postsCache));
+    return postsCache;
+  } else {
+    posts.getPostList(amount).then((posts) => {
+      dispatch(getAllCategoriesPosts(posts));
+      dispatch(receivePosts(posts));
+      window.sessionStorage.setItem("posts", posts);
+      return posts;
+    });
+  }
+};
+*/
 
 export const receivePosts = (posts) => ({
   type: types.RECEIVE_POSTS,
@@ -33,6 +61,26 @@ export const receiveComments = (comments) => ({
   type: types.RECEIVE_COMMENTS,
   comments,
 });
+
+export const postCommentDone = () => ({
+  type: types.POST_COMMENT_DONE,
+});
+
+export const postComment = (data) => (dispatch) => {
+  posts.createComment(data).then((res) => {
+    toast.success(`\xa0\xa0 🤗 \xa0\xa0 Comment posted successfullly`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    dispatch(postCommentDone());
+    return res;
+  });
+};
 
 /**        END  POSTS                  */
 
@@ -53,13 +101,22 @@ export const receiveCategoryTreePosts = (categoryTreePosts) => ({
 });
 
 export const getAllCategoriesPosts = (data) => (dispatch) => {
+  const items = window.sessionStorage.getItem("categoryTreePosts");
+  var categoryTreePostsCache = Object.items;
   dispatch(fetchCategoryTreePostsBegin());
-  posts.getCategoryTree(data).then((categoryTreePosts) => {
-    if (categoryTreePosts) {
-      dispatch(receiveCategoryTreePosts(categoryTreePosts));
-      return categoryTreePosts;
-    }
-  });
+  if (categoryTreePostsCache) {
+    dispatch(receiveCategoryTreePosts(categoryTreePostsCache));
+    return categoryTreePostsCache;
+  } else {
+    posts.getCategoryTree(data).then((categoryTreePosts) => {
+      if (categoryTreePosts) {
+        dispatch(receiveCategoryTreePosts(categoryTreePosts));
+        window.sessionStorage.setItem("categoryTreePosts", categoryTreePosts);
+
+        return categoryTreePosts;
+      }
+    });
+  }
 };
 
 /**      END  CATEGORYTREE POSTS ACTIONS          */
@@ -75,11 +132,21 @@ export const receiveProducts = (products) => ({
 
 export const getAllProducts = () => (dispatch) => {
   dispatch(fetchProductsBegin());
-  shop.getProducts().then((products) => {
-    dispatch(receiveProducts(products));
-    dispatch(getAllCategories(products));
-    return products;
-  });
+  const items = window.sessionStorage.getItem("products");
+  var productsCache = Object.items;
+
+  if (productsCache) {
+    dispatch(receiveProducts(productsCache));
+    dispatch(getAllCategories(productsCache));
+    return productsCache;
+  } else {
+    shop.getProducts().then((products) => {
+      dispatch(receiveProducts(products));
+      dispatch(getAllCategories(products));
+      window.sessionStorage.setItem("products", products);
+      return products;
+    });
+  }
 };
 
 export const fetchSingleProduct = (productId) => ({
@@ -162,12 +229,20 @@ export const receiveCategoryTree = (categoryTree) => ({
 
 export const getAllCategories = (products) => (dispatch) => {
   dispatch(fetchCategoryTreeBegin());
-  shop.getCategoryTree(products).then((categoryTree) => {
-    if (categoryTree) {
-      dispatch(receiveCategoryTree(categoryTree));
-      return categoryTree;
-    }
-  });
+  const items = window.sessionStorage.getItem("categories");
+  var categoriesCache = Object.items;
+  if (categoriesCache && categoriesCache !== undefined) {
+    dispatch(receiveCategoryTree(categoriesCache));
+    return categoriesCache;
+  } else {
+    shop.getCategoryTree(products).then((categoryTree) => {
+      if (categoryTree) {
+        dispatch(receiveCategoryTree(categoryTree));
+        window.sessionStorage.setItem("categories", categoryTree);
+        return categoryTree;
+      }
+    });
+  }
 };
 
 /**      END  CATEGORYTREE ACTIONS          */
@@ -184,10 +259,18 @@ export const receiveExtras = (extras) => ({
 
 export const getAllExtras = () => (dispatch) => {
   dispatch(fetchExtrasBegin());
-  shop.getExtras().then((extras) => {
-    dispatch(receiveExtras(extras));
-    return extras;
-  });
+  const items = window.sessionStorage.getItem("extras");
+  var extrasCache = Object.items;
+  if (extrasCache) {
+    dispatch(receiveExtras(extrasCache));
+    return extrasCache;
+  } else {
+    shop.getExtras().then((extras) => {
+      dispatch(receiveExtras(extras));
+      window.sessionStorage.setItem("extras", extras);
+      return extras;
+    });
+  }
 };
 /*        GET EXTRAS    END                */
 

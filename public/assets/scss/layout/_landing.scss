@@ -86,10 +86,112 @@
     }
   }
 
+  &__shop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    padding-top: 20vh;
+    color: $color-primary-dark;
+    font-family: $font-didot;
+    font-weight: 900;
+
+    .item {
+      position: relative;
+      width: 50vw;
+      max-width: 100%;
+      /* margin: 0 0 0 auto; */
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+      grid-column: span 2;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+      &__meta-1 {
+        cursor: pointer;
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        width: max-content;
+        padding: 12.5% 0 0 3em;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        grid-column-start: 1;
+        z-index: 1;
+      }
+
+      &__meta-2 {
+        cursor: pointer;
+        position: absolute;
+        top: unset;
+        bottom: 10%;
+        right: 10%;
+        width: max-content;
+        padding: unset;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        grid-column-start: 2;
+        z-index: 1;
+      }
+
+      &__number {
+        position: unset;
+        top: unset;
+        width: 100%;
+        padding: unset;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+      }
+
+      &__specimen {
+        font-size: 11rem;
+        font-weight: 900;
+        cursor: unset;
+        user-select: none;
+      }
+
+      &__reference {
+        cursor: unset;
+        user-select: none;
+      }
+
+      &__blog {
+        top: unset;
+        bottom: 20%;
+        right: -35%;
+      }
+    }
+
+    .item--style-1 {
+      grid-row-start: 1;
+      grid-column-start: 2;
+      animation: floating 3s ease-in-out infinite;
+    }
+    .item--style-2 {
+      grid-row-start: 1;
+      grid-column-start: 1;
+      animation: floating-back 6s ease-in-out infinite;
+    }
+  }
+
   //      Ipad & Tablet Styles Starts Here
-  @media (max-width: 1200px) and (min-width: 767px) {
+  @media (max-width: 1200px) {
     &__canvas {
       padding-top: 260px;
+    }
+
+    &__shop {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr;
+      min-height: 100vh;
+      padding-top: 20vh;
+      color: $color-primary-dark;
+      font-family: $font-didot;
+      font-weight: 900;
+
+      .item {
+        width: 90vw !important;
+      }
     }
   }
   //      Ipad & Tablet Styles Ends Here
@@ -99,7 +201,8 @@
   position: relative;
   height: 100vh;
   width: 100vw;
-  padding-bottom: 10rem;
+  //  padding-bottom: 10rem;
+
   img {
     position: absolute;
     width: 100vw;
@@ -110,7 +213,7 @@
     user-select: none;
     transform: translate(-12rem, -5rem) !important;
     position: relative !important;
-    z-index: 3;
+    z-index: 4;
   }
 
   .bg-video {
@@ -140,7 +243,7 @@
     text-align: center;
     color: $color-primary-dark;
     font-family: $font-didot;
-    z-index: 0;
+    z-index: 2;
     h1 {
       font-size: 10rem;
       font-weight: 800;
@@ -149,12 +252,28 @@
       text-transform: uppercase;
     }
     p {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #f5f5f529;
     }
 
     .f-bp {
       margin-top: 10vh !important;
+
+      .f-bp-label {
+        font-family: "PontanoSans-Regular", sans-serif;
+      }
     }
+  }
+
+  .white-screen {
+    background-color: #ffffff78;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    position: absolute;
   }
 
   #container-circle {
@@ -208,4 +327,51 @@
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
   }
+
+  //      Ipad & Tablet Styles Starts Here
+  @media (max-width: 1200px) {
+    img {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      object-fit: none;
+    }
+  }
+  //      Ipad & Tablet Styles Ends Here
 }
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .l-landing__shop {
+    .item__meta-1 {
+      left: 0%;
+    }
+
+    .item {
+      width: 126vw !important;
+    }
+  }
+
+  .l-landing-backgroundvideo {
+    .bg-text {
+      top: 5%;
+
+      h1 {
+        font-size: 5rem;
+        font-weight: 800;
+        letter-spacing: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 2rem;
+        width: 75%;
+      }
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+}
+//      Mobile Styles Ends Here

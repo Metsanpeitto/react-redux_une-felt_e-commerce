@@ -37,7 +37,7 @@ class checkOut extends Component {
       postcode: "",
       cart: [],
       total: null,
-      create_account: "",
+      create_account: false,
     };
     this.validator = new SimpleReactValidator();
     this.createOrderData = this.createOrderData.bind(this);

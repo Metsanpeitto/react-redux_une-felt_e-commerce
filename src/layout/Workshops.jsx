@@ -10,12 +10,9 @@ class Workshops extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+  componentDidMount() {}
 
   componentDidUpdate() {
-    console.log(this.props);
     if (this.props) {
     }
   }

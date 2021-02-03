@@ -299,54 +299,10 @@
   animation: closed-mouth 4s ease-in-out infinite;
 }
 
-@keyframes touch-nose {
-  0% {
-    transform: rotate(0deg) translateX(0px);
-  }
-  100% {
-    transform: rotate(69deg) translateX(19px);
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .l-story__main--text {
+    width: 75vw;
   }
 }
-
-@keyframes swing {
-  0%,
-  100% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-}
-
-@keyframes closed-mouth {
-  0%,
-  100% {
-    transform: scale(0.5);
-  }
-  50% {
-    transform: scale(1);
-  }
-}
-
-@keyframes closed-eyes {
-  0%,
-  100% {
-    transform: translateX(-2px);
-  }
-  50% {
-    transform: translateX(2px);
-  }
-}
-
-@keyframes close-eyes {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
+//      Mobile Styles Ends Here

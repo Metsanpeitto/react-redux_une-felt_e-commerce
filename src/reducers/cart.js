@@ -14,8 +14,6 @@ export default function cartReducer(
   switch (action.type) {
     case ADD_TO_CART:
       const productId = action.product.id;
-      console.log(action.product.id);
-
       if (state.cart.findIndex((product) => product.id === productId) !== -1) {
         const cart = state.cart.reduce((cartAcc, product) => {
           if (product.id === productId) {

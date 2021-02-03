@@ -24,7 +24,6 @@ class Contact extends Component {
 
   onSubmitLocation(e) {
     e.preventDefault();
-    console.log(this.state);
     if (
       this.state.email_address !== "" ||
       this.state.first_name !== "" ||

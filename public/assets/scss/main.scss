@@ -71,19 +71,22 @@
                |                 |___ 3.h. frame 
                |                 |
                |                 |
-               |                 |___ 3.i. header    
+               |                 |___ 3.i. header
+                                 |                 |
+               |                 |
+               |                 |___ 3.j. search    
                |                 |
                |                 |
-               |                 |___ 3.j. slider   
+               |                 |___ 3.k. slider   
                |                 |
                |                 |
-               |                 |___ 3.k. product
+               |                 |___ 3.l. product
                |                 |
                |                 |
-               |                 |___ 3.l. posts               
+               |                 |___ 3.m. posts               
                |                 |
                |                 |
-               |                 |___ 3.m. wishlist                               
+               |                 |___ 3.n. wishlist                               
                |
                |
                |___4. layout ____
@@ -160,6 +163,7 @@
 @import "components/frame";
 @import "components/footer";
 @import "components/header";
+@import "components/search";
 @import "components/slider";
 @import "components/posts";
 @import "components/product";

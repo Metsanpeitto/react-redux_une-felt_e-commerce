@@ -127,7 +127,7 @@ class Contact extends Component {
               </a>
             </div>
           </div>
-          <h5 className="email">service@unefelt.com</h5>
+          <h5 className="email">servicedeune@gmail.com</h5>
         </div>
       </section>
     );

@@ -32,7 +32,6 @@ class Account extends Component {
   componentWillMount() {
     if (this.props.state.user.log) {
       if (this.props.state.user.log.userId) {
-        console.log(this.props.state.user);
         if (this.props.state.user.log.userId !== "error") {
           this.fillFields(this.props.state.user);
           this.setState({
@@ -44,7 +43,6 @@ class Account extends Component {
   }
 
   fillFields = (props) => {
-    console.log(props);
     if (props.log) {
       if (props.log.userId) {
         const {

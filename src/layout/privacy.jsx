@@ -14,7 +14,6 @@ function NestedList(props) {
 
   const handleClick = () => {
     setOpen(!open);
-    console.log(open);
   };
 
   return (
@@ -46,11 +45,9 @@ class Privacy extends Component {
   openG = false;
   openZ = false;
   componentWillMount() {
-    console.log(this.props);
     if (this.props.location.pathname) {
       var key = this.props.location.pathname;
       key = key.replace("/info/", "");
-      console.log(key);
       if (key === "gastos") {
         this.openG = true;
         this.openC = false;

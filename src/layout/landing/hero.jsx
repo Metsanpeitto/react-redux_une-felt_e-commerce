@@ -3,7 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 
 import Slider from "../../components/Slider";
 import Logo from "../../icons/FilledHeart";
-import Button from "../../components/Button";
 
 class SplitText extends Component {
   render() {
@@ -68,50 +67,6 @@ function Hero(data) {
         {/** This banner component must to get values from the extras file from the api and set variables in each field
          *
          */}
-
-        {extras ? (
-          extras[0] ? (
-            <section className="c-banner">
-              <div className="c-banner__left">
-                <div className="c-banner-text">
-                  <p className="c-banner-text__header">LASTEST CREATIONS</p>
-                  <h1 className="c-banner-text__big">{extras[0].name}</h1>
-                  <p className="c-banner-text__long">
-                    {extras[0].description}
-                  </p>{" "}
-                  <Button
-                    label="LEARN MORE"
-                    key="learn"
-                    href={`${process.env.PUBLIC_URL}/lastest`}
-                  />
-                </div>
-              </div>
-
-              <div className="c-banner-img">
-                <div className="c-banner-figure">
-                  <div className="c-banner-src">
-                    <img
-                      src={
-                        process.env.PUBLIC_URL +
-                        "assets/img/hopper/landSide.jpg"
-                      }
-                      alt="lastest picture"
-                      className="c-banner-src__scale"
-                    />
-                  </div>
-                  <div className="c-banner-src">
-                    <img
-                      src={
-                        process.env.PUBLIC_URL + "assets/img/hopper/land.jpg"
-                      }
-                      alt="lastest picture"
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
-          ) : null
-        ) : null}
       </section>
     </section>
   );

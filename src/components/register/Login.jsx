@@ -104,7 +104,7 @@ class Login extends Component {
           <Input
             type="email"
             name="name"
-            id="mail"
+            id="mail-login"
             label="mail"
             value={this.state.name}
             handleChange={this.handleChange}
@@ -112,7 +112,7 @@ class Login extends Component {
           <Input
             type="password"
             name="password"
-            id="password"
+            id="password-login"
             label="password"
             value={this.state.password}
             handleChange={this.handleChange}

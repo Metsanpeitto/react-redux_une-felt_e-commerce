@@ -5,7 +5,7 @@
   padding-top: 15vh;
   padding-bottom: 5%;
   position: relative;
-  animation: arriveLeft 2s ease-in-out;
+  animation: arriveRight 2s ease-in-out;
 
   &__header {
     margin-top: 3%;
@@ -16,11 +16,13 @@
     text-transform: capitalize;
     letter-spacing: 1rem;
     color: #d28e77;
-    animation: arriveRight 3s ease-in-out;
+    animation: arriveLeft 2s ease-in-out 1.5s;
   }
   &__content {
     display: grid;
     grid-template-columns: 30rem 1fr 30rem;
+    animation: arriveRight 3s ease-in-out 1s;
+
     p {
       color: $color-primary-dark;
       text-align: center;
@@ -104,4 +106,16 @@
     }
   }
   //      Ipad & Tablet Styles Ends Here
+
+  //      Mobile Styles Starts Here
+  @media (max-width: 765px) and (min-width: 300px) {
+    &__content {
+      grid-template-columns: 5vw 90vw 5vw;
+
+      img {
+        width: 95vw !important;
+      }
+    }
+  }
+  //      Mobile Styles Ends Here
 }

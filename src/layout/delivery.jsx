@@ -15,7 +15,6 @@ function NestedList(props) {
 
   const handleClick = () => {
     setOpen(!open);
-    console.log(open);
   };
 
   return (
@@ -48,11 +47,9 @@ class Delivery extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     if (this.props.location.pathname) {
       var key = this.props.location.pathname;
       key = key.replace("/info/", "");
-      console.log(key);
       if (key === "gastos") {
         openG = true;
         openC = false;
@@ -88,67 +85,67 @@ class Delivery extends Component {
 
     const payment = (
       <div className="card-body">
-        <p> {translate("delivery1A")}We accept Visa, Mastercard, Paypal.</p>
+        <p> {translate("delivery2A")}</p>
       </div>
     );
 
     const exchange = (
       <div className="card-body">
-        <p> {translate("delivery2A")}</p>
+        <p> {translate("delivery3A")}</p>
       </div>
     );
 
     const when = (
       <div className="card-body">
-        <p> {translate("delivery3A")}</p>
+        <p> {translate("delivery4A")}</p>
       </div>
     );
 
     const where = (
       <div className="card-body">
-        <p> {translate("delivery4A")}</p>
+        <p> {translate("delivery5A")}</p>
       </div>
     );
 
     const international = (
       <div className="card-body">
-        <p> {translate("delivery5A")}</p>
+        <p> {translate("delivery6A")}</p>
       </div>
     );
 
     const receive = (
       <div className="card-body">
-        <p> {translate("delivery6A")}</p>
+        <p> {translate("delivery7A")}</p>
       </div>
     );
 
     const ems = (
       <div className="card-body">
-        <p> {translate("delivery7A")}</p>
+        <p> {translate("delivery8A")}</p>
       </div>
     );
 
     const dhl = (
       <div className="card-body">
-        <p> {translate("delivery8A")}</p>
+        <p> {translate("delivery9A")}</p>
       </div>
     );
 
     const cost = (
       <div className="card-body">
-        <p> {translate("delivery9A")}</p>
+        <p> {translate("delivery10A")}</p>
       </div>
     );
 
     const damaged = (
       <div className="card-body">
-        <p> {translate("delivery10A")}</p>
+        <p> {translate("delivery11A")}</p>
       </div>
     );
 
     const tracking = (
       <div className="card-body">
-        <p> {translate("delivery11A")}</p>
+        <p> {translate("delivery12A")}</p>
       </div>
     );
 

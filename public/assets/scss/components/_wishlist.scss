@@ -186,3 +186,15 @@
     }
   }
 }
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .c-wishlist__empty {
+    padding-top: 20vh;
+    .panel svg {
+      width: 100vw;
+      height: 60rem;
+    }
+  }
+}
+//      Mobile Styles Ends Here

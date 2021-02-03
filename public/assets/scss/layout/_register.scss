@@ -31,7 +31,9 @@
 
   .input {
     margin: unset;
-    max-width: 100%;
+    max-width: 80vw !important;
+    max-width: unset !important;
+    min-width: unset !important;
     font-size: 1.6rem;
     z-index: 0;
   }
@@ -264,3 +266,41 @@
     }
   }
 }
+
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1200px) {
+  .l-register {
+    grid-template-columns: auto 90vw auto;
+    column-gap: 0;
+    grid-column-gap: 0;
+    height: max-content;
+
+    .input {
+      width: 75vw;
+    }
+
+    &__login {
+      grid-row-start: 1;
+      grid-column-start: 2;
+      margin-bottom: 15vh;
+      .action .remember {
+        grid-row-start: 1;
+        display: grid;
+        grid-template-rows: auto auto;
+        div {
+          grid-template-columns: auto auto;
+          grid-row-start: 2;
+          grid-column-start: 1;
+        }
+      }
+    }
+
+    &__register {
+      grid-row-start: 2;
+      grid-column-start: 2;
+      margin-top: 5vh;
+      margin-bottom: 15vh;
+    }
+  }
+}
+//      Ipad & Tablet Styles Ends Here

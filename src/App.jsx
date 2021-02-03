@@ -8,8 +8,8 @@ import ReactTooltip from "react-tooltip";
 
 // <section style={style2}>{props.children}</section>
 function App(props) {
-  const [section1Visible, set1Visible] = useState(false);
-  const [section2Visible, set2Visible] = useState(true);
+  const [section1Visible, set1Visible] = useState(true);
+  const [section2Visible, set2Visible] = useState(false);
 
   useEffect(
     () => {

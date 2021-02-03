@@ -32,7 +32,7 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: $color-secondary-light;
+  background-color: $color-secondary-dark;
   overflow-x: hidden;
 
   @include respond(tab-port) {

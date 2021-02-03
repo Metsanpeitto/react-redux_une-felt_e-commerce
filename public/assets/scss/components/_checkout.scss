@@ -433,3 +433,20 @@
 }
 
 //     -----------   Checkout Success Layout Ends    ---------------------------------------     //
+
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1200px) {
+  .c-checkout__menus {
+    display: grid;
+    grid-template-rows: auto auto;
+    min-height: 100%;
+    .left-menu {
+      grid-row-start: 1;
+    }
+    .right-menu {
+      margin-top: 10%;
+      grid-row-start: 2;
+    }
+  }
+}
+//      Ipad & Tablet Styles Ends Here

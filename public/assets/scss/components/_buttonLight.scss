@@ -1,66 +1,27 @@
 .f-bs {
-  width: 30rem;
-  height: 3.75vw;
+  min-width: 400px;
+  max-width: 400px;
+  height: 40px;
   color: #ae97a2;
   font-weight: bold;
-  font-size: 0.813vw;
+  font-size: 18px;
   position: relative;
-  margin-top: 4.375vw;
+  margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
   display: inline-block;
   //padding-left: 3.5vw;
-  line-height: 3.75vw;
-  letter-spacing: 0.104vw;
+  line-height: 0px;
+  letter-spacing: 0.1.5px;
   text-transform: uppercase;
   outline: 0 !important;
   border: none !important;
   outline: none !important;
 
-  &:hover {
-    .f-bs-arrow {
-      top: 1.5vw;
-      width: 0.375vw;
-      height: 0.625vw;
-      fill: #ae97a2;
-      position: absolute;
-      opacity: 1;
-
-      &:nth-child(1) {
-        opacity: 0;
-        left: 14rem;
-        transition: all 0.5s ease-in-out;
-      }
-      &:nth-child(2) {
-        opacity: 1;
-        right: 0rem;
-        transition: all 0.5s ease-in-out;
-      }
-    }
-
-    .f-bs-line {
-      left: 22rem;
-      bottom: 0;
-      height: 1px;
-      width: 3.5vw;
-      content: "";
-      position: absolute;
-      background: #ae97a2;
-      transform: translateX(-1rem);
-    }
-
-    .f-bs-label {
-      top: 0%;
-      left: 5rem;
-      transform-origin: -10rem 0px;
-      transition: all 0.5s ease-out;
-    }
-  }
-
   .f-bs-arrow {
-    top: 1.5vw;
-    width: 0.375vw;
-    height: 0.625vw;
+    top: -5px;
+    width: 17px;
+    height: 20px;
     fill: #ae97a2;
     position: absolute;
     opacity: 1;
@@ -69,7 +30,7 @@
 
     &:nth-child(1) {
       opacity: 1;
-      left: 10rem;
+      left: 100px;
       transition: all 0.5s ease-in-out;
     }
     &:nth-child(2) {
@@ -102,5 +63,45 @@
     font-style: normal;
     transform-origin: 0px 0px;
     transition: all 0.5s ease-out;
+  }
+
+  &:hover {
+    .f-bs-arrow {
+      top: -5px;
+      width: 17px;
+      height: 20px;
+      fill: #ae97a2;
+      position: absolute;
+      opacity: 1;
+
+      &:nth-child(1) {
+        opacity: 0;
+        left: 150px;
+        transition: all 0.5s ease-in-out;
+      }
+      &:nth-child(2) {
+        opacity: 1;
+        right: 0rem;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+
+    .f-bs-line {
+      left: 22rem;
+      bottom: 0;
+      height: 1px;
+      width: 3.5vw;
+      content: "";
+      position: absolute;
+      background: #ae97a2;
+      transform: translateX(-1rem);
+    }
+
+    .f-bs-label {
+      top: 0%;
+      left: 5rem;
+      transform-origin: -10rem 0px;
+      transition: all 0.5s ease-out;
+    }
   }
 }

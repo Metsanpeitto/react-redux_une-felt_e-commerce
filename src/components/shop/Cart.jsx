@@ -21,8 +21,13 @@ class cartComponent extends Component {
 
   render() {
     const { cartItems, symbol, total, translate } = this.props;
-
-    console.log(this.props);
+    var productsToShow = [];
+    if (this.props.state.data.products.length > 1) {
+      var products = this.props.state.data.products;
+      for (var i = 0; i <= 4; i++) {
+        productsToShow.push(products[i]);
+      }
+    }
 
     return (
       <div>
@@ -149,8 +154,26 @@ class cartComponent extends Component {
         ) : (
           <section className="c-cart__empty">
             <h1>{translate("empty_cart")}</h1>
-
             <Hugger />
+
+            <section className="c-product__related-products">
+              <h2>{translate("related_product")}</h2>
+              <div className="related-products__images">
+                {productsToShow.length > 1
+                  ? productsToShow.map((p, index) => (
+                      <Link
+                        to={`${process.env.PUBLIC_URL}/product/${p.id}`}
+                        className="btn btn-solid"
+                        key={index}
+                      >
+                        <div className="product-box__image">
+                          <img src={p.pictures[0]} />
+                        </div>
+                      </Link>
+                    ))
+                  : null}
+              </div>
+            </section>
           </section>
         )}
       </div>
@@ -161,6 +184,7 @@ const mapStateToProps = (state) => ({
   cartItems: state.cartList.cart,
   symbol: state.data.symbol,
   total: getCartTotal(state.cartList.cart),
+  state,
 });
 
 export default connect(mapStateToProps, {

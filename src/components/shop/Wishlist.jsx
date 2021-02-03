@@ -23,10 +23,8 @@ class Wishlist extends Component {
 
   render() {
     const { translate } = this.props;
-    console.log(this.props);
     var Items = [];
     Items = this.props.Items;
-    console.log(Items);
 
     return (
       <div>
@@ -92,7 +90,7 @@ class Wishlist extends Component {
                         data-type="plus"
                         disabled={item.qty >= item.stock ? true : false}
                       >
-                        <i class="fas fa-plus"></i>{" "}
+                        <i className="fas fa-plus"></i>{" "}
                       </a>{" "}
                       <a
                         href="#"

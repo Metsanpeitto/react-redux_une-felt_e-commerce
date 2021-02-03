@@ -196,7 +196,6 @@ class Post extends Component {
             script.onload = () => this.scriptLoaded();
             document.body.appendChild(script);
             const posts = this.props.state.posts.posts;
-            console.log(posts);
             this.setState(() => {
               return {
                 posts: posts,
@@ -471,7 +470,6 @@ class Post extends Component {
   }
 
   Layout = (data) => {
-    console.log(data);
     const layoutN = `content--layout-${data.index + 1}`;
     const srcImg = data.srcs;
     return (
@@ -502,7 +500,6 @@ class Post extends Component {
   };
 
   render() {
-    console.log(this.state);
     if (this.state.post) {
       const title = this.state.post.title;
       const prev = this.state.prev;
@@ -524,28 +521,31 @@ class Post extends Component {
           ) : null}
           <div className="c-post__navigation">
             <div className="arrows">
-              <Link
-                to={this.newTo(prev == undefined ? "#" : prev, "post")}
-                onClick={this.closeMenuTrigger}
-                onMouseOver={this.hoverItem}
-                className="previous"
-              >
-                <i className="fas fa-arrow-left"></i>
-              </Link>
+              {prev !== undefined ? (
+                <Link
+                  to={this.newTo(prev == undefined ? "#" : prev, "post")}
+                  onClick={this.closeMenuTrigger}
+                  onMouseOver={this.hoverItem}
+                  className="previous"
+                >
+                  <i className="fas fa-arrow-left"></i>
+                </Link>
+              ) : null}
 
               <div className="info">
                 <h5 className="author">{`by ${author}`}</h5>
                 <h5 className="date">{`${date.monthWord}  ${date.day}, ${date.year} `}</h5>
               </div>
-
-              <Link
-                to={this.newTo(next == undefined ? "#" : next, "post")}
-                onClick={this.closeMenuTrigger}
-                onMouseOver={this.hoverItem}
-                className="next"
-              >
-                <i className="fas fa-arrow-right"></i>
-              </Link>
+              {next !== undefined ? (
+                <Link
+                  to={this.newTo(next == undefined ? "#" : next, "post")}
+                  onClick={this.closeMenuTrigger}
+                  onMouseOver={this.hoverItem}
+                  className="next"
+                >
+                  <i className="fas fa-arrow-right"></i>
+                </Link>
+              ) : null}
             </div>
           </div>
 

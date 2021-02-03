@@ -1,0 +1,50 @@
+.c-search {
+  background-color: $color-secondary-dark;
+  width: 33vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-start: 2;
+    grid-row-start: 2;
+    height: 20rem;
+    justify-self: center;
+
+    // this overrides the input component
+    .content {
+      align-self: end;
+      padding-top: unset;
+      justify-self: center;
+      grid-column-start: 1;
+
+      .input--nao {
+        overflow: hidden;
+        padding-top: 6em;
+      }
+
+      .input {
+        height: 150px;
+
+        .input__field {
+          top: -55px;
+          min-height: 60px;
+        }
+
+        .input__label--nao {
+          top: 70px;
+          font-size: 18px;
+          padding: 0em;
+        }
+      }
+    }
+
+    a {
+      align-self: end;
+      justify-self: start;
+      grid-column-start: 2;
+      padding-bottom: 2rem;
+    }
+  }
+}

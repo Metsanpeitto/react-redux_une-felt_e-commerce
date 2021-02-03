@@ -134,6 +134,10 @@
     position: relative;
     animation: arriveLeft 2s ease-in-out;
 
+    .c-product__related-products {
+      grid-row-start: 3 !important;
+    }
+
     h1 {
       margin-top: 3%;
       text-align: center;
@@ -319,3 +323,11 @@
     }
   }
 }
+
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1200px) {
+  .c-cart__empty svg {
+    width: 50vw;
+  }
+}
+//      Ipad & Tablet Styles Ends Here

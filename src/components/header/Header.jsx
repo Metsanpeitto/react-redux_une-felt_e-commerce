@@ -11,7 +11,7 @@ import Logo from "../../icons/Logo";
 import Member from "../../icons/Member";
 import FilledMember from "../../icons/FilledMember";
 import Menu from "../../icons/Menu";
-import Search from "../../icons/Search";
+import SearchIcon from "../../icons/Search";
 import Heart from "../../icons/BlankHeart";
 import FilledHeart from "../../icons/FilledHeart";
 
@@ -38,8 +38,34 @@ class Header extends Component {
     this.closeSubmenu = this.closeSubmenu.bind(this);
     this.parseProps = this.parseProps.bind(this);
     this.hoverItem = this.hoverItem.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+
     //  this.handleChange = this.handleChange.bind(this);
     //  this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleClickOutside(event) {
+    const { sideMenu1, sideMenu2, sideMenu3 } = this.state;
+    var closeMenus = true;
+    const tag = event.toElement.tagName;
+    if (tag == "LI" || tag == "UL" || tag == "A") {
+      closeMenus = null;
+    }
+
+    if (event.toElement) {
+      let toElement = event.toElement;
+      if (
+        toElement.id == "sideMenu1" ||
+        toElement.id == "sideMenu2" ||
+        toElement.id == "sideMenu3"
+      ) {
+        closeMenus = null;
+      }
+
+      if (closeMenus) {
+        this.closeMenuTrigger();
+      }
+    }
   }
 
   componentDidMount() {
@@ -224,15 +250,24 @@ class Header extends Component {
   // Displays the first side-menu from the right
   menu1Trigger() {
     document.querySelector(".menu-slide__1").classList.add("visible");
+    document
+      .querySelector(".menu-slide__1")
+      .addEventListener("mouseout", this.handleClickOutside);
   }
   // Displays the second side-menu from the right
 
   menu2Trigger() {
     document.querySelector(".menu-slide__2").classList.add("visible");
+    document
+      .querySelector(".menu-slide__2")
+      .addEventListener("mouseout", this.handleClickOutside);
   }
   // Displays the third side-menu from the right
   menu3Trigger() {
     document.querySelector(".menu-slide__3").classList.add("visible");
+    document
+      .querySelector(".menu-slide__3")
+      .addEventListener("mouseout", this.handleClickOutside);
   }
 
   closeSubmenu() {
@@ -373,7 +408,6 @@ class Header extends Component {
     }
     if (menu) {
       if (menu.length > 0) {
-        console.log(menu);
         return (
           <ul>
             {menu[0].key ? (
@@ -389,7 +423,25 @@ class Header extends Component {
             ) : null}
             {menu.map((item, index) => {
               if (item) {
-                if (item.id && !item.idNumber) {
+                if (item.id_post) {
+                  return (
+                    <li key={`${index}`}>
+                      <Link
+                        to={this.newTo(
+                          item.id_post,
+                          data.level > 1 ? "post" : "posts"
+                        )}
+                        onClick={this.closeMenuTrigger}
+                        onMouseOver={this.hoverItem}
+                        key={item.name ? item.name : item.id_post}
+                        name={item.name ? item.name : item.id_post}
+                        value={data.level}
+                      >
+                        {item.title ? item.title : item.name}
+                      </Link>
+                    </li>
+                  );
+                } else {
                   return (
                     <li key={`${item.id}${index}`}>
                       <Link
@@ -404,25 +456,6 @@ class Header extends Component {
                         value={data.level}
                       >
                         {item.name ? item.name : item.id}
-                      </Link>
-                    </li>
-                  );
-                }
-                if (item.id_post) {
-                  return (
-                    <li key={`${item.id}${index}`}>
-                      <Link
-                        to={this.newTo(
-                          item.name ? item.name : item.id_post,
-                          data.level > 1 ? "post" : "posts"
-                        )}
-                        onClick={this.closeMenuTrigger}
-                        onMouseOver={this.hoverItem}
-                        key={item.id_post}
-                        name={item.id_post}
-                        value={data.level}
-                      >
-                        {item.title}
                       </Link>
                     </li>
                   );
@@ -483,7 +516,7 @@ class Header extends Component {
               </li>
               <li className="menu__item  fade-in search">
                 <a href="#" onClick={this.menuSearch} data-tip="Search">
-                  <Search />
+                  <SearchIcon />
                 </a>
               </li>
               <li className="menu__item fade-in member">
@@ -554,13 +587,13 @@ class Header extends Component {
         </header>
         <div>
           <ul className="menu-slide">
-            <li className="menu-slide__1 slide " level={1}>
+            <li id="sideMenu1" className="menu-slide__1 slide" level={1}>
               <this.DynamicMenu level={1} functionToParse={this.menu2Trigger} />
             </li>
-            <li className="menu-slide__2 slide" level={2}>
+            <li id="sideMenu2" className="menu-slide__2 slide" level={2}>
               <this.DynamicMenu level={2} functionToParse={this.menu3Trigger} />
             </li>
-            <li className="menu-slide__3 slide" level={3}>
+            <li id="sideMenu3" className="menu-slide__3 slide" level={3}>
               <this.DynamicMenu level={3} functionToParse={this.menu3Trigger} />
             </li>
           </ul>
@@ -578,7 +611,7 @@ class Header extends Component {
                 handleChange={this.handleChange}
               />
               <a href="#" type="submit" onClick={this.handleSubmit}>
-                <Search />
+                <SearchIcon />
               </a>
             </form>
           </div>

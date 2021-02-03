@@ -47,12 +47,69 @@ import "./index.scss";
 const pK = "pk_test_xhI1GEX6luUTKEj2qQe8biZX00iH1jvMZe";
 
 class Root extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstStage: null,
+      secondStage: null,
+      thirdStage: null,
+    };
+    this.requestProducts = this.requestProducts.bind(this);
+    this.requestPosts = this.requestPosts.bind(this);
+    this.requestExtras = this.requestExtras.bind(this);
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+
+    setTimeout(() => {
+      this.setState(() => {
+        return { firstStage: true };
+      });
+    }, 3000);
+
+    setTimeout(() => {
+      this.setState(() => {
+        return { secondStage: true };
+      });
+    }, 6000);
+
+    setTimeout(() => {
+      this.setState(() => {
+        return { thirdStage: true };
+      });
+    }, 9000);
+  }
+
+  requestProducts() {
     store.dispatch(getAllProducts());
+  }
+
+  requestPosts() {
+    store.dispatch(getAllPosts());
+  }
+
+  requestExtras() {
+    store.dispatch(getAllExtras());
+  }
+
+  render() {
+    if (this.state.firstStage) {
+      this.requestProducts();
+    }
+
+    if (this.state.secondStage) {
+      this.requestPosts();
+    }
+
+    if (this.state.thirdStage) {
+      this.requestExtras();
+    }
+
     //store.dispatch(getAllCategories());
     //store.dispatch(getAllCategoriesPosts());
-    store.dispatch(getAllExtras());
-    store.dispatch(getAllPosts());
+    // store.dispatch(getAllExtras());
+    //store.dispatch(getAllPosts());
 
     return (
       <Provider store={store}>

@@ -53,8 +53,7 @@ export default class AutoPlay extends Component {
             <img
               className="item__3"
               src={
-                process.env.PUBLIC_URL +
-                "assets/img/miss_desert/Lady_DesertP.jpg"
+                process.env.PUBLIC_URL + "assets/img/ladies/Lady_DesertP.jpg"
               }
             />
           </div>
@@ -68,19 +67,13 @@ export default class AutoPlay extends Component {
           <div className="slider-item">
             <img
               className="item__5"
-              src={
-                process.env.PUBLIC_URL +
-                "assets/img/miss_wetland/ladyWetTop.jpg"
-              }
+              src={process.env.PUBLIC_URL + "assets/img/ladies/Lady_WetP.jpg"}
             />
           </div>
           <div className="slider-item">
             <img
               className="item__6"
-              src={
-                process.env.PUBLIC_URL +
-                "assets/img/miss_ocean/Lady_OceanLeft.jpg"
-              }
+              src={process.env.PUBLIC_URL + "assets/img/ladies/Lady_OceanP.jpg"}
             />
           </div>
         </Slider>

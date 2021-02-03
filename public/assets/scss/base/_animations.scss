@@ -374,6 +374,16 @@
   }
 }
 
+@keyframes floating-back {
+  0%,
+  100% {
+    transform: translate3d(0);
+  }
+  50% {
+    transform: translate3d(-10px, 20px, -2px);
+  }
+}
+
 @keyframes floating-small {
   0%,
   100% {
@@ -452,4 +462,111 @@
   transform: scale(1);
   transition: all 0.5s ease;
   animation: big-bang 1s ease-in-out;
+}
+
+@keyframes scale-img {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes arriveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes arriveRight {
+  0% {
+    opacity: 0;
+    transform: translateX(200rem);
+  }
+
+  50% {
+    transform: translateX(200rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(500rem);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(500rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes touch-nose {
+  0% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  100% {
+    transform: rotate(69deg) translateX(19px);
+  }
+}
+
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes closed-mouth {
+  0%,
+  100% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+@keyframes closed-eyes {
+  0%,
+  100% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes close-eyes {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
 }

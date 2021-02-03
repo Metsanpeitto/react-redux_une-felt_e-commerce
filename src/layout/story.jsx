@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withTranslate } from "react-redux-multilingual";
+import LazyLoad from "react-lazyload";
+
 import Thought from "../icons/toughtBalloon";
 import Speech from "../icons/speechBaloon";
 import SpeechRight from "../icons/speechBaloonRight";
@@ -177,11 +179,13 @@ class Story extends Component {
         className="l-story "
         ref={(section) => (this.backgroundColor = section)}
       >
-        <img
-          src={process.env.PUBLIC_URL + "assets/img/pattern.png"}
-          className="section__pattern"
-          ref={(img) => (this.background = img)}
-        />
+        <LazyLoad>
+          <img
+            src={process.env.PUBLIC_URL + "assets/img/pattern.png"}
+            className="section__pattern"
+            ref={(img) => (this.background = img)}
+          />
+        </LazyLoad>
         <h1>Story</h1>
 
         <div className="l-story__main">
@@ -406,7 +410,7 @@ class Story extends Component {
             </div>
           </div>
           <div className="l-story__main--text">
-            <h4>Une</h4>
+            <h4>une</h4>
             <p>
               Peng Rui sees wool as the main material to create sculptures since
               2012, inspired by her own natural surroundings, she embraces the

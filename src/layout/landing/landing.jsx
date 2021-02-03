@@ -4,34 +4,100 @@ import { withTranslate } from "react-redux-multilingual";
 import { connect } from "react-redux";
 import Button from "../../components/Button";
 import Hero from "./hero";
+import LastestSection from "./LastestSection";
 import Moving from "./Frames";
+import Shop from "./Shop";
+import Loader from "../../effects/loader/Loader";
 
-function Landing(props) {
-  const { translate } = props;
+import Video from "./pon.mp4";
 
-  return (
-    <div>
-      <section className="section__2">
-        <Hero data={props} />
-      </section>
-      <section>
-        <Moving />
-      </section>
-      <section className="section__3">
-        <BackgroundVideo translate={translate} />
-      </section>
-    </div>
-  );
+class Landing extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: null,
+    };
+    this.checkProps = this.checkProps.bind(this);
+  }
+
+  componentDidMount() {
+    this.checkProps();
+  }
+
+  componentDidUpdate() {
+    this.checkProps();
+  }
+
+  checkProps() {
+    // console.log(this.props.state.extras);
+    if (this.props.state.extras && !this.state.loaded) {
+      // console.log(this.props.state.extras);
+
+      if (this.props.state.extras.extras) {
+        const extras = this.props.state.extras.extras;
+        this.setState(() => {
+          return { loaded: true };
+        });
+      }
+    }
+
+    /* if (this.props.state.data.products && !this.state.loaded) {
+      if (this.props.state.data.products.length > 1) {
+        const products = this.props.state.data.products;
+        this.setState(() => {
+          return { loaded: true };
+        });
+      }
+    }
+    */
+  }
+
+  render() {
+    const { translate } = this.props;
+
+    return (
+      <div>
+        <section className="section__2">
+          <Hero data={this.props} />
+        </section>
+        <section className="section__3 frame-canvas">
+          <Moving />
+        </section>
+        <section className="section__3">
+          <Shop translate={translate} />
+        </section>
+        <section className="section__3">
+          <LastestSection translate={translate} />
+        </section>
+        <section className="section__3">
+          <BackgroundVideo translate={translate} />
+        </section>
+      </div>
+    );
+  }
 }
 
 const BackgroundVideo = (props) => {
   const { translate } = props;
   return (
     <div className="l-landing-backgroundvideo">
-      <img
+      {/*<img
         src={process.env.PUBLIC_URL + "assets/img/workshop.jpeg"}
-        alt="lastest picture"
-      />
+        alt="picture"
+      />*/}
+
+      <div className="white-screen"></div>
+
+      <video
+        autoPlay="autoplay"
+        loop="loop"
+        muted
+        className="bg-video__content"
+      >
+        <source src={Video} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
       <MouseTooltip
         visible={true}
         offsetX={0}
@@ -42,8 +108,8 @@ const BackgroundVideo = (props) => {
       </MouseTooltip>
       <div className="bg-text">
         <h1>{translate("online_workshops")}</h1>
-        <p>{translate("take_look_blog")}</p>
-        <p>{translate("or_get_gift")}</p>
+        <p>{translate("spark")}</p>
+
         <Button
           label={translate("learn_more")}
           href={`${process.env.PUBLIC_URL}/workshops`}

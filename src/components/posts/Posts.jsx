@@ -5,13 +5,18 @@ import HoverMohe from "../../effects/hover/HoverMohe";
 import { getAllPosts } from "../../actions/Index";
 import store from "../../app/store";
 import Loader from "../../effects/loader/Loader";
+import PostCard from "./PostCard";
+
+var category = null;
+var mounted = null;
 
 class Posts extends Component {
   constructor(props) {
     super(props);
-    this.state = { posts: [], elements: [] };
+    this.state = { posts: [], elements: [], category: null, postsToShow: [] };
     this.checkProps = this.checkProps.bind(this);
     this.loadOlder = this.loadOlder.bind(this);
+    this.fetchSameCategoryPosts = this.fetchSameCategoryPosts.bind(this);
   }
 
   componentDidMount() {
@@ -22,8 +27,64 @@ class Posts extends Component {
     this.checkProps();
   }
 
+  componentWillMount() {
+    if (this.props.history.location) {
+      var pathname = this.props.history.location.pathname;
+      var stringN = pathname.replace("/posts/", "");
+      var path = parseInt(stringN);
+
+      this.fetchSameCategoryPosts(path);
+    } else {
+      this.checkProps();
+    }
+  }
+
+  componentWillUnmount() {
+    /*this.setState(() => {
+      return { posts: [], elements: [], category: null, postsToShow: [] };
+    });
+    */
+  }
+
+  fetchSameCategoryPosts(data) {
+    var category = parseInt(data);
+
+    if (category) {
+      var postsToShow = [];
+      var posts = this.props.state.posts.posts;
+      if (posts) {
+        if (posts.length > 1 && posts !== "empty") {
+          posts.map((post) => {
+            if (post.categories) {
+              if (post.categories.length > 1) {
+                post.categories.map((postCategory) => {
+                  if (postCategory === category) {
+                    postsToShow.push(post);
+                  }
+                  return null;
+                });
+              }
+            }
+            return null;
+          });
+        }
+      }
+
+      if (this.state.posts !== postsToShow) {
+        this.setState(() => {
+          return { posts: postsToShow };
+        });
+      }
+    }
+  }
+
   loadOlder() {
-    this.props.getAllPosts("all");
+    var posts = this.props.state.posts.posts;
+    if (posts) {
+      this.setState(() => {
+        return { posts: posts };
+      });
+    }
   }
 
   // This helps to open the selected produt in a dedicated window
@@ -37,44 +98,25 @@ class Posts extends Component {
   }
 
   checkProps() {
-    if (this.props.state.posts.posts !== "empty") {
-      if (this.props.state.posts.posts !== this.state.posts) {
-        const posts = this.props.state.posts.posts;
-        this.setState(() => {
-          return {
-            posts: posts,
-          };
-        });
-      }
+    if (
+      this.props.category !== this.state.category &&
+      this.props.category !== undefined
+    ) {
+      category = this.props.category;
+      this.setState(() => {
+        return { category: category };
+      });
+      this.fetchSameCategoryPosts(category);
+    }
+
+    if (this.props.location.category !== this.state.category) {
+      category = this.props.location.category;
+      this.setState(() => {
+        return { category: category };
+      });
+      this.fetchSameCategoryPosts(category);
     }
   }
-
-  PostCard = (p) => {
-    const post = p.post;
-    if (post.p.excerpt) {
-      if (post.p.content.rendered) {
-        var img = post.thumbnail;
-        var title = post.title;
-        var date = post.date;
-        var id = post.p.id;
-
-        if (img) {
-          return (
-            <Link
-              to={this.newTo(id, "post")}
-              key={title}
-              name={title}
-              className="post-card"
-            >
-              <h5 className="post-card__title">{title}</h5>
-              <p className="post-card__date">{`${date.monthWord} ${date.day},${date.year}`}</p>
-              <img src={`${img}`} alt="thumbnail" />
-            </Link>
-          );
-        } else return null;
-      } else return null;
-    } else return null;
-  };
 
   items = [
     {
@@ -94,7 +136,8 @@ class Posts extends Component {
             this.state.posts.length > 0 ? (
               <div className="c-posts__content">
                 {this.state.posts.map((post, index) => {
-                  return <this.PostCard post={post} key={index} />;
+                  const data = [post, index];
+                  return <PostCard post={data} key={index} />;
                 })}
                 {this.state.posts.length > 10 ? null : (
                   <div id="older-posts" onClick={this.loadOlder}>
