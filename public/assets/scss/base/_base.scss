@@ -34,6 +34,7 @@ body {
   box-sizing: border-box;
   background-color: $color-secondary-dark;
   overflow-x: hidden;
+  display: grid;
 
   @include respond(tab-port) {
     padding: 0;

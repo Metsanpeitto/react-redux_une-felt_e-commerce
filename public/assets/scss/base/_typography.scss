@@ -30,10 +30,115 @@ body {
     url(/assets/fonts/didot/Didot-Bold-Italic.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Lato-Reg";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lato"),
+    url(/assets/fonts/Lato/Lato-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Old-Standard-Reg";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Old-Standard"),
+    url(/assets/fonts/old-standard/OldStandardTT-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Old-Standard-Italic";
+  font-style: italic;
+  //font-weight: 400;
+  src: local("Old-Standard"),
+    url(/assets/fonts/old-standard/OldStandardTT-Italic.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Old-Standard-Bold";
+  font-style: bold;
+  //font-weight: 400;
+  src: local("Old-Standard"),
+    url(/assets/fonts/old-standard/OldStandardTT-bold.ttf) format("truetype");
+}
+
 $font-didot: "Didot";
 $font-didot-italic: "Didot-Italic";
+$font-didot-medium: "Didot-Medium";
+$font-lato-medium: "Lato-Reg";
+$old-standard-tt-medium: "Old-Standard-Reg";
 $font-big-title: 64px;
 $font-medium-title: 24px;
 $font-big-text: 22px;
 $font-medium-text: 19px;
 $font-small: 19px;
+
+.h1-didot-reg {
+  font-size: 48px;
+  line-height: 56px;
+  font-family: $font-didot;
+}
+
+.subtitle-lg {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: $font-lato-medium;
+  font-weight: 700;
+}
+
+.subtitle-reg {
+  font-size: 14px;
+  line-height: 24px;
+  font-family: $font-lato-medium;
+  font-weight: 700;
+}
+
+.parraf-lg {
+  font-size: 16px;
+  line-height: 22px;
+  font-family: $font-lato-medium;
+  font-weight: 400;
+}
+
+.parraf-reg {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  font-family: $font-lato-medium;
+  font-weight: 400;
+}
+
+.button-text {
+  font-size: 16px;
+  line-height: 20px;
+  font-family: $font-lato-medium;
+  font-weight: 400;
+}
+
+.label {
+  font-size: 16px;
+  line-height: 20px;
+  font-family: $font-lato-medium;
+  font-weight: 700;
+}
+
+.label-small {
+  font-size: 6px;
+  line-height: 0px;
+  font-family: $font-lato-medium;
+  font-weight: 300;
+}
+
+.input {
+  font-size: 16px;
+  line-height: 20px;
+  font-family: $font-lato-medium;
+  font-weight: 300;
+}
+
+.price {
+  font-size: 16px;
+  line-height: 20px;
+  font-family: $old-standard-tt-medium;
+  font-weight: 300;
+}

@@ -304,3 +304,15 @@
   }
 }
 //      Ipad & Tablet Styles Ends Here
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .l-register {
+    .f-bp {
+      transform: scale(0.7);
+    }
+  }
+}
+//      Mobile Styles Ends Here
+
+// Style for the Post Layout Ends

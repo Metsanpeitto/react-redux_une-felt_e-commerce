@@ -450,3 +450,85 @@
   }
 }
 //      Ipad & Tablet Styles Ends Here
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .c-checkout {
+    padding: unset;
+    padding-top: 30vh;
+
+    &__title {
+      text-align: center;
+      font-size: 5rem;
+      grid-row-start: 1;
+    }
+
+    &__menus {
+      display: grid;
+      grid-template-columns: unset;
+      grid-template-rows: auto auto;
+
+      min-height: 100%;
+      max-width: 100vw;
+
+      .left-menu {
+        grid-row-start: 1;
+        padding: 0.5rem;
+        width: 95vw;
+        margin-left: 2.5vw;
+
+        form .form-group {
+          font-size: 1.4rem;
+          font-weight: 200;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding-left: 0.5rem;
+          /* margin-left: auto; */
+          margin-right: auto;
+          margin-top: 1.3rem;
+          width: 90%;
+          height: 3rem;
+
+          input {
+            font-size: 18px !important;
+            font-weight: 700;
+            justify-self: start;
+            letter-spacing: normal;
+            padding-left: 1rem;
+            text-align: start;
+
+            margin: 0em;
+            width: 160px;
+          }
+        }
+      }
+
+      .right-menu {
+        grid-row-start: 2;
+        padding: unset;
+        padding: 0.5rem;
+        width: 95vw;
+        margin-left: 2.5vw;
+        margin-bottom: 10vh;
+
+        .checkout-details {
+          font-size: 1.4rem;
+
+          padding: 5rem;
+          padding-top: 0rem;
+        }
+        .radio-option {
+          label {
+            align-self: center;
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .checkout-form__button {
+    transform: scale(0.6);
+  }
+}
+//      Mobile Styles Ends Here

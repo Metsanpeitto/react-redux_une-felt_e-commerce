@@ -8,21 +8,10 @@
   max-width: 100vw;
   overflow: hidden;
 
-  background: linear-gradient(
-    94deg,
-    $color-secondary-light,
-    $color-primary-light
-  );
-  background-size: 400% 400%;
-
-  -webkit-animation: animatedGradient 5s ease infinite;
-  -moz-animation: animatedGradient 5s ease infinite;
-  animation: animatedGradient 5s ease infinite;
-
   &__pattern {
     position: absolute;
     width: 100%;
-    animation: swing 20s ease-in-out infinite;
+
     z-index: 0;
   }
 

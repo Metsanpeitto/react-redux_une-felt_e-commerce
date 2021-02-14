@@ -75,3 +75,75 @@ a {
     transition: all 0.2s ease-in-out;
   }
 }
+
+//  Button New starts here
+
+.f-bp-new {
+  min-width: 240px !important;
+  max-width: 240px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px !important;
+  position: relative;
+  align-items: center;
+  display: inline-flex;
+  background-color: $color-primary-dark;
+  padding: 0 20px 0 50px !important;
+  line-height: 40px !important;
+  letter-spacing: 4px !important;
+  text-transform: uppercase;
+  transition: background-color 0.4s ease-out;
+  transform-origin: 0px 0px;
+  transition: all 2s ease-out;
+  opacity: 1;
+
+  &:hover {
+    .f-bp-label {
+      transform: translate(2rem, 0.1rem);
+    }
+
+    .f-bp-arrow {
+      top: 3px;
+      width: 10px;
+      height: 15px;
+      fill: #fff;
+    }
+    .left {
+      opacity: 1;
+      transform: translateX(-1rem);
+    }
+
+    .right {
+      opacity: 0;
+      transform: translateX(4rem);
+    }
+  }
+
+  .f-bp-label {
+    font-style: initial;
+    font-weight: bolder;
+    transform: translate(-2rem, 0.1rem);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .f-bp-arrow {
+    top: 3px;
+    width: 10px;
+    height: 15px;
+    fill: #fff;
+  }
+  .left {
+    opacity: 0;
+    transform: translateX(-5rem);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .right {
+    opacity: 1;
+    transform: translateX(0rem);
+    transition: all 0.2s ease-in-out;
+  }
+}

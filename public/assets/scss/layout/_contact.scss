@@ -66,3 +66,26 @@
     }
   }
 }
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .l-contact-canvas {
+    padding-top: 30vh;
+    padding-top: 30vh;
+    .title {
+      font-size: 5rem;
+    }
+
+    .l-contact {
+      display: grid;
+      grid-template-rows: auto 80rem 20rem auto;
+
+      iframe {
+        width: 90vw !important;
+        height: 40rem !important;
+        grid-row-start: 1;
+      }
+    }
+  }
+}
+//      Mobile Styles Ends Here

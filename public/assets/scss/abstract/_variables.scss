@@ -27,3 +27,12 @@ $gutter-vertical-small: 6rem;
 $gutter-horizontal-small: 2rem;
 $gutter-horizontal: 6rem;
 $gutter-horizontal-large: 20rem;
+
+// Template classes are define here
+.grid-16 {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-column-gap: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+}

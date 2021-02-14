@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withTranslate } from "react-redux-multilingual";
 
-import Video from "../layout/landing/pon.webm";
+//import Video from "../layout/landing/pon.webm";
 
 class Workshops extends Component {
   constructor(props) {
@@ -18,10 +18,10 @@ class Workshops extends Component {
   }
 
   render() {
-    const videoSource = { Video };
+    //  const videoSource = { Video };
 
-    return (
-      <div className="l-workshops">
+    return {
+      /*<div className="l-workshops">
         <h1 className="l-workshops__header">Workshops</h1>
         <div className="l-workshops__content">
           <p className="description">Description here</p>
@@ -39,8 +39,8 @@ class Workshops extends Component {
           </div>
         </div>
         <div className="l-workshops__information"></div>
-      </div>
-    );
+    </div>*/
+    };
   }
 }
 

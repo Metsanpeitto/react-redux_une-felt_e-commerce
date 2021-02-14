@@ -203,8 +203,8 @@ class Header extends Component {
 
   // Display the menu with SHOP and READ
   menuTrigger() {
-    document.querySelector(".subitem__read").classList.add("visible");
-    document.querySelector(".subitem__shop").classList.add("visible");
+    //  document.querySelector(".subitem__read").classList.add("visible");
+    //  document.querySelector(".subitem__shop").classList.add("visible");
   }
 
   menuRead() {
@@ -292,8 +292,8 @@ class Header extends Component {
   // Closes any sidemenu open
   closeMenuTrigger() {
     document.querySelector(".menu-slide").classList.remove("visible");
-    document.querySelector(".subitem__shop").classList.remove("visible");
-    document.querySelector(".subitem__read").classList.remove("visible");
+    //document.querySelector(".subitem__shop").classList.remove("visible");
+    //document.querySelector(".subitem__read").classList.remove("visible");
     document.querySelector(".menu-slide__1").classList.remove("visible");
     document.querySelector(".menu-slide__2").classList.remove("visible");
     document.querySelector(".menu-slide__3").classList.remove("visible");
@@ -493,97 +493,81 @@ class Header extends Component {
     return (
       <div className="c-header" value={9}>
         <header
-          className={this.state.visible ? "header" : "header header-close"}
+          className={
+            this.state.visible
+              ? "header grid-16"
+              : "header header-close grid-16"
+          }
         >
           {this.state.isLoading ? <Pace color="#27ae60" /> : null}
 
-          <nav className="navbar">
-            <Link to={`${process.env.PUBLIC_URL}/`} data-lng="en">
-              <div className={this.state.visible ? "logo  rotate" : "logo"}>
-                <Logo />
-              </div>
-            </Link>
-            <ul className="menu  fade-in two">
-              <li className="menu__item  fade-in subitem subitem__shop">
-                <a href="#" onClick={this.menuShop}>
-                  {translate("shop")}
-                </a>
-              </li>
-              <li className="menu__item  fade-in subitem subitem__read">
-                <a href="#" onClick={this.menuRead}>
-                  {translate("read")}
-                </a>
-              </li>
-              <li className="menu__item  fade-in search">
-                <a href="#" onClick={this.menuSearch} data-tip="Search">
-                  <SearchIcon />
-                </a>
-              </li>
-              <li className="menu__item fade-in member">
-                <Link to={`${process.env.PUBLIC_URL}/register`} data-lng="en">
-                  {logged ? (
-                    <div
-                      className="animation-emerge"
-                      data-tip={this.state.name}
-                    >
-                      <FilledMember />
-                    </div>
-                  ) : (
-                    <div data-tip="User Manager">
-                      <Member />
-                    </div>
-                  )}
-                </Link>
-              </li>
-              <li className="menu__item fade-in whislist">
-                <Link to={`${process.env.PUBLIC_URL}/wishlist`} data-lng="en">
-                  {emptyWishlist ? (
-                    <div data-tip="Favourites Empty">
-                      <Heart />
-                    </div>
-                  ) : (
-                    <div className="animation-emerge" data-tip="Favourites">
-                      <FilledHeart />
-                    </div>
-                  )}
-                </Link>
-              </li>
-              <li className="menu__item fade-in cart ">
-                <Link to={`${process.env.PUBLIC_URL}/cart`} data-lng="en">
-                  {emptyCart ? (
-                    <div data-tip="Cart Empty">
-                      <Cart />
-                    </div>
-                  ) : (
-                    <div
-                      className="animation-emerge"
-                      data-tip="Products in the Cart"
-                    >
-                      <FilledCart />
-                    </div>
-                  )}
-                </Link>
-              </li>
-              <li className="menu__item fade-in menu ">
-                {this.state.menuOpen ? (
-                  <a
-                    href="#"
-                    onClick={this.closeMenuTrigger}
-                    data-tip="Close Menus"
-                  >
-                    X
-                  </a>
-                ) : (
-                  <a href="#" onClick={this.menuTrigger} data-tip="Menu">
-                    <Menu />
-                  </a>
-                )}
-              </li>
-            </ul>
-            <div className="burger">
-              <Menu />
+          <Link to={`${process.env.PUBLIC_URL}/`} data-lng="en">
+            <div className={this.state.visible ? "logo  rotate" : "logo"}>
+              <Logo />
             </div>
-          </nav>
+          </Link>
+
+          <a href="#" onClick={this.menuShop}>
+            {translate("shop")}
+          </a>
+
+          <a href="#" onClick={this.menuRead}>
+            {translate("read")}
+          </a>
+
+          <a href="#" onClick={this.menuSearch} data-tip="Search">
+            <SearchIcon />
+          </a>
+
+          <Link to={`${process.env.PUBLIC_URL}/register`} data-lng="en">
+            {logged ? (
+              <div className="animation-emerge" data-tip={this.state.name}>
+                <FilledMember />
+              </div>
+            ) : (
+              <div data-tip="User Manager">
+                <Member />
+              </div>
+            )}
+          </Link>
+
+          <Link to={`${process.env.PUBLIC_URL}/wishlist`} data-lng="en">
+            {emptyWishlist ? (
+              <div data-tip="Favourites Empty">
+                <Heart />
+              </div>
+            ) : (
+              <div className="animation-emerge" data-tip="Favourites">
+                <FilledHeart />
+              </div>
+            )}
+          </Link>
+
+          <Link to={`${process.env.PUBLIC_URL}/cart`} data-lng="en">
+            {emptyCart ? (
+              <div data-tip="Cart Empty">
+                <Cart />
+              </div>
+            ) : (
+              <div className="animation-emerge" data-tip="Products in the Cart">
+                <FilledCart />
+              </div>
+            )}
+          </Link>
+
+          {this.state.menuOpen ? (
+            <a href="#" onClick={this.closeMenuTrigger} data-tip="Close Menus">
+              X
+            </a>
+          ) : (
+            <a href="#" onClick={this.menuTrigger} data-tip="Menu">
+              <Menu />
+            </a>
+          )}
+
+          <div className="burger">
+            <Menu />
+          </div>
         </header>
         <div>
           <ul className="menu-slide">

@@ -56,6 +56,9 @@
 @media (max-width: 765px) and (min-width: 300px) {
   .l-privacy {
     padding-top: 25vh;
+    h1 {
+      font-size: 5rem;
+    }
   }
 
   .l-privacy--canvas {

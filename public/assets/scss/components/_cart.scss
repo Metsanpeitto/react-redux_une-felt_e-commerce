@@ -331,3 +331,53 @@
   }
 }
 //      Ipad & Tablet Styles Ends Here
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .c-banner-figure .c-banner-src:nth-child(2) {
+    display: none;
+  }
+
+  .c-cart {
+    width: 100vw;
+    padding: 1rem;
+    padding-top: 35vh;
+    text-align: center;
+    background: #fffaf0;
+    display: grid;
+    grid-template-rows: 15rem auto 1fr;
+    animation: fadeIn 4s ease-in-out;
+
+    h1 {
+      align-self: center;
+      font-size: 5rem;
+    }
+
+    &__empty {
+      padding-top: 30vh;
+    }
+
+    &__table {
+      padding: 1rem;
+      width: 95vw;
+
+      .table-head h4 {
+        font-size: 1.2rem;
+      }
+
+      .table-item {
+        font-size: 6px;
+      }
+
+      .total {
+        text-align: center;
+        font-size: 6px;
+      }
+    }
+
+    &__buttons a {
+      transform: scale(0.6);
+    }
+  }
+}
+//      Mobile Styles Ends Here
