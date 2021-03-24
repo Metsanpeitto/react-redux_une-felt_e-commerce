@@ -22,8 +22,12 @@ const removeString = (res) => {
   return newParraf;
 };
 
-const getProducts = () => {
-  return WooCommerce.getAsync(`products?per_page=30&category=55`)
+const getProducts = (parentId) => {
+  var categoryId = parentId;
+  if (parentId === "products") {
+    categoryId = "55";
+  }
+  return WooCommerce.getAsync(`products?category=${categoryId}&per_page=100`)
     .then((res) => {
       return res.toJSON().body;
     })
@@ -59,21 +63,26 @@ const getProducts = () => {
           var stringShortDescription = removeString(short_description);
 
           var category = null;
-          categories.map((c) => {
-            var name = c.name;
-            if (name == "pieces") {
-              category = "pieces";
+          if (categories) {
+            if (categories.length > 0) {
+              categories.forEach((c) => {
+                var name = c.name;
+                if (name === "pieces") {
+                  category = "pieces";
+                }
+                if (name === "tools") {
+                  category = "tools";
+                }
+                if (name === "paintings") {
+                  category = "paintings";
+                }
+              });
             }
-            if (name == "tools") {
-              category = "tools";
-            }
-            if (name == "paintings") {
-              category = "paintings";
-            }
-          });
+          }
 
           const newItem = {
             categories: categories,
+            categoryId: categories[0].id,
             category: category,
             description: stringDescription,
             discount: sale_price,
@@ -144,75 +153,104 @@ const getExtras = () => {
     });
 };
 
-const getCategoryTree = async (products) => {
+const getCategoryTree = async () => {
   var root = `&parent=55`;
-  var root = ``;
+  root = ``;
   var level = 1;
-  return await getTheCategories(root, level, products).then((res) => {
-    if (res) {
-      return res;
-    } else return null;
-  });
+  return await getTheCategories(root, level)
+    .then((res) => {
+      if (res) {
+        return res;
+      } else return null;
+    })
+    .catch((error) => {
+      return error;
+    });
 };
 
-const getTheCategories = (parent, level, products) => {
-  getExtras();
+const getTheCategories = (parent, level) => {
+  // getExtras();
   return WooCommerce.getAsync(
-    `products/categories?hide_empty=false&per_page=100`
+    `products/categories?hide_empty=true&per_page=100`
   ).then((res) => {
     if (res) {
       var data = res.toJSON().body;
       Object.json1 = JSON.parse(data);
       var items = Object.json1;
-      var shop = { id: "shop", items: proccessCategories(items, products) };
+      //   var shop = { id: "shop", items: proccessCategories(items, products) };
+      var shop = { id: "shop", items: proccessCategories(items) };
       items.push(shop);
       return items;
     } else return null;
   });
-
-  return null;
 };
 
-const proccessCategories = (categoryTree, products) => {
+const proccessCategories = (categoryTree) => {
   if (categoryTree) {
     const categories = categoryTree;
-    const pieces = categorySorter(categories, 56, products);
-    const paintings = categorySorter(categories, 79, products);
-    const tools = categorySorter(categories, 81, products);
-
+    const pieces = categorySorter(categories, 56);
+    const paintings = categorySorter(categories, 79);
+    const tools = categorySorter(categories, 81);
     var shop = [];
-    if (tools.length > 0) {
-      shop.push({ id: "tools", items: tools });
-    }
-    if (paintings.length > 0) {
-      shop.push({ id: "paintings", items: paintings });
-    }
-    if (pieces.length > 0) {
-      shop.push({ id: "pieces", items: pieces });
-    }
 
+    if (tools && paintings && pieces) {
+      if (tools.length > 0) {
+        shop.push({ id: "tools", items: tools, name: "tools" });
+      }
+      if (paintings.length > 0) {
+        shop.push({ id: "paintings", items: paintings, name: "paintings" });
+      }
+      if (pieces.length > 0) {
+        shop.push({ id: "pieces", items: pieces, name: "pieces" });
+      }
+    }
     return shop;
   }
 };
 
-const categorySorter = (categories, categoryId, products) => {
+const categorySorter = (categories, parentCategoryId) => {
+  //Piecesid = 56
+  var itemsLevel1 = []; // Level1 is the parentCategoryId
   var items = [];
   //This looks for all the subcategories of pieces/sculptures(54),tools(64) or painting(75)
-  if (products) {
-    if (products.length > 1) {
-      products.map((p) => {
-        if (p.categories.length > 1) {
-          p.categories.map((c) => {
-            if (c.id == categoryId) {
-              items.push(p);
-            }
-          });
-        } else {
-          if (p.categories == categoryId) {
-            items.push(p);
-          }
+  if (categories) {
+    if (categories.length > 1) {
+      //  var data = { parentId: parentCategoryId, items: [] };
+      var data = [];
+      var data2 = { parentId: null, items: [], name: null };
+
+      categories.forEach((p) => {
+        if (p.parent === parentCategoryId) {
+          //56
+          itemsLevel1.push(p); // Here are the subcategories in pieces
         }
       });
+
+      if (itemsLevel1.length > 0) {
+        // Lets find what belong to Pieces
+        itemsLevel1.forEach((p, index) => {
+          // console.log(p); // Ladies
+
+          categories.forEach((c) => {
+            if (c.parent === p.id) {
+              data2.name = p.name;
+              data2.parentId = p.id;
+              data2.items.push(c); // Put single lady into ladies
+            }
+          });
+          // Now all the ladies are into data2.items
+
+          if (data2.items.length > 0) {
+            // if data2.items isnt empty, put the Ladies into
+            // the lady group
+            // data.items.push(data2);
+            data.push(data2);
+            data2 = { parentId: null, items: [], name: null };
+          }
+        });
+        items.push(data[0]);
+      }
+
       return items;
     } else return null;
   } else return null;

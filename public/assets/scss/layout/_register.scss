@@ -1,32 +1,25 @@
 .l-register {
-  background-color: $color-secondary-light;
+  background-color: $color-white;
   color: $color-primary-light;
-  column-gap: 10rem;
-  display: grid;
-  grid-template-columns: 10% 1fr 1fr 10%;
-  width: 100%;
-  height: 100vh;
-  padding-top: 30vh;
 
-  .f-bp {
-    min-width: 25rem;
-    max-width: 25rem;
-    color: #fff;
-    font-weight: bold;
-    font-size: 0.813vw;
-    position: relative;
-    align-items: center;
-    margin-top: unset;
-    display: inline-flex;
-    background-color: #d28e77;
-    padding: 0 3.125vw 0 4.688vw;
-    line-height: 3.75vw;
-    letter-spacing: 0.104vw;
-    text-transform: uppercase;
-    transition: background-color 0.4s ease-out;
-    transform-origin: 0px 0px;
-    transition: all 2s ease-out;
-    opacity: 1;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  width: 100%;
+  height: 100%;
+  padding-top: 60px;
+  padding-bottom: 400px;
+  margin-bottom: 300px;
+
+  h1 {
+    align-self: center;
+    text-align: center;
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    padding-top: 48px;
+    text-transform: capitalize;
+    color: $color-primary-dark;
+    animation: arriveRight 2s ease-in-out;
   }
 
   .input {
@@ -34,28 +27,60 @@
     max-width: 80vw !important;
     max-width: unset !important;
     min-width: unset !important;
-    font-size: 1.6rem;
     z-index: 0;
+  }
+
+  .input__field--nao {
+    color: $color-primary-dark;
+  }
+
+  .graphic--nao {
+    stroke: $color-primary-dark;
+  }
+
+  .input__field--nao:focus + .input__label--nao,
+  .input--filled .input__label--nao {
+    color: $color-primary-dark;
+  }
+
+  .input__field--nao:focus ~ .graphic--nao,
+  .input--filled .graphic--nao {
+    stroke: $color-primary-dark;
+  }
+
+  .label {
+    color: $color-primary-dark;
+  }
+
+  .b-layout-card {
+    min-width: 40vw;
+    max-height: 65rem;
   }
 
   &__login {
     grid-column-start: 2;
-    color: $color-primary-dark;
+    color: $color-text-antracite;
     display: grid;
     grid-template-rows: 5rem 20rem 5rem;
     grid-row-gap: 5rem;
-    row-gap: 5rem;
-    animation: moveInUp 2s ease-in-out;
+    padding: 32px;
+    padding-left: 64px;
+    padding-right: 64px;
+    grid-row-gap: 80px;
+    margin-top: 64px;
+    animation: moveInUp 3s ease-in-out;
 
     h3 {
-      font-size: 2.6rem;
       grid-row-start: 1;
     }
 
     form {
       display: grid;
       grid-template-rows: 5rem 5rem;
-      row-gap: 5rem;
+      grid-row-gap: 64px;
+      margin-left: 60px;
+      width: 400px;
+
       #mail {
         grid-row-start: 2;
       }
@@ -69,7 +94,8 @@
       grid-template-rows: 1fr 1fr;
       grid-row-start: 3;
       row-gap: 1rem;
-      animation: arriveLeft 3s ease-in-out;
+      margin-left: 60px;
+      // animation: arriveLeft 3s ease-in-out;
 
       .remember {
         grid-row-start: 1;
@@ -97,7 +123,7 @@
       }
 
       a {
-        grid-row-start: 5;
+        grid-row-start: 1;
         p {
           margin-top: 2.5rem;
         }
@@ -108,29 +134,34 @@
   &__register {
     display: grid;
     grid-column-start: 3;
-    color: #d28e77;
+    color: $color-text-antracite;
     display: grid;
     grid-template-rows: 5rem 20rem 5rem;
-    grid-row-gap: 5rem;
-    row-gap: 5rem;
-    animation: menu-down 3s ease-in-out;
+    grid-row-gap: 80px;
+    padding: 32px;
+    padding-left: 64px;
+    padding-right: 64px;
+    margin-top: 64px;
+
+    animation: moveInUp 3s ease-in-out;
 
     h3 {
-      color: $color-primary-dark;
-      font-size: 2.6rem;
-
+      //color: $color-primary-dark;
       grid-row-start: 1;
     }
 
     form {
       display: grid;
       grid-template-rows: 5rem 5rem;
-      row-gap: 5rem;
+      grid-row-gap: 64px;
+      margin-left: 60px;
+      width: 400px;
     }
 
     .action {
       grid-row-start: 3;
-      animation: arriveRight 3s ease-in-out;
+      margin-left: 60px;
+      // animation: arriveRight 3s ease-in-out;
     }
   }
 
@@ -141,7 +172,7 @@
     padding-top: 15vh;
     padding-bottom: 5%;
     position: relative;
-    animation: arriveLeft 2s ease-in-out;
+    // animation: arriveLeft 2s ease-in-out;
 
     h3 {
       margin-top: 3%;
@@ -267,30 +298,49 @@
   }
 }
 
-//      Ipad & Tablet Styles Starts Here
-@media (max-width: 1200px) {
+//      Ipad-Pro & Tablet Styles Starts Here
+@media (max-width: 1200px) and (min-width: 766px) {
   .l-register {
     grid-template-columns: auto 90vw auto;
+    grid-template-rows: auto;
     column-gap: 0;
     grid-column-gap: 0;
     height: max-content;
+    margin-bottom: 300px;
+    padding-bottom: 0%;
+
+    h1 {
+      align-self: start;
+      grid-column-start: 1;
+    }
 
     .input {
-      width: 75vw;
+      width: 100%;
     }
 
     &__login {
       grid-row-start: 1;
       grid-column-start: 2;
-      margin-bottom: 15vh;
-      .action .remember {
-        grid-row-start: 1;
-        display: grid;
-        grid-template-rows: auto auto;
-        div {
-          grid-template-columns: auto auto;
-          grid-row-start: 2;
-          grid-column-start: 1;
+      margin-top: 15vh;
+      margin-bottom: 0%;
+      grid-template-rows: 5rem 20rem 15rem;
+      padding-bottom: 33px;
+      .action {
+        grid-template-rows: 10rem 1fr;
+        .remember {
+          grid-row-start: 1;
+          display: grid;
+          grid-template-rows: auto auto;
+          div {
+            grid-template-columns: 30px auto;
+            grid-row-start: 2;
+            grid-column-start: 1;
+
+            span {
+              justify-self: unset;
+              width: 24px;
+            }
+          }
         }
       }
     }
@@ -298,7 +348,7 @@
     &__register {
       grid-row-start: 2;
       grid-column-start: 2;
-      margin-top: 5vh;
+      margin-top: 128px;
       margin-bottom: 15vh;
     }
   }
@@ -308,8 +358,69 @@
 //      Mobile Styles Starts Here
 @media (max-width: 765px) and (min-width: 300px) {
   .l-register {
-    .f-bp {
-      transform: scale(0.7);
+    padding-top: 120px;
+    padding-bottom: 0px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 180px 75rem 65rem;
+    grid-row-gap: 64px;
+    padding-top: 0%;
+
+    .h2-didot-reg {
+      grid-row-start: 1;
+      padding-top: 120px;
+      position: absolute;
+      width: 100%;
+    }
+
+    form {
+      margin-left: unset;
+      width: 79vw;
+    }
+
+    .action {
+      margin-top: 32px;
+      margin-left: 0px;
+      margin-left: unset;
+      width: 79vw;
+      .remember {
+        grid-row-start: 1;
+        row-gap: 12px;
+
+        div {
+          grid-template-columns: 30px auto;
+          grid-column-start: 1;
+        }
+      }
+    }
+
+    &__login {
+      grid-column-start: 1;
+      grid-row-start: 2;
+      grid-template-rows: auto;
+      grid-row-gap: 0px;
+      padding: 18px;
+      margin: 5vw;
+      width: 90vw;
+      min-width: 90vw !important;
+
+      .h5-didot-reg {
+        text-align: center;
+      }
+    }
+
+    &__register {
+      grid-column-start: 1;
+      grid-row-start: 3;
+      grid-template-rows: auto;
+      grid-row-gap: 0px;
+      padding: 18px;
+      margin: 5vw;
+      width: 90vw;
+      min-width: 90vw;
+
+      .h5-didot-reg {
+        text-align: center;
+      }
     }
   }
 }

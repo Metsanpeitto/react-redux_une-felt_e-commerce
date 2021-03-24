@@ -64,7 +64,7 @@
 .item__svg {
   position: relative;
   display: block;
-  width: 80%;
+  width: 100%;
   height: auto;
   min-height: 500px;
   margin: 0 auto;
@@ -94,7 +94,6 @@
   width: 100%;
   padding: 12.5% 0 0 3em;
   letter-spacing: 0.5em;
-  text-transform: uppercase;
 }
 
 .item__specimen {

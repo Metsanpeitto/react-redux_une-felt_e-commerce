@@ -110,15 +110,9 @@ class Privacy extends Component {
       </div>
     );
 
-    const contact = (
-      <div className="card-body">
-        <p>{translate("privacy7A")}</p>
-      </div>
-    );
-
     return (
       <section className="l-privacy">
-        <h1>{translate("privacy")}</h1>
+        <h1 className="h2-didot-reg">{translate("privacy")}</h1>
         <div className="l-privacy--canvas">
           <NestedList
             className="card-header"

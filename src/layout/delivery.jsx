@@ -35,9 +35,6 @@ function NestedList(props) {
     </List>
   );
 }
-var openC = false;
-var openG = false;
-var openZ = false;
 
 class Delivery extends Component {
   constructor(props) {
@@ -46,24 +43,28 @@ class Delivery extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  openC = false;
+  openG = false;
+  openZ = false;
+
   componentWillMount() {
     if (this.props.location.pathname) {
       var key = this.props.location.pathname;
       key = key.replace("/info/", "");
       if (key === "gastos") {
-        openG = true;
-        openC = false;
-        openZ = false;
+        this.openG = true;
+        this.openC = false;
+        this.openZ = false;
       }
       if (key === "time") {
-        openG = false;
-        openC = true;
-        openZ = false;
+        this.openG = false;
+        this.openC = true;
+        this.openZ = false;
       }
       if (key === "delivery") {
-        openG = false;
-        openC = false;
-        openZ = true;
+        this.openG = false;
+        this.openC = false;
+        this.openZ = true;
       }
     }
   }
@@ -79,58 +80,58 @@ class Delivery extends Component {
 
     const cancel = (
       <div className="card-body">
-        <p>{translate("delivery1A")}</p>
+        <p className="parraf-lg">{translate("delivery1A")}</p>
       </div>
     );
 
     const payment = (
       <div className="card-body">
-        <p> {translate("delivery2A")}</p>
+        <p className="parraf-lg">{translate("delivery2A")}</p>
       </div>
     );
 
     const exchange = (
       <div className="card-body">
-        <p> {translate("delivery3A")}</p>
+        <p className="parraf-lg"> {translate("delivery3A")}</p>
       </div>
     );
 
     const when = (
       <div className="card-body">
-        <p> {translate("delivery4A")}</p>
+        <p className="parraf-lg"> {translate("delivery4A")}</p>
       </div>
     );
 
     const where = (
       <div className="card-body">
-        <p> {translate("delivery5A")}</p>
+        <p className="parraf-lg"> {translate("delivery5A")}</p>
       </div>
     );
 
     const international = (
       <div className="card-body">
-        <p> {translate("delivery6A")}</p>
+        <p className="parraf-lg"> {translate("delivery6A")}</p>
       </div>
     );
 
     const receive = (
       <div className="card-body">
-        <p> {translate("delivery7A")}</p>
+        <p className="parraf-lg"> {translate("delivery7A")}</p>
       </div>
     );
 
     const ems = (
       <div className="card-body">
-        <p> {translate("delivery8A")}</p>
+        <p className="parraf-lg"> {translate("delivery8A")}</p>
       </div>
     );
 
-    const dhl = (
+    /* const dhl = (
       <div className="card-body">
         <p> {translate("delivery9A")}</p>
       </div>
     );
-
+*/
     const cost = (
       <div className="card-body">
         <p> {translate("delivery10A")}</p>
@@ -139,25 +140,25 @@ class Delivery extends Component {
 
     const damaged = (
       <div className="card-body">
-        <p> {translate("delivery11A")}</p>
+        <p className="parraf-lg"> {translate("delivery11A")}</p>
       </div>
     );
 
     const tracking = (
       <div className="card-body">
-        <p> {translate("delivery12A")}</p>
+        <p className="parraf-lg"> {translate("delivery12A")}</p>
       </div>
     );
 
     return (
       <section className="l-privacy">
-        <h1>{translate("order_shipping")}</h1>
+        <h1 className="h2-didot-reg">{translate("order_shipping")}</h1>
         <div className="l-privacy--canvas">
           <NestedList
             className="card-header"
             text={translate("delivery1")}
             form={cancel}
-            open={openC}
+            open={this.openC}
           />
           <NestedList
             className="card-header"

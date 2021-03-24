@@ -1,0 +1,91 @@
+// Mounatin Background
+
+.b-layout-background-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: unset;
+
+  #leaf-left {
+    transform-box: fill-box;
+    transform-origin: right bottom;
+    transform: rotate(0deg) translateY(30px);
+    animation: breeze1 10s ease-in-out infinite;
+  }
+  #leaf-center {
+    transform-box: fill-box;
+    transform-origin: left bottom;
+    transform: rotate(10deg) translateY(30px);
+    animation: breeze2 10s ease-in-out infinite;
+  }
+  #leaf-right {
+    transform-box: fill-box;
+    transform-origin: left bottom;
+    transform: rotate(20deg) translateY(30px);
+    animation: breeze3 10s ease-in-out infinite;
+  }
+}
+
+// Path Down
+
+.b-layout-section-path {
+  position: absolute;
+  width: 300px;
+  //grid-column-start: 2;
+  height: 2169px;
+  top: -160px;
+  margin-left: 30vw;
+  stroke-dashoffset: 0px !important;
+
+  .dot {
+    offset-path: path(
+      "M416.5 1C456.477 54.9607 521.425 201.607 448.05 324.64C390.583 420.998 284.499 409.772 230.176 539.381C169.712 683.644 416.265 775.499 469.038 792.666C521.508 809.736 708.9 848.83 666.924 1080.64C619.909 1340.28 124.623 1194.07 39.7854 1111.48C-45.0522 1028.88 16.2992 854.336 155.719 905.543C295.139 956.751 245.667 1119.73 185.701 1196.82C125.735 1273.91 13.8003 1455.61 16.2989 1587.21C20.7942 1823.98 353.983 1837.63 324 2168"
+    );
+    animation: move 16s cubic-bezier(0.78, 0, 0.17, 0.99) infinite alternate;
+  }
+
+  @keyframes move {
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  .dot {
+    background: #e8b4b9;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: unset;
+  }
+
+  .path-svg {
+    position: absolute;
+    stroke-width: 2px;
+    stroke-dashoffset: 0px !important;
+
+    path {
+      stroke-dashoffset: 0px !important;
+    }
+  }
+}
+
+//  Layout Card
+.b-layout-card {
+  border-radius: 16px;
+  box-shadow: 2px 3px 1px 1px $color-grey-light-2;
+  display: grid;
+  min-width: 700px;
+  min-height: 600px;
+  background: white;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  opacity: 1;
+  position: relative;
+}

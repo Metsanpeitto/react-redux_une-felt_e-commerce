@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withTranslate } from "react-redux-multilingual";
-import Pace from "react-pace-progress";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { changeCurrency, searchProduct, logout } from "../../actions/Index";
@@ -14,6 +13,7 @@ import Menu from "../../icons/Menu";
 import SearchIcon from "../../icons/Search";
 import Heart from "../../icons/BlankHeart";
 import FilledHeart from "../../icons/FilledHeart";
+import PlantTopCorner from "../../icons/PlantTopCorner";
 
 class Header extends Component {
   constructor(props) {
@@ -29,7 +29,9 @@ class Header extends Component {
       sideMenu3: null,
       productName: "",
       productId: null,
+      request: null,
     };
+    this.openMenu = this.openMenu.bind(this);
     this.menuTrigger = this.menuTrigger.bind(this);
     this.menuShop = this.menuShop.bind(this);
     this.menuRead = this.menuRead.bind(this);
@@ -45,19 +47,21 @@ class Header extends Component {
   }
 
   handleClickOutside(event) {
-    const { sideMenu1, sideMenu2, sideMenu3 } = this.state;
+    // const { sideMenu1, sideMenu2, sideMenu3 } = this.state;
     var closeMenus = true;
-    const tag = event.toElement.tagName;
-    if (tag == "LI" || tag == "UL" || tag == "A") {
-      closeMenus = null;
+    if (event.toElement && event.toElement !== undefined) {
+      const tag = event.toElement.tagName;
+      if (tag === "LI" || tag === "UL" || tag === "A") {
+        closeMenus = null;
+      }
     }
 
     if (event.toElement) {
       let toElement = event.toElement;
       if (
-        toElement.id == "sideMenu1" ||
-        toElement.id == "sideMenu2" ||
-        toElement.id == "sideMenu3"
+        toElement.id === "sideMenu1" ||
+        toElement.id === "sideMenu2" ||
+        toElement.id === "sideMenu3"
       ) {
         closeMenus = null;
       }
@@ -115,16 +119,17 @@ class Header extends Component {
   }
 
   // Remove the event listener when the component is unmount.
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
   // This helps to open the selected produt in a dedicated window
-  newTo(key, source) {
+  newTo(key, source, parentId) {
     if (key && key !== undefined) {
       return {
         pathname: `${process.env.PUBLIC_URL}/${source}/${key}`,
         category: key,
+        parentId: parentId,
       };
     }
   }
@@ -133,7 +138,6 @@ class Header extends Component {
   parseProps() {
     if (this.props.state.data2.categoryTree !== this.state.categoryTree) {
       const categoryTree = this.props.state.data2.categoryTree;
-
       this.setState(() => {
         return {
           categoryTree: categoryTree,
@@ -201,6 +205,12 @@ class Header extends Component {
     );
   };
 
+  openMenu(e) {
+    this.setState(() => {
+      return { visible: true };
+    });
+  }
+
   // Display the menu with SHOP and READ
   menuTrigger() {
     //  document.querySelector(".subitem__read").classList.add("visible");
@@ -210,13 +220,18 @@ class Header extends Component {
   menuRead() {
     if (this.state.categoryTreePosts) {
       if (this.state.categoryTreePosts.length > 1) {
-        this.state.categoryTreePosts.map((item) => {
-          if (item.id === "posts") {
+        /*  this.state.categoryTreePosts.map((item) => {
+          //if (item.id === "posts") {
+          if (item) {
             // Products  id is 55
             this.setState(() => {
               return { sideMenu1: item.items, posts: item };
             });
           }
+        });
+        */
+        this.setState(() => {
+          return { sideMenu1: this.state.categoryTreePosts };
         });
       }
     }
@@ -232,7 +247,7 @@ class Header extends Component {
       1 - 1st menu loads all the products direct children  
     */
     if (this.state.categoryTree) {
-      this.state.categoryTree.map((item) => {
+      this.state.categoryTree.forEach((item) => {
         if (item.id === "shop") {
           // Products  id is 55
           this.setState(() => {
@@ -300,20 +315,23 @@ class Header extends Component {
     document.querySelector(".menu-search").classList.remove("visible");
 
     this.setState(() => {
-      return { menuOpen: null, menuShopOpen: null, menuReadOpen: null };
+      return {
+        menuOpen: null,
+        menuShopOpen: null,
+        menuReadOpen: null,
+      };
     });
   }
 
   // When mouse hover over a item in the sidemenu it display the items it contents
   hoverItem(e) {
     const name = e.target.name;
-    const level = e.target.getAttribute("value");
-
+    var level = e.target.getAttribute("value");
     var id = null;
     var items = [];
     var postFlag = null;
 
-    this.state.categoryTree.map((item) => {
+    this.state.categoryTree.forEach((item) => {
       if (item.name) {
         if (item.name === name) {
           id = item.id;
@@ -322,11 +340,12 @@ class Header extends Component {
     });
 
     if (!id) {
-      this.state.categoryTreePosts.map((item) => {
+      this.state.categoryTreePosts.forEach((item) => {
         if (item.name) {
           if (item.name === name) {
             id = item.id;
             postFlag = true;
+            level = 0;
           }
         }
       });
@@ -334,11 +353,13 @@ class Header extends Component {
 
     if (id) {
       if (postFlag) {
-        this.state.categoryTreePosts.map((item) => {
+        this.state.categoryTreePosts.forEach((item) => {
           if (item.parent === id) {
             items.push(item);
           }
         });
+
+        /*
         if (!items == []) {
           this.props.state.posts.posts.map((item) => {
             const len = item.categories.length;
@@ -359,15 +380,16 @@ class Header extends Component {
             // }
           });
         }
+   */
       } else {
-        this.state.categoryTree.map((item) => {
+        this.state.categoryTree.forEach((item) => {
           if (item.parent === id) {
             items.push(item);
           }
         });
       }
 
-      if (level == 1) {
+      if (level === 1) {
         this.setState(() => {
           return {
             sideMenu2: items,
@@ -377,7 +399,7 @@ class Header extends Component {
         this.menu2Trigger();
       }
 
-      if (level == 2) {
+      if (level === 2) {
         this.setState(() => {
           return {
             sideMenu3: items,
@@ -391,36 +413,24 @@ class Header extends Component {
   // Loads the items required to display in an specific sidemnu
   DynamicMenu = (data) => {
     var menu = null;
-    var search = true;
-    var functionToParse = null;
+    // var functionToParse = null;
 
-    if (data.level == 1) {
+    if (data.level === 1) {
       menu = this.state.sideMenu1;
-      functionToParse = this.menu2Trigger;
+      // functionToParse = this.menu2Trigger;
     }
-    if (data.level == 2) {
+    if (data.level === 2) {
       menu = this.state.sideMenu2;
-      functionToParse = this.menu3Trigger;
+      // functionToParse = this.menu3Trigger;
     }
-    if (data.level == 3) {
+    if (data.level === 3) {
       menu = this.state.sideMenu3;
-      functionToParse = this.menu3Trigger;
+      // functionToParse = this.menu3Trigger;
     }
     if (menu) {
       if (menu.length > 0) {
         return (
           <ul>
-            {menu[0].key ? (
-              <Link
-                to={`${process.env.PUBLIC_URL}/posts`}
-                onClick={this.closeMenuTrigger}
-                onMouseOver={this.hoverItem}
-                key="all_posts"
-                id="all_posts"
-              >
-                All Posts
-              </Link>
-            ) : null}
             {menu.map((item, index) => {
               if (item) {
                 if (item.id_post) {
@@ -429,7 +439,8 @@ class Header extends Component {
                       <Link
                         to={this.newTo(
                           item.id_post,
-                          data.level > 1 ? "post" : "posts"
+                          data.level > 1 ? "post" : "posts",
+                          item.parent
                         )}
                         onClick={this.closeMenuTrigger}
                         onMouseOver={this.hoverItem}
@@ -446,8 +457,10 @@ class Header extends Component {
                     <li key={`${item.id}${index}`}>
                       <Link
                         to={this.newTo(
-                          item.name ? item.name : item.id,
-                          data.level > 2 ? "product" : "collection"
+                          //  item.name ? item.name : item.id,
+                          item.id,
+                          data.level > 2 ? "product" : "collection",
+                          item.parent
                         )}
                         onClick={this.closeMenuTrigger}
                         onMouseOver={this.hoverItem}
@@ -460,7 +473,7 @@ class Header extends Component {
                     </li>
                   );
                 }
-              }
+              } else return null;
             })}
           </ul>
         );
@@ -492,6 +505,22 @@ class Header extends Component {
     }
     return (
       <div className="c-header" value={9}>
+        <div
+          className={this.state.visible ? "burger__close " : "burger"}
+          onClick={this.openMenu}
+        >
+          <Menu />
+        </div>
+        <Link
+          to={`${process.env.PUBLIC_URL}/`}
+          className="logo-link"
+          data-lng="en"
+        >
+          <div className={"logo-mobile"}>
+            <Logo />
+          </div>
+        </Link>
+
         <header
           className={
             this.state.visible
@@ -499,25 +528,34 @@ class Header extends Component {
               : "header header-close grid-16"
           }
         >
-          {this.state.isLoading ? <Pace color="#27ae60" /> : null}
-
+          <PlantTopCorner />
           <Link to={`${process.env.PUBLIC_URL}/`} data-lng="en">
             <div className={this.state.visible ? "logo  rotate" : "logo"}>
               <Logo />
             </div>
           </Link>
 
-          <a href="#" onClick={this.menuShop}>
+          <button
+            className="invisible-button shop-link"
+            onClick={this.menuShop}
+          >
             {translate("shop")}
-          </a>
+          </button>
 
-          <a href="#" onClick={this.menuRead}>
+          <button
+            className="invisible-button shop-link"
+            onClick={this.menuRead}
+          >
             {translate("read")}
-          </a>
+          </button>
 
-          <a href="#" onClick={this.menuSearch} data-tip="Search">
+          <button
+            className="invisible-button shop-link"
+            onClick={this.menuSearch}
+            data-tip="Search"
+          >
             <SearchIcon />
-          </a>
+          </button>
 
           <Link to={`${process.env.PUBLIC_URL}/register`} data-lng="en">
             {logged ? (
@@ -556,18 +594,14 @@ class Header extends Component {
           </Link>
 
           {this.state.menuOpen ? (
-            <a href="#" onClick={this.closeMenuTrigger} data-tip="Close Menus">
+            <button
+              className="invisible-button"
+              onClick={this.closeMenuTrigger}
+              data-tip="Close Menus"
+            >
               X
-            </a>
-          ) : (
-            <a href="#" onClick={this.menuTrigger} data-tip="Menu">
-              <Menu />
-            </a>
-          )}
-
-          <div className="burger">
-            <Menu />
-          </div>
+            </button>
+          ) : null}
         </header>
         <div>
           <ul className="menu-slide">
@@ -594,9 +628,13 @@ class Header extends Component {
                 value={this.state.productName}
                 handleChange={this.handleChange}
               />
-              <a href="#" type="submit" onClick={this.handleSubmit}>
+              <button
+                className="invisible-button"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
                 <SearchIcon />
-              </a>
+              </button>
             </form>
           </div>
         </div>

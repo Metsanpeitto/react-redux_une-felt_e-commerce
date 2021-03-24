@@ -2,9 +2,13 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 
 const button = (props) => {
+  var propsClass = "f-bp-new";
+  if (props.class) {
+    propsClass = props.class;
+  }
   return (
     <Link
-      className="f-bp-new"
+      className={propsClass}
       to={props.href ? props.href : "#"}
       key="learn link"
       id="all_posts"

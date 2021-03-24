@@ -64,8 +64,6 @@ class Search extends Component {
   };
 
   render() {
-    const { translate } = this.props;
-
     return (
       <section className="c-search">
         <form onSubmit={this.handleSubmit}>
@@ -77,9 +75,13 @@ class Search extends Component {
             value={this.state.productName}
             handleChange={this.handleChange}
           />
-          <a href="#" type="submit" onClick={this.handleSubmit}>
+          <button
+            className="invisible-button"
+            type="submit"
+            onClick={this.handleSubmit}
+          >
             <SearchIcon />
-          </a>
+          </button>
         </form>
       </section>
     );

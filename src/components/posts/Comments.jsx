@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withTranslate } from "react-redux-multilingual";
 import Input from "../../effects/input/Input";
 import { getPostComments, postComment } from "../../actions/Index";
-import Button from "../../components/Button";
+import Button from "../../components/ButtonNew";
 
 class Comments extends Component {
   constructor(props) {
@@ -48,12 +48,14 @@ class Comments extends Component {
       if (comments !== "empty") {
         return (
           <section className="c-post__comment--comments">
-            <h3 className="comment-title">Comments</h3>
+            <h3 className="comment-title subtitle-lg">Comments</h3>
             <div className="box">
               {comments.map((c, index) => {
                 return (
                   <div className="box-item" key={index}>
-                    <p className="author">Posted by {c.author_name}</p>
+                    <h3 className="author subtitle-reg">
+                      Posted by {c.author_name}
+                    </h3>
                     <div
                       dangerouslySetInnerHTML={{
                         __html: c.text,
@@ -147,7 +149,7 @@ class Comments extends Component {
       <section className="c-post__comment">
         {comments ? <this.CommentsBox /> : null}
         <form className="c-post__comment--form" onSubmit={this.handleSubmit}>
-          <h3 id="reply-title" className="comment-reply-title">
+          <h3 id="reply-title" className="comment-reply-title subtitle-reg">
             {translate("leave_reply")}
           </h3>
           <textarea
@@ -156,6 +158,7 @@ class Comments extends Component {
             title="Enter your comment here..."
             placeholder="Enter your comment here..."
             onChange={this.handleChange}
+            className="parraf-lg"
           ></textarea>
           <div className="comment-form-fields">
             <Input

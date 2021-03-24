@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 
-import "./demo.css";
-import "./loaders.css";
-
 class Loader extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {}
 
   render() {

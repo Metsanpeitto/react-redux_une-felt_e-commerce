@@ -4,50 +4,38 @@ import posts from "../api/posts";
 import contact from "../api/mailChimp";
 import * as types from "../constants/ActionTypes";
 import { toast } from "react-toastify";
-//import "react-toastify/dist/ReactToastify.min.css";
-//import "react-toastify/dist/ReactToastify.css";
 
 /**           POSTS                    */
 
-export const getAllPosts = (amount) => (dispatch) => {
-  const items = window.sessionStorage.getItem("posts");
+export const getPosts = (data) => (dispatch) => {
   var postsCache = Object.items;
   if (postsCache) {
-    dispatch(getAllCategoriesPosts(postsCache));
     dispatch(receivePosts(postsCache));
     return postsCache;
   } else {
-    posts.getPostList(amount).then((posts) => {
-      dispatch(getAllCategoriesPosts(posts));
+    posts.getPostList(data).then((posts) => {
       dispatch(receivePosts(posts));
       window.sessionStorage.setItem("posts", posts);
       return posts;
     });
   }
 };
-
-/*
-export const getSomePosts = (amount) => (dispatch) => {
-  const items = window.sessionStorage.getItem("posts");
-  var somePostsCache = Object.somteItems;
-  if (somePostsCache) {
-    dispatch(getAllCategoriesPosts(postsCache));
-    dispatch(receivePosts(postsCache));
-    return postsCache;
-  } else {
-    posts.getPostList(amount).then((posts) => {
-      dispatch(getAllCategoriesPosts(posts));
-      dispatch(receivePosts(posts));
-      window.sessionStorage.setItem("posts", posts);
-      return posts;
-    });
-  }
-};
-*/
 
 export const receivePosts = (posts) => ({
   type: types.RECEIVE_POSTS,
   posts,
+});
+
+export const getPost = (data) => (dispatch) => {
+  posts.getPost(data).then((post) => {
+    dispatch(receivePost(post));
+    return post;
+  });
+};
+
+export const receivePost = (post) => ({
+  type: types.RECEIVE_POST,
+  post,
 });
 
 export const getPostComments = (postId) => (dispatch) => {
@@ -100,18 +88,22 @@ export const receiveCategoryTreePosts = (categoryTreePosts) => ({
   categoryTreePosts,
 });
 
-export const getAllCategoriesPosts = (data) => (dispatch) => {
-  const items = window.sessionStorage.getItem("categoryTreePosts");
-  var categoryTreePostsCache = Object.items;
+export const getAllCategoriesPosts = () => (dispatch) => {
+  // var data = window.sessionStorage.categoryTreePosts;
+  var data = null;
+  var categoryTreePostsCache = JSON.parse(data);
   dispatch(fetchCategoryTreePostsBegin());
-  if (categoryTreePostsCache) {
+  if (categoryTreePostsCache && categoryTreePostsCache !== undefined) {
     dispatch(receiveCategoryTreePosts(categoryTreePostsCache));
     return categoryTreePostsCache;
   } else {
-    posts.getCategoryTree(data).then((categoryTreePosts) => {
+    posts.getCategoryTree().then((categoryTreePosts) => {
       if (categoryTreePosts) {
         dispatch(receiveCategoryTreePosts(categoryTreePosts));
-        window.sessionStorage.setItem("categoryTreePosts", categoryTreePosts);
+        window.sessionStorage.setItem(
+          "categoryTreePosts",
+          JSON.stringify(categoryTreePosts)
+        );
 
         return categoryTreePosts;
       }
@@ -130,23 +122,38 @@ export const receiveProducts = (products) => ({
   products,
 });
 
-export const getAllProducts = () => (dispatch) => {
+export const getProducts = (parentId) => (dispatch) => {
   dispatch(fetchProductsBegin());
-  const items = window.sessionStorage.getItem("products");
-  var productsCache = Object.items;
-
+  //var data = window.sessionStorage.products;
+  var data = null;
+  var productsCache = JSON.parse(data);
   if (productsCache) {
     dispatch(receiveProducts(productsCache));
-    dispatch(getAllCategories(productsCache));
     return productsCache;
   } else {
-    shop.getProducts().then((products) => {
+    shop.getProducts(parentId).then((products) => {
       dispatch(receiveProducts(products));
-      dispatch(getAllCategories(products));
-      window.sessionStorage.setItem("products", products);
+      window.sessionStorage.setItem("products", JSON.stringify(products));
       return products;
     });
   }
+};
+
+export const fetchProductBegin = () => ({
+  type: types.FETCH_PRODUCT_BEGIN,
+});
+
+export const receiveProduct = (product) => ({
+  type: types.RECEIVE_PRODUCT,
+  product,
+});
+
+export const getProduct = (id) => (dispatch) => {
+  dispatch(fetchProductBegin());
+  shop.getProduct(id).then((product) => {
+    dispatch(receiveProduct(product));
+    return product;
+  });
 };
 
 export const fetchSingleProduct = (productId) => ({
@@ -227,18 +234,22 @@ export const receiveCategoryTree = (categoryTree) => ({
   categoryTree,
 });
 
-export const getAllCategories = (products) => (dispatch) => {
+export const getAllCategories = () => (dispatch) => {
   dispatch(fetchCategoryTreeBegin());
-  const items = window.sessionStorage.getItem("categories");
-  var categoriesCache = Object.items;
+  // var data = window.sessionStorage.categories;
+  var data = null;
+  var categoriesCache = JSON.parse(data);
   if (categoriesCache && categoriesCache !== undefined) {
     dispatch(receiveCategoryTree(categoriesCache));
     return categoriesCache;
   } else {
-    shop.getCategoryTree(products).then((categoryTree) => {
+    shop.getCategoryTree().then((categoryTree) => {
       if (categoryTree) {
         dispatch(receiveCategoryTree(categoryTree));
-        window.sessionStorage.setItem("categories", categoryTree);
+        window.sessionStorage.setItem(
+          "categories",
+          JSON.stringify(categoryTree)
+        );
         return categoryTree;
       }
     });
@@ -259,7 +270,7 @@ export const receiveExtras = (extras) => ({
 
 export const getAllExtras = () => (dispatch) => {
   dispatch(fetchExtrasBegin());
-  const items = window.sessionStorage.getItem("extras");
+
   var extrasCache = Object.items;
   if (extrasCache) {
     dispatch(receiveExtras(extrasCache));
@@ -292,7 +303,7 @@ export const receiveLogin = (log) => ({
 export const login = (userData) => (dispatch) => {
   dispatch(fetchLoginBegin());
   user.login(userData).then((log) => {
-    if (log == undefined || log == "error") {
+    if (log === undefined || log === "error") {
       toast.error("\xa0\xa0 🙈 \xa0\xa0 Account not recognized.", {
         position: "top-right",
         autoClose: 5000,

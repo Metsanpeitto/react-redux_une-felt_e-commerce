@@ -3,24 +3,46 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
 import { withTranslate } from "react-redux-multilingual";
-import Button from "../Button";
 import { getCartTotal } from "../../services";
 import {
   removeFromCart,
   incrementQty,
   decrementQty,
 } from "../../actions/Index";
+import Empty from "./common/Empty";
+import StepIndex from "./common/StepIndex";
+import LayoutBackground from "../../icons/LayoutBackground";
+import ButtonNew from "../../components/ButtonNew";
+import ButtonNewLight from "../ButtonNewLightBack";
 
-import Hugger from "../../icons/CartEmpty";
-
-class cartComponent extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.goBack = this.goBack.bind(this);
   }
 
+  goBack = () => {
+    this.props.history.goBack();
+  };
+
   render() {
-    const { cartItems, symbol, total, translate } = this.props;
+    const { symbol, total, translate } = this.props;
+    var item = {
+      id: "2",
+      stock: "12",
+      qty: "13",
+      sum: " 12",
+      pictures: [``],
+      name: "Lady Yurta",
+      category: "Pieces",
+      price: "23",
+    };
+
+    var cartItems = [item, item, item, item];
+
+    cartItems = this.props.cartItems;
+
     var productsToShow = [];
     if (this.props.state.data.products.length > 1) {
       var products = this.props.state.data.products;
@@ -28,21 +50,23 @@ class cartComponent extends Component {
         productsToShow.push(products[i]);
       }
     }
-
     return (
       <div>
         {cartItems.length > 0 && translate !== undefined ? (
           <section className="c-cart">
-            {" "}
-            <h1>{translate("shopping_cart")}</h1>
-            <div className="c-cart__table ">
+            <LayoutBackground />
+
+            <h1 className="h2-didot-reg">{translate("shopping_cart")}</h1>
+            <StepIndex index="1" />
+            <div className="c-cart__table b-layout-card">
+              <h5 className="h5-didot-reg">Cart Details</h5>
               <div className="table-head">
-                <h4>{translate("image")}</h4>
-                <h4>{translate("product_name")}</h4>
-                <h4>{translate("price")}</h4>
-                <h4>{translate("quantity")}</h4>
-                <h4>{translate("action")}</h4>
-                <h4>{translate("total")}</h4>
+                <h4 className="label">{translate("image")}</h4>
+                <h4 className="label">{translate("product_name")}</h4>
+                <h4 className="label">{translate("price")}</h4>
+                <h4 className="label">{translate("quantity")}</h4>
+                <h4 className="label">{translate("action")}</h4>
+                <h4 className="label">{translate("total")}</h4>
               </div>
 
               {cartItems.map((item, index) => {
@@ -55,11 +79,13 @@ class cartComponent extends Component {
                     </div>
                     <div>
                       <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
-                        <h2 className="cart-item-name">{item.name}</h2>
+                        <h2 className="cart-item-name parraf-reg">
+                          {item.name}
+                        </h2>
                       </Link>
                     </div>
                     <div>
-                      <h2>
+                      <h2 className="price">
                         {symbol}
                         {item.price}
                       </h2>
@@ -67,9 +93,8 @@ class cartComponent extends Component {
 
                     <div>
                       <div className="qty-box">
-                        <a
-                          href="#"
-                          className="qty-box__btn left-minus"
+                        <button
+                          className="qty-box__btn left-minus invisible-button"
                           onClick={() =>
                             item.qty > 1
                               ? this.props.decrementQty(item.id)
@@ -79,36 +104,36 @@ class cartComponent extends Component {
                           data-field=""
                         >
                           <i className="fas fa-minus"></i>{" "}
-                        </a>
+                        </button>
 
-                        <h2 className="qty-box__number">{item.qty}</h2>
+                        <h2 className="qty-box__number parraf-reg">
+                          {item.qty}
+                        </h2>
 
-                        <a
-                          href="#"
-                          className="qty-box__btn right-plus"
+                        <button
+                          className="qty-box__btn right-plus invisible-button"
                           onClick={() => this.props.incrementQty(item, 1)}
                           data-type="plus"
                           disabled={item.qty >= item.stock ? true : false}
                         >
                           <i className="fas fa-plus"></i>{" "}
-                        </a>
+                        </button>
                       </div>
 
                       {item.qty >= item.stock ? "out of Stock" : ""}
                     </div>
 
                     <div>
-                      <a
-                        href="#"
-                        className="remove"
+                      <button
+                        className="remove invisible-button"
                         onClick={() => this.props.removeFromCart(item)}
                       >
                         <i className="fa fa-times" />
-                      </a>
+                      </button>
                     </div>
 
                     <div>
-                      <h2 className="div-color">
+                      <h2 className="div-color price">
                         <NumberFormat
                           value={item.sum}
                           displayType={"text"}
@@ -126,7 +151,7 @@ class cartComponent extends Component {
               <div className="total">
                 <h2 className="total__text">{translate("total_price")}</h2>
 
-                <h2 className="total__number">
+                <h2 className="total__number price">
                   <NumberFormat
                     value={total}
                     displayType={"text"}
@@ -138,43 +163,22 @@ class cartComponent extends Component {
                   />
                 </h2>
               </div>
-            </div>
-            <div className="c-cart__buttons">
-              <Button
-                label={"check_out"}
-                href={`${process.env.PUBLIC_URL}/checkout`}
-              />
+              <div className="c-cart__buttons">
+                <ButtonNew
+                  label={"Continue"}
+                  href={`${process.env.PUBLIC_URL}/cart-shipping`}
+                />
 
-              <Button
-                label={"Back to Shop"}
-                href={`${process.env.PUBLIC_URL}/collection`}
-              />
+                <ButtonNewLight
+                  label={"Go Back"}
+                  handler={this.goBack}
+                  href={`${process.env.PUBLIC_URL}/`}
+                />
+              </div>
             </div>
           </section>
         ) : (
-          <section className="c-cart__empty">
-            <h1>{translate("empty_cart")}</h1>
-            <Hugger />
-
-            <section className="c-product__related-products">
-              <h2>{translate("related_product")}</h2>
-              <div className="related-products__images">
-                {productsToShow.length > 1
-                  ? productsToShow.map((p, index) => (
-                      <Link
-                        to={`${process.env.PUBLIC_URL}/product/${p.id}`}
-                        className="btn btn-solid"
-                        key={index}
-                      >
-                        <div className="product-box__image">
-                          <img src={p.pictures[0]} />
-                        </div>
-                      </Link>
-                    ))
-                  : null}
-              </div>
-            </section>
-          </section>
+          <Empty text="Cart" longText="Empty cart" />
         )}
       </div>
     );
@@ -191,4 +195,4 @@ export default connect(mapStateToProps, {
   removeFromCart,
   incrementQty,
   decrementQty,
-})(withRouter(withTranslate(cartComponent)));
+})(withRouter(withTranslate(Cart)));

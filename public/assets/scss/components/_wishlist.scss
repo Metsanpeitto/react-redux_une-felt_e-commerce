@@ -1,55 +1,52 @@
 .c-wishlist {
   width: 100vw;
-  padding: 5rem;
-  padding-top: 15vh;
-  background: $color-secondary-light;
+  padding: 0;
+  padding-top: 60px;
+  padding-bottom: 400px;
+  margin-bottom: 300px;
+  background: unset;
+  color: $color-text-antracite;
   display: grid;
-  grid-template-rows: 15rem auto 1fr;
-  animation: arriveLeft 2s ease-in-out;
+  grid-template-rows: 15rem 80px auto;
+  grid-row-gap: 32px;
 
   h1 {
-    position: relative;
     align-self: center;
-    color: $color-primary-dark;
-    font-size: 5rem;
-    font-family: $font-didot;
-    font-weight: 900;
-    letter-spacing: 1.3rem;
+    text-align: center;
     grid-row-start: 1;
-    justify-self: center;
-    animation: arriveRight 3s ease-in-out;
     text-transform: capitalize;
+    color: $color-primary-dark;
+    animation: arriveRight 1.5s ease-in-out;
   }
 
   &__table {
     position: relative;
-    background-color: $color-secondary-dark;
-    padding: 5rem;
-    grid-row-start: 2;
+    background-color: $color-white;
+    padding: 32px;
+    padding-left: 128px;
+    padding-right: 128px;
+    grid-row-start: 3;
     transform-origin: center;
-    animation: moveInUp 4s ease-in-out;
+    animation: rise 2s ease-in-out;
 
     .table-head {
-      color: $color-primary-dark;
+      color: $color-text-antracite;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      padding-bottom: 2rem;
+      padding-bottom: 6px;
       border-bottom: 1px solid $color-tertiary-dark;
-      margin-bottom: 5rem;
       h4 {
-        font-size: 1.5rem;
+        align-self: end;
         justify-self: center;
         text-transform: capitalize;
       }
     }
 
     .table-item {
-      color: $color-primary-dark;
+      color: inherit;
       display: grid;
-      font-size: 1.5rem;
       grid-template-columns: repeat(5, 1fr);
       text-transform: capitalize;
-      margin-top: 3rem;
 
       div {
         align-self: center;
@@ -67,12 +64,12 @@
           justify-self: center;
           &__btn {
             align-self: center;
-            transform: scale(1);
+            transform: scale(0.75);
             transform-origin: center;
             transition: all 0.5s ease-in-out;
 
             &:hover {
-              transform: scale(1.4);
+              transform: scale(1);
             }
           }
         }
@@ -110,13 +107,13 @@
   }
 
   &__buttons {
+    border-bottom: 1px solid $color-tertiary-dark;
     grid-row-start: 3;
     display: grid;
     grid-template-columns: auto 30rem;
     grid-template-rows: repeat(2, 1fr);
     row-gap: 3rem;
     padding-top: 3rem;
-    animation: land-from-right 5s ease-in-out;
     a {
       white-space: nowrap;
     }
@@ -133,62 +130,229 @@
   }
 
   &__empty {
-    position: relative;
-    background-color: $color-secondary-light;
-    color: $color-primary-dark;
     width: 100vw;
-    padding-top: 15vh;
-    text-align: center;
-    animation: landFromLeft 5s ease-in-out;
+    padding: 0;
+    padding-top: 60px;
+    padding-bottom: 400px;
+    margin-bottom: 300px;
+    background: unset;
+    color: $color-text-antracite;
+    display: grid;
+    grid-template-rows: 15rem auto;
+    grid-row-gap: 32px;
 
     h1 {
-      position: relative;
       align-self: center;
-      color: $color-primary-dark;
-      font-size: 5rem;
-      font-family: $font-didot;
-      font-weight: 900;
-      letter-spacing: 1.3rem;
+      text-align: center;
       grid-row-start: 1;
-      justify-self: center;
-      animation: land-from-right 5s ease-in-out;
-      margin: 0;
       text-transform: capitalize;
+      color: $color-primary-dark;
+      animation: arriveRight 3s ease-in-out;
     }
 
-    .panel {
-      animation: rise 6s ease-in-out;
+    .step-index {
+      grid-row-start: 2;
+      position: relative;
+      top: unset !important;
+    }
 
-      h3 {
-        margin-bottom: 5rem;
-        text-transform: capitalize;
+    .h5-didot-reg {
+      justify-self: center;
+      grid-column-start: 3;
+      font-size: 32px;
+      line-height: 48px;
+      font-family: "Didot";
+      width: max-content;
+    }
+
+    .b-layout-card {
+      height: unset !important;
+      margin-top: unset !important;
+      padding: 32px;
+      min-height: 700px;
+      grid-template-columns: repeat(5, 200px);
+      animation: rise 2s ease-in-out;
+
+      #cloudia-empty {
+        grid-row-start: 2;
+        grid-column-start: 2;
+        transform: translateX(-100px);
       }
 
-      svg {
-        width: 80rem;
-        height: 60rem;
-
-        #heart {
-          transform-origin: center;
-          animation: floating 2s ease-in-out infinite;
-        }
-
-        #cloudia {
-          transform-origin: center;
-          animation: floating 2s ease-in-out infinite;
-        }
+      #little-heart {
+        align-self: center;
+        justify-self: center;
+        grid-column-start: 4;
+        grid-row-start: 2;
+        transform: scale(2.5);
+        z-index: 1;
       }
 
-      h3,
-      h4 {
-        margin-top: 0.5rem;
+      #empty-box {
+        align-self: end;
+        justify-self: center;
+        grid-column-start: 3;
+        grid-row-start: 2;
+        z-index: 1;
       }
+
+      #top-leaf {
+        align-self: center;
+        justify-self: center;
+        grid-column-start: 1;
+        grid-row-start: 2;
+      }
+
+      #plant-left {
+        align-self: center;
+        justify-self: center;
+        grid-column-start: 5;
+        grid-row-start: 2;
+        transform: translateX(-115px);
+        z-index: 0;
+      }
+
+      #shadow {
+        grid-column-start: 3;
+        grid-row-start: 2;
+        align-self: center;
+        transform: translateY(120px) translateX(-120px);
+      }
+
+      .c-cart__buttons {
+        align-self: end;
+        display: grid;
+        grid-column-start: 3;
+        grid-row-start: 3;
+        justify-self: center;
+        transform: translateX(-2.5px);
+        grid-template-columns: auto auto;
+        grid-row-gap: 3rem;
+        row-gap: 3rem;
+        padding-top: 3rem;
+        animation: land-from-right 5s ease-in-out;
+        margin-left: 64px;
+        margin-right: 64px;
+      }
+    }
+
+    .c-product__related-products {
+      grid-row-start: 3 !important;
     }
   }
 }
 
+//      Ipad-Pro Styles Starts Here
+@media (max-width: 1200px) and (min-width: 766px) {
+  .c-wishlist {
+    background: $color-white;
+    padding-top: 80px;
+    padding-bottom: unset;
+    margin-bottom: unet;
+    grid-template-rows: 15rem auto;
+
+    &__table {
+      align-content: unset;
+      grid-template-rows: 80px auto auto;
+      padding-left: 64px;
+      padding-right: 64px;
+      width: 90vw;
+      .table-head {
+        grid-template-columns: repeat(5, 1fr);
+        align-content: end;
+        column-gap: 48px;
+
+        h4 {
+          text-align: center;
+        }
+      }
+
+      .table-item {
+        grid-template-columns: repeat(5, 1fr);
+        button {
+          margin: 16px;
+        }
+      }
+
+      .c-wishlist__buttons {
+        border-bottom: unset;
+        height: 100px;
+      }
+    }
+
+    &__buttons {
+      grid-row-gap: 3rem;
+      row-gap: 3rem;
+      a {
+        justify-self: end;
+      }
+    }
+    .panel svg {
+      width: 100vw;
+      height: 60rem;
+    }
+  }
+}
+//      Ipad-Pro Styles Starts Here
+
 //      Mobile Styles Starts Here
 @media (max-width: 765px) and (min-width: 300px) {
+  .c-wishlist {
+    grid-template-rows: 80px auto;
+    margin-bottom: 600px;
+    &__table {
+      grid-row-start: 2;
+      grid-template-rows: auto;
+      padding-left: 16px;
+      padding-right: 16px;
+      min-width: 90vw;
+      width: 90vw;
+
+      .table-head {
+        height: 80px;
+        h4 {
+          font-size: 10px;
+        }
+      }
+      .table-item {
+        height: 100px;
+
+        div {
+          font-size: 10px;
+          h4 {
+            font-size: 10px;
+          }
+
+          img {
+            width: 50px;
+          }
+
+          a {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .buttons {
+        border-top: 1px solid #fdd8d3;
+        row-gap: 0%;
+        grid-row-gap: 0%;
+      }
+    }
+
+    &__buttons {
+      border-top: 1px solid #fdd8d3;
+      border-bottom: unset;
+      grid-template-rows: repeat(2, 40px);
+      grid-row-gap: 32px;
+      &:nth-child(1) {
+        grid-row-start: 1;
+      }
+      &:nth-child(1) {
+        grid-row-start: 2;
+      }
+    }
+  }
   .c-wishlist__empty {
     padding-top: 20vh;
     .panel svg {

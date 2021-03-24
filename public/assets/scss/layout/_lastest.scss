@@ -7,16 +7,13 @@
   position: relative;
   animation: arriveRight 2s ease-in-out;
 
-  &__header {
-    margin-top: 3%;
+  h1 {
+    align-self: center;
     text-align: center;
-    font-family: $font-didot;
-    font-size: 7rem;
-    font-weight: 800;
+    grid-row-start: 1;
     text-transform: capitalize;
-    letter-spacing: 1rem;
-    color: #d28e77;
-    animation: arriveLeft 2s ease-in-out 1.5s;
+    color: $color-primary-dark;
+    animation: arriveRight 3s ease-in-out;
   }
   &__content {
     display: grid;

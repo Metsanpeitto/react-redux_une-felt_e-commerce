@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
-
 import { withTranslate } from "react-redux-multilingual";
-
 import {
   addToCart,
   addToWishlist,
   addToCompare,
   addSelectedProducts,
 } from "../../actions/Index";
-
-import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./ProductListItem";
+import Loader from "../../effects/loader/Loader";
 
 var category = null;
 var mounted = null;
@@ -22,11 +17,14 @@ class ProductListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      limit: 5,
+      limit: 6,
+      page: 1, //  Page will indicate the index of groups of 6 products
+      collection: [], // Here all the products are going to be stored in pages
       hasMoreItems: true,
       category: null,
       productsToShow: null,
     };
+    this.goToPage = this.goToPage.bind(this);
   }
 
   componentWillUnmount() {
@@ -35,26 +33,23 @@ class ProductListing extends Component {
 
   componentWillMount() {
     mounted = true;
-    if (this.props.category !== this.state.category) {
-      category = this.props.category;
-      this.setState(() => {
-        return { category: category };
-      });
-      this.fetchSameCategoryProducts();
-    }
     var products = null;
+    if (this.props.state.data.products.length > 0) {
+      products = this.props.state.data.products;
+      var collection = [];
 
-    if (this.props.data3.productsToShow) {
-      if (this.props.data3.productsToShow.length > 0) {
-        products = this.props.data3.productsToShow;
-      } else {
-        products = this.props.products;
+      if (products.length > 6) {
+        const len = products.length;
+        const numberOfPages = len / 6;
+        for (var i; i <= numberOfPages; i++) {
+          var extractedPage = products.splice(0, 6);
+          collection.push(extractedPage);
+        }
       }
-    } else {
-      products = this.props.products;
+      this.setState(() => {
+        return { productsToShow: products, collection: collection, page: 1 };
+      });
     }
-
-    this.fetchMoreItems(products);
   }
 
   componentDidUpdate() {
@@ -64,90 +59,59 @@ class ProductListing extends Component {
         this.setState(() => {
           return { category: category };
         });
-        this.fetchSameCategoryProducts();
       }
     }
+    if (
+      !this.state.productsToShow ||
+      this.state.productsToShow !== this.props.state.data.products
+    ) {
+      if (this.props.state.data.products.length > 0) {
+        var products = this.props.state.data.products;
+        var collection = [];
 
-    if (this.props.data3.productsToShow !== this.state.productsToShow) {
-      this.setState(() => {
-        return { productsToShow: this.props.data3.productsToShow };
-      });
+        if (products.length > 6) {
+          const len = products.length;
+          const numberOfPages = Math.ceil(len / 6);
+
+          for (var i = 0; i <= numberOfPages; i++) {
+            if (products.length > 0) {
+              var extractedPage = products.splice(0, 6);
+              collection.push(extractedPage);
+            }
+          }
+        }
+        if (products.length === 0) {
+          products = collection[0];
+        }
+
+        this.setState(() => {
+          return { productsToShow: products, collection: collection, page: 1 };
+        });
+      }
     }
   }
-
-  fetchSameCategoryProducts = () => {
-    if (mounted) {
-      if (this.props.category !== this.state.category) {
-        category = this.props.category;
-
-        this.setState(() => {
-          return { category: category };
-        });
-
-        var productsToShow = [];
-        var products = this.props.products[0];
-        if (this.props.products[1].length > 0) {
-          products = this.props.products[0];
-        }
-        products.map((product) => {
-          product.categories.map((productCategory) => {
-            if (productCategory.name === category) {
-              productsToShow.push(product);
-            }
-            return null;
-          });
-          return null;
-        });
-      }
-      if (this.state.productsToShow !== productsToShow) {
-        this.setState(() => {
-          return { productsToShow: productsToShow };
-        });
-        this.props.addSelectedProducts(productsToShow);
-      }
-      category = this.props.category;
-    }
-  };
-
-  countDone = (products) => {
-    if (mounted) {
-      this.setState(() => {
-        return { limit: this.state.limit + 5 };
-      });
-      if (this.state.limit >= products[0].length) {
-        this.setState({ hasMoreItems: false });
-      }
-    }
-  };
-
-  fetchMoreItems = (products) => {
-    if (mounted) {
-      // a fake async api call
-      setTimeout(() => {
-        this.countDone(products);
-      }, 3000);
-    }
-  };
+  goToPage(e) {
+    var page_to = parseInt(e.currentTarget.id);
+    var productsToShow = this.state.collection[page_to - 1];
+    window.scrollTo(0, 0);
+    this.setState(() => {
+      return { productsToShow: productsToShow, page: page_to - 1 };
+    });
+  }
 
   render() {
-    const {
-      products,
-      addToCart,
-      symbol,
-      addToWishlist,
-      translate,
-    } = this.props;
+    const { addToCart, symbol, addToWishlist } = this.props;
+    var theProducts = null;
+    const collection = this.state.collection;
 
-    var theProducts = products[0];
     if (this.state.productsToShow) {
-      theProducts = this.state.productsToShow;
-    }
-    if (products[1].length > 0) {
-      theProducts = products[1];
+      if (this.state.productsToShow.length > 0) {
+        theProducts = this.state.productsToShow;
+      }
     }
 
-    if (category) {
-      if (mounted) {
+    if (theProducts) {
+      if (theProducts.length > 0) {
         return (
           <div className="c-collection__product-list">
             {" "}
@@ -165,25 +129,54 @@ class ProductListing extends Component {
                     />
                   ))
               : null}
+            <div className="index">
+              {collection.length > 1
+                ? collection.map((p, index) => {
+                    var page = this.state.page;
+
+                    if (page === index + 1) {
+                      return (
+                        <button
+                          className="invisible-button Label current-page"
+                          key={index + 1}
+                          id={index + 1}
+                          onClick={this.goToPage}
+                        >
+                          {index + 1}
+                        </button>
+                      );
+                    } else {
+                      return (
+                        <button
+                          className="invisible-button Label"
+                          key={index + 1}
+                          id={index + 1}
+                          onClick={this.goToPage}
+                        >
+                          {index + 1}
+                        </button>
+                      );
+                    }
+                  })
+                : null}
+            </div>
           </div>
         );
       }
     } else {
-      return <h6>Loading</h6>;
+      return <Loader />;
     }
   }
 }
 const mapStateToProps = (state) => {
+  var products = null;
+  if (state.data.products.length > 0) {
+    products = state.data.products;
+  }
+
   return {
-    products: getVisibleproducts(
-      state.data,
-      state.filters,
-      state.data2,
-      state.data3
-    ),
-    data2: state.data2,
-    data3: state.data3,
-    symbol: state.data.symbol,
+    products,
+    state,
   };
 };
 

@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
 import Checkbox from "@material-ui/core/Checkbox";
 import Input from "../../effects/input/Input";
-import Button from "../Button";
+import Button from "../ButtonNew";
 import { login } from "../../actions/Index";
 
 class Login extends Component {
@@ -58,7 +58,7 @@ class Login extends Component {
       });
     }
 
-    if (name == undefined) {
+    if (name === undefined) {
       if (this.state.checked === true) {
         localStorage.name = null;
         localStorage.password = null;
@@ -98,8 +98,8 @@ class Login extends Component {
   render() {
     const { translate } = this.props;
     return (
-      <div className="l-register__login">
-        <h3>Login</h3>
+      <div className="l-register__login b-layout-card">
+        <h3 className="h5-didot-reg">Login</h3>
         <form onSubmit={this.handleSubmit}>
           <Input
             type="email"

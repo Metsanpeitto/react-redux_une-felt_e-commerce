@@ -9,6 +9,7 @@ function BlankHeart() {
       data-name="圖層 1"
       version="1.1"
       viewBox="0 0 25 23.085"
+      className="blankHeart"
     >
       <path
         fill="transparent"

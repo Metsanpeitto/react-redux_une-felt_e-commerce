@@ -2,19 +2,15 @@
   background-color: $color-secondary-light;
   min-height: 85vh;
   padding-top: 15vh;
-  padding-bottom: 5vh;
+  padding-bottom: 400px;
   color: #d28e77;
 
-  .title {
-    color: inherit;
-    margin-bottom: 5vh;
+  h1 {
+    align-self: center;
     text-align: center;
-    font-family: $font-didot;
-    font-size: 7rem;
-    font-weight: 800;
+    grid-row-start: 1;
     text-transform: capitalize;
-    letter-spacing: 1rem;
-
+    color: $color-primary-dark;
     animation: arriveRight 3s ease-in-out;
   }
 

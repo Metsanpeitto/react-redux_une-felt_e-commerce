@@ -1,0 +1,234 @@
+.c-product-card {
+  width: 360px;
+  height: 680px;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: 380px 20px 120px 60px;
+  grid-row-gap: 8px;
+  border-radius: 6px;
+  box-shadow: 0px 6px 6px 6px #7c787838;
+  background-color: $color-white;
+  padding-top: 30px;
+
+  .card-img {
+    width: 240px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    transform: translateX(63px) translateY(58px);
+  }
+
+  .frame {
+    width: 300px;
+    height: 380px;
+    grid-row-start: 1;
+    z-index: 1;
+    grid-column-start: 1;
+    transform: translateX(30px);
+  }
+
+  h3 {
+    color: $color-text-antracite;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    text-align: center;
+  }
+
+  p {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: center;
+  }
+
+  a {
+    grid-row-start: 4;
+    grid-column-start: 2;
+    transform: translateX(-25%);
+  }
+}
+
+.c-product-card-action {
+  width: 360px;
+  height: 680px;
+  color: $color-text-antracite;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: 380px 75px auto 60px;
+  grid-row-gap: 16px;
+  border-radius: 6px;
+  box-shadow: 0px 6px 6px 6px #7c787838;
+  background-color: $color-white;
+  padding-top: 30px;
+
+  .card-img {
+    width: 240px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    transform: translateX(63px) translateY(58px);
+  }
+
+  .frame {
+    width: 300px;
+    height: 380px;
+    grid-row-start: 1;
+    z-index: 1;
+    grid-column-start: 1;
+    transform: translateX(30px);
+  }
+
+  h3 {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    text-transform: capitalize;
+    width: max-content;
+  }
+
+  h2 {
+    align-self: center;
+    font-size: 18px;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    text-align: center;
+    width: 100%;
+  }
+
+  .heart {
+    align-self: end;
+    cursor: pointer;
+    grid-row-start: 2;
+    grid-column-start: 3;
+    text-align: center;
+    transform-origin: center;
+    width: 100%;
+
+    &:hover {
+      transform: scale(1.1) translateY(-5%);
+    }
+  }
+
+  p {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: left;
+  }
+
+  a {
+    grid-row-start: 4;
+    grid-column-start: 2;
+    transform: translateX(-25%);
+  }
+}
+
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1200px) and (min-width: 1026px) {
+  .c-product-card {
+    height: 600px;
+    grid-template-rows: 380px 20px 80px;
+  }
+
+  .c-product-card-action {
+    grid-template-rows: 380px 80px auto 80px;
+  }
+}
+//      Ipad & Tablet Styles Ends Here
+
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1025px) and (min-width: 766px) {
+  .c-product-card {
+    height: 600px;
+    grid-template-rows: 380px 20px 80px;
+  }
+
+  .c-product-card-action {
+    grid-template-rows: 380px 80px auto 80px;
+  }
+}
+//      Ipad & Tablet Styles Ends Here
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .c-product-card {
+    width: 280px;
+    height: 640px;
+    grid-template-rows: 380px 20px 120px;
+
+    .frame {
+      position: relative;
+      width: 260px;
+      height: 380px;
+      justify-self: center;
+      grid-row-start: 1;
+      z-index: 1;
+      grid-column-start: 2;
+      grid-column-end: 3;
+      transform: translateX(0px);
+    }
+
+    .card-img {
+      width: 210px;
+      grid-row-start: 1;
+      grid-column-start: 1;
+      transform: translateX(30px) translateY(80px);
+    }
+
+    .subtitle-lg {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      justify-self: center;
+      transform: unset;
+      width: max-content;
+    }
+
+    a {
+      grid-row-start: 4;
+      grid-column-start: 2;
+      grid-column-end: 3;
+      justify-self: center;
+      transform: unset;
+    }
+  }
+
+  .c-product-card-action {
+    width: 290px;
+    .frame {
+      width: 260px;
+      justify-self: center;
+      grid-column-start: 2;
+      transform: translateX(0px) scale(1);
+
+      img {
+        width: 200px;
+        transform: translateX(54px) translateY(84px);
+      }
+    }
+
+    .f-bp-arrow {
+      justify-self: center;
+      transform: translateX(0px);
+    }
+
+    .card-img {
+      width: 200px;
+      grid-row-start: 1;
+      transform: translateX(50px) translateY(82px);
+    }
+
+    p {
+      text-align: center;
+    }
+
+    a {
+      grid-row-start: 4;
+      grid-column-start: 2;
+      grid-column-end: 3;
+    }
+  }
+}
+//      Mobile Styles Ends Here

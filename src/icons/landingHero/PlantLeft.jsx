@@ -8,6 +8,7 @@ function Icon() {
       height="201"
       fill="none"
       viewBox="0 0 335 201"
+      className="plant-left"
     >
       <g fillRule="evenodd" clipRule="evenodd">
         <path

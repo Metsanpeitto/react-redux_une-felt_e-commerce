@@ -1,3 +1,12 @@
+// Here are all the different type of buttons and
+// auxiliar classes
+
+.button-disabled {
+  opacity: 0.3 !important;
+  user-select: unset;
+  pointer-events: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -6,6 +15,8 @@ a {
     //  border: 3px solid black !important;
   }
 }
+
+// Here starts  the first type of button
 
 .f-bp {
   min-width: 250px !important;
@@ -34,7 +45,7 @@ a {
     }
 
     .f-bp-arrow {
-      top: 3px;
+      top: 0px;
       width: 10px;
       height: 15px;
       fill: #fff;
@@ -58,11 +69,12 @@ a {
   }
 
   .f-bp-arrow {
-    top: 3px;
+    top: 0px;
     width: 10px;
     height: 15px;
     fill: #fff;
   }
+
   .left {
     opacity: 0;
     transform: translateX(-5rem);
@@ -75,6 +87,120 @@ a {
     transition: all 0.2s ease-in-out;
   }
 }
+
+// Here ends  the first type of button
+
+// Here Starts the style for the light button
+
+.f-bs {
+  min-width: 300px;
+  max-width: 300px;
+  height: 40px;
+  background-color: unset;
+  color: #ae97a2;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  line-height: 0px;
+  letter-spacing: 0.1 0.5px;
+  text-transform: uppercase;
+  outline: 0 !important;
+  border: none !important;
+  outline: none !important;
+
+  .f-bs-arrow {
+    top: -5px;
+    width: 17px;
+    height: 20px;
+    fill: #ae97a2;
+    position: absolute;
+    opacity: 1;
+    transform: translate(-58.3296px, 0px);
+    transition: all 0.5s ease-in-out;
+
+    &:nth-child(1) {
+      opacity: 1;
+      left: 100px;
+      transition: all 0.5s ease-in-out;
+    }
+    &:nth-child(2) {
+      opacity: 0;
+      right: 20px;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+
+  .f-bs-line {
+    left: 10px;
+    bottom: 0;
+    height: 1px;
+    width: 60px;
+    content: "";
+    position: absolute;
+    background: #ae97a2;
+    transform-origin: 0px 0px;
+    transition: all 0.5s ease-out;
+  }
+
+  .f-bs-label {
+    top: 0%;
+    left: 100px;
+    bottom: 0;
+    height: 1px;
+    content: "";
+    position: absolute;
+    display: block;
+    font-style: normal;
+    transform-origin: 0px 0px;
+    transition: all 0.5s ease-out;
+  }
+
+  &:hover {
+    .f-bs-arrow {
+      top: -5px;
+      width: 17px;
+      height: 20px;
+      fill: #ae97a2;
+      position: absolute;
+      opacity: 1;
+
+      &:nth-child(1) {
+        opacity: 0;
+        left: 150px;
+        transition: all 0.5s ease-in-out;
+      }
+      &:nth-child(2) {
+        opacity: 1;
+        right: 0px;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+
+    .f-bs-line {
+      left: 220px;
+      bottom: 0;
+      height: 1px;
+      width: 60px;
+      content: "";
+      position: absolute;
+      background: #ae97a2;
+      transform: translateX(-20px);
+    }
+
+    .f-bs-label {
+      top: 0%;
+      left: 40px;
+      transform-origin: -20px 0px;
+      transition: all 0.5s ease-out;
+    }
+  }
+}
+
+// Here ends the old light button
 
 //  Button New starts here
 
@@ -102,11 +228,11 @@ a {
 
   &:hover {
     .f-bp-label {
-      transform: translate(2rem, 0.1rem);
+      transform: translate(1rem, 0.1rem);
     }
 
     .f-bp-arrow {
-      top: 3px;
+      top: 0px;
       width: 10px;
       height: 15px;
       fill: #fff;
@@ -125,25 +251,244 @@ a {
   .f-bp-label {
     font-style: initial;
     font-weight: bolder;
-    transform: translate(-2rem, 0.1rem);
+    transform: translate(-1rem, 0.1rem);
     transition: all 0.2s ease-in-out;
   }
 
   .f-bp-arrow {
-    top: 3px;
+    position: relative;
+    top: 0px;
     width: 10px;
     height: 15px;
     fill: #fff;
   }
   .left {
     opacity: 0;
-    transform: translateX(-5rem);
+    transform: translateX(-16px);
     transition: all 0.2s ease-in-out;
   }
 
   .right {
     opacity: 1;
-    transform: translateX(0rem);
+    transform: translateX(2rem);
     transition: all 0.2s ease-in-out;
   }
 }
+
+//  Button New Light starts here
+
+.f-bp-new-light {
+  background-color: unset !important;
+  color: #d28e77 !important;
+  border-color: #d28e77 !important;
+  border: 3px solid #d28e77 !important;
+
+  .f-bp-arrow {
+    fill: #d28e77 !important;
+  }
+}
+
+//  Button New Light starts here
+
+//  Button New Light Back starts here
+
+.f-bp-new-light-back {
+  background-color: unset !important;
+  color: #d28e77 !important;
+  border-color: #d28e77 !important;
+  border: 3px solid #d28e77 !important;
+
+  &:hover {
+    .f-bp-label {
+      transform: translateX(1rem);
+    }
+
+    .f-bp-arrow {
+      top: 0px;
+      width: 10px;
+      height: 15px;
+      fill: #fff;
+    }
+    .left {
+      opacity: 0;
+      transform: translateX(-3rem) scaleX(-1);
+    }
+
+    .right {
+      opacity: 1;
+      transform: translateX(4rem) scaleX(-1);
+    }
+  }
+
+  .f-bp-label {
+    transform: translateX(4rem);
+  }
+
+  .f-bp-arrow {
+    fill: #d28e77 !important;
+  }
+
+  .left {
+    opacity: 1;
+    transform: translateX(0rem) scaleX(-1);
+  }
+
+  .right {
+    opacity: 0;
+    transform: translateX(10rem) scaleX(-1);
+  }
+}
+
+//  Button New Light Back starts here
+
+// Invisible Button  ...These are the parameters for use instead of <a>
+
+.invisible-button {
+  appearance: unset !important;
+  -webkit-writing-mode: unset !important;
+  text-rendering: unset !important;
+  color: $color-primary-dark;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: pointer;
+  background-color: unset !important;
+  box-sizing: unset !important;
+  margin: 0em;
+  font: unset !important;
+  padding: unset !important;
+  border-width: unset !important;
+  border-style: unset !important;
+  border-color: unset !important;
+  border-image: unset !important;
+}
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  //  Button New starts here
+
+  .f-bp-new {
+    min-width: 200px !important;
+    max-width: 200px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 10px !important;
+    position: relative;
+    align-items: center;
+    display: inline-flex;
+    background-color: #d28e77;
+    padding: 0 10px 0 30px !important;
+    line-height: 40px !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase;
+    transition: background-color 0.4s ease-out;
+    transform-origin: 0px 0px;
+    transition: all 2s ease-out;
+    opacity: 1;
+
+    &:hover {
+      .f-bp-label {
+        transform: translate(1rem, 0.3rem);
+      }
+
+      .f-bp-arrow {
+        top: 0px;
+        width: 10px;
+        height: 12px;
+        fill: #fff;
+      }
+      .left {
+        opacity: 1;
+        transform: translateX(-1rem);
+      }
+
+      .right {
+        opacity: 0;
+        transform: translateX(4rem);
+      }
+    }
+
+    .f-bp-label {
+      font-style: initial;
+      font-weight: bolder;
+      transform: translate(-1rem, 0.1rem);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .f-bp-arrow {
+      position: relative;
+      top: 0px;
+      width: 10px;
+      height: 12px;
+      fill: #fff;
+    }
+    .left {
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .right {
+      opacity: 1;
+      transform: translateX(2rem);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  .f-bp-new-light-back {
+    border: 2px solid #d28e77 !important;
+
+    &:hover {
+      .f-bp-label {
+        transform: translateX(1rem);
+      }
+
+      .f-bp-arrow {
+        top: 0px;
+        width: 10px;
+        height: 12px;
+        fill: #fff;
+      }
+      .left {
+        opacity: 0;
+        transform: translateX(-3rem) scaleX(-1);
+      }
+
+      .right {
+        opacity: 1;
+        transform: translateX(4rem) scaleX(-1);
+      }
+    }
+
+    .f-bp-label {
+      transform: translateX(4rem);
+    }
+
+    .f-bp-arrow {
+      fill: #d28e77 !important;
+    }
+
+    .left {
+      opacity: 1;
+      transform: translateX(0rem) scaleX(-1);
+    }
+
+    .right {
+      opacity: 0;
+      transform: translateX(10rem) scaleX(-1);
+    }
+  }
+
+  .f-bp-new-light {
+    border: 2px solid #d28e77 !important;
+  }
+}
+//      Mobile Styles Ends Here

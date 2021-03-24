@@ -1,21 +1,16 @@
-.content {
-}
-
 .input {
   position: relative;
   z-index: 1;
   display: inline-block;
-  margin: 1em;
-  max-width: 400px !important;
-  min-width: 400px !important;
+  margin: 2px;
+  max-width: 300px !important;
+  min-width: 300px !important;
   min-height: 75px !important;
   max-height: 75px !important;
   width: calc(100% - 2em);
   vertical-align: top;
   margin: unset;
-
   padding-bottom: 5%;
-  font-size: 14px !important;
   stroke-dashoffset: 0px !important;
 }
 
@@ -23,16 +18,12 @@
   position: relative;
   display: block;
   float: right;
-  padding: 0.8em;
-  width: 60%;
   border: none;
   border-radius: 0;
   background: #f0f0f0;
   color: #aaa;
   -webkit-appearance: none; /* for box shadows to show on iOS */
-  font-weight: 400;
-  font-family: inherit;
-  font-size: 1.8rem;
+
   stroke-dashoffset: 0px !important;
 }
 
@@ -43,11 +34,11 @@
 .input__label {
   display: inline-block;
   float: right;
-  padding: 0 1em;
+  padding: 0 2px;
   width: 40%;
-  color: #dbb59d;
-  font-weight: bold;
-  font-size: 70.25%;
+  font-size: 16px;
+  color: white;
+  font-weight: 100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-touch-callout: none;
@@ -62,6 +53,7 @@
   position: relative;
   display: block;
   padding: 13px;
+  font-weight: 100;
   width: 100%;
 }
 
@@ -77,21 +69,20 @@
 /* Nao */
 .input--nao {
   overflow: hidden;
-  padding-top: 1em;
+  padding-top: 5px;
 }
 
 .input__field--nao {
-  padding: 0.5em 0em 0.25em;
   width: 80%;
   background: transparent;
-  color: #dbb59d;
-  font-size: 1.25em;
+  color: white;
+  position: absolute;
+  top: 16px;
 }
 
 .input__label--nao {
   position: absolute;
   top: 40px;
-  font-size: 14px;
   left: 0;
   display: block;
   width: 100%;
@@ -107,7 +98,7 @@
 }
 
 .graphic--nao {
-  stroke: #dbb59d;
+  stroke: white;
   pointer-events: none;
   -webkit-transition: -webkit-transform 0.7s, stroke 0.7s;
   transition: transform 0.7s, stroke 0.7s;
@@ -117,14 +108,14 @@
 
 .input__field--nao:focus + .input__label--nao,
 .input--filled .input__label--nao {
-  color: #d28e77;
+  color: white;
   -webkit-transform: translate3d(0, -4.5rem, 0) scale3d(0.75, 0.75, 1);
   transform: translate3d(0, -4.5rem, 0) scale3d(0.75, 0.75, 1);
 }
 
 .input__field--nao:focus ~ .graphic--nao,
 .input--filled .graphic--nao {
-  stroke: #d28e77;
+  stroke: white;
   -webkit-transform: translate3d(-66.6%, 0, 0);
   transform: translate3d(-66.6%, 0, 0);
 }

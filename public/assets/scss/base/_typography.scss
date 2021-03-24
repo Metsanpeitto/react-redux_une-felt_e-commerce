@@ -1,5 +1,5 @@
 body {
-  font-family: "PontanoSans-Regular", sans-serif;
+  font-family: "Lato-Reg", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
@@ -10,56 +10,92 @@ body {
   font-family: "Didot";
   font-style: normal;
   font-weight: 400;
-  src: local("Didot") url(/assets/fonts/didot/Didot-Regular.ttf)
-    format("truetype");
+  src: url("/assets/fonts/didot/didot-medium-webfont.eot");
+  src: url("/assets/fonts/didot/didot-medium-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/didot/didot-medium-webfont.woff2") format("woff2"),
+    url("/assets/fonts/didot/didot-medium-webfont.woff") format("woff"),
+    url("/assets/fonts/didot/didot-medium-webfont.ttf") format("truetype");
 }
 
+// Didot medium and
 @font-face {
   font-family: "Didot-Medium";
   font-style: medium;
   font-weight: 400;
-  src: local("Didot-Medium"),
-    url(/assets/fonts/didot/Didot-Medium.ttf) format("truetype");
+  src: url("/assets/fonts/didot/didot-medium-webfont.eot");
+  src: url("/assets/fonts/didot/didot-medium-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/didot/didot-medium-webfont.woff2") format("woff2"),
+    url("/assets/fonts/didot/didot-medium-webfont.woff") format("woff"),
+    url("/assets/fonts/didot/didot-medium-webfont.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Didot-Italic";
   font-style: italic;
   font-weight: 400;
-  src: local("Didot-Bold-Italic"),
-    url(/assets/fonts/didot/Didot-Bold-Italic.ttf) format("truetype");
+  src: url("/assets/fonts/didot/didot-italic-webfont.eot");
+  src: url("/assets/fonts/didot/didot-italic-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/didot/didot-italic-webfont.woff2") format("woff2"),
+    url("/assets/fonts/didot/didot-italic-webfont.woff") format("woff"),
+    url("/assets/fonts/didot/didot-italic-webfont.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Lato-Reg";
   font-style: normal;
   font-weight: 400;
-  src: local("Lato"),
-    url(/assets/fonts/Lato/Lato-Regular.ttf) format("truetype");
+  src: url("/assets/fonts/lato/lato-regular-webfont.eot");
+  src: url("/assets/fonts/lato/lato-regular-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/lato/lato-regular-webfont.woff2") format("woff2"),
+    url("/assets/fonts/lato/lato-regular-webfont.woff") format("woff"),
+    url("/assets/fonts/lato/lato-regular-webfont.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Old-Standard-Reg";
   font-style: normal;
   font-weight: 400;
-  src: local("Old-Standard"),
-    url(/assets/fonts/old-standard/OldStandardTT-Regular.ttf) format("truetype");
+  src: url("/assets/fonts/old-standard/oldstandardtt-regular-webfont.eot");
+  src: url("/assets/fonts/old-standard/oldstandardtt-regular-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/old-standard/oldstandardtt-regular-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/old-standard/oldstandardtt-regular-webfont.woff")
+      format("woff"),
+    url("/assets/fonts/old-standard/oldstandardtt-regular-webfont.ttf")
+      format("truetype");
 }
 
 @font-face {
   font-family: "Old-Standard-Italic";
   font-style: italic;
-  //font-weight: 400;
-  src: local("Old-Standard"),
-    url(/assets/fonts/old-standard/OldStandardTT-Italic.ttf) format("truetype");
+  src: url("/assets/fonts/old-standard/old-standard-italic-webfont.eot");
+  src: url("/assets/fonts/old-standard/old-standard-italic-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/old-standard/old-standard-italic-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/old-standard/old-standard-italic-webfont.woff")
+      format("woff"),
+    url("/assets/fonts/old-standard/old-standard-italic-webfont.ttf")
+      format("truetype");
 }
 
 @font-face {
   font-family: "Old-Standard-Bold";
   font-style: bold;
-  //font-weight: 400;
-  src: local("Old-Standard"),
-    url(/assets/fonts/old-standard/OldStandardTT-bold.ttf) format("truetype");
+  src: url("/assets/fonts/old-standard/old-standard-bold-webfont.eot");
+  src: url("/assets/fonts/old-standard/old-standard-bold-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/old-standard/old-standard-bold-webfont.woff2")
+      format("woff2"),
+    url("/assets/fonts/old-standard/old-standard-bold-webfont.woff")
+      format("woff"),
+    url("/assets/fonts/old-standard/old-standard-bold-webfont.ttf")
+      format("truetype");
 }
 
 $font-didot: "Didot";
@@ -74,8 +110,38 @@ $font-medium-text: 19px;
 $font-small: 19px;
 
 .h1-didot-reg {
+  font-size: 64px;
+  line-height: 56px;
+  font-family: $font-didot;
+}
+
+.h2-didot-reg {
+  font-size: 56px;
+  line-height: 56px;
+  font-family: $font-didot;
+}
+
+.h3-didot-reg {
   font-size: 48px;
   line-height: 56px;
+  font-family: $font-didot;
+}
+
+.h4-didot-reg {
+  font-size: 40px;
+  line-height: 48px;
+  font-family: $font-didot;
+}
+
+.h5-didot-reg {
+  font-size: 32px;
+  line-height: 48px;
+  font-family: $font-didot;
+}
+
+.h6-didot-reg {
+  font-size: 24px;
+  line-height: 48px;
   font-family: $font-didot;
 }
 
@@ -84,6 +150,7 @@ $font-small: 19px;
   line-height: 24px;
   font-family: $font-lato-medium;
   font-weight: 700;
+  letter-spacing: 3px;
 }
 
 .subtitle-reg {
@@ -91,6 +158,7 @@ $font-small: 19px;
   line-height: 24px;
   font-family: $font-lato-medium;
   font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
 .parraf-lg {
@@ -103,6 +171,22 @@ $font-small: 19px;
 .parraf-reg {
   font-size: 14px;
   line-height: 22px;
+  letter-spacing: 0.4px;
+  font-family: $font-lato-medium;
+  font-weight: 400;
+}
+
+.parraf-reg-didot {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  font-family: $font-didot;
+  font-weight: 400;
+}
+
+.parraf-sm {
+  font-size: 12px;
+  line-height: 18px;
   letter-spacing: 0.4px;
   font-family: $font-lato-medium;
   font-weight: 400;
@@ -122,8 +206,15 @@ $font-small: 19px;
   font-weight: 700;
 }
 
+.label-reg {
+  font-size: 14px;
+  line-height: 20px;
+  font-family: $font-lato-medium;
+  font-weight: 700;
+}
+
 .label-small {
-  font-size: 6px;
+  font-size: 12px;
   line-height: 0px;
   font-family: $font-lato-medium;
   font-weight: 300;
@@ -142,3 +233,263 @@ $font-small: 19px;
   font-family: $old-standard-tt-medium;
   font-weight: 300;
 }
+
+//      Ipad & Tablet Styles Starts Here
+@media (max-width: 1200px) and (min-width: 766px) {
+  .h1-didot-reg {
+    font-size: 52px;
+    line-height: 56px;
+    font-family: $font-didot;
+  }
+
+  .h2-didot-reg {
+    font-size: 48px;
+    line-height: 52px;
+    font-family: $font-didot;
+  }
+
+  .h3-didot-reg {
+    font-size: 36px;
+    line-height: 48px;
+    font-family: $font-didot;
+  }
+
+  .h4-didot-reg {
+    font-size: 22px;
+    line-height: 36px;
+    font-family: $font-didot;
+  }
+
+  .h5-didot-reg {
+    font-size: 18px;
+    line-height: 48px;
+    font-family: $font-didot;
+  }
+
+  .h6-didot-reg {
+    font-size: 16px;
+    line-height: 48px;
+    font-family: $font-didot;
+  }
+
+  .subtitle-lg {
+    font-size: 14px;
+    line-height: 22px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .subtitle-reg {
+    font-size: 12px;
+    line-height: 18px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+
+  .parraf-lg {
+    font-size: 14px;
+    line-height: 18px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .parraf-reg {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .parraf-reg-didot {
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.4px;
+    font-family: $font-didot;
+    font-weight: 400;
+  }
+
+  .parraf-sm {
+    font-size: 10px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .button-text {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .label {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+  }
+
+  .label-reg {
+    font-size: 12px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+  }
+
+  .label-small {
+    font-size: 10px;
+    line-height: 0px;
+    font-family: $font-lato-medium;
+    font-weight: 300;
+  }
+
+  .input {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 300;
+  }
+
+  .price {
+    font-size: 12px;
+    line-height: 20px;
+    font-family: $old-standard-tt-medium;
+    font-weight: 300;
+  }
+}
+
+//      Ipad & Tablet Styles Ends Here
+
+//      Mobile Styles Starts Here
+@media (max-width: 765px) and (min-width: 300px) {
+  .h1-didot-reg {
+    font-size: 32px;
+    line-height: 42px;
+    font-family: $font-didot;
+  }
+
+  .h2-didot-reg {
+    font-size: 24px;
+    line-height: 32px;
+    font-family: $font-didot;
+  }
+
+  .h3-didot-reg {
+    font-size: 22px;
+    line-height: 28px;
+    font-family: $font-didot;
+  }
+
+  .h4-didot-reg {
+    font-size: 20px;
+    line-height: 26px;
+    font-family: $font-didot;
+  }
+
+  .h5-didot-reg {
+    font-size: 16px;
+    line-height: 22px;
+    font-family: $font-didot;
+  }
+
+  .h6-didot-reg {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-didot;
+  }
+
+  .subtitle-lg {
+    font-size: 14px;
+    line-height: 22px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .subtitle-reg {
+    font-size: 12px;
+    line-height: 18px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+
+  .parraf-lg {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .parraf-reg {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .parraf-reg-didot {
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.4px;
+    font-family: $font-didot;
+    font-weight: 400;
+  }
+
+  .parraf-sm {
+    font-size: 10px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .button-text {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 400;
+  }
+
+  .label {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+  }
+
+  .label-reg {
+    font-size: 12px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 700;
+  }
+
+  .label-small {
+    font-size: 10px;
+    line-height: 0px;
+    font-family: $font-lato-medium;
+    font-weight: 300;
+  }
+
+  .input {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $font-lato-medium;
+    font-weight: 300;
+  }
+
+  .price {
+    font-size: 12px;
+    line-height: 20px;
+    font-family: $old-standard-tt-medium;
+    font-weight: 300;
+  }
+}
+
+//      Mobile Styles Ends Here

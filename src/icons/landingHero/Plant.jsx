@@ -8,6 +8,7 @@ function Icon() {
       height="92"
       fill="none"
       viewBox="0 0 94 92"
+      className="plant"
     >
       <path
         fill="#89C5CC"

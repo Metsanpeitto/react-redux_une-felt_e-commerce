@@ -1,23 +1,32 @@
 //     -----------   Checkout  Layout  Starts          ---------------------------------------     //
 
 .c-checkout {
-  background-color: $color-secondary-light;
-  padding: 10rem;
-  padding-top: 10rem;
-  padding-bottom: 20rem;
+  width: 100vw;
+  min-height: 1200px;
+  padding: 0;
+  padding-top: 60px;
+  padding-bottom: 400px;
+  margin-bottom: 300px;
+  background: unset;
+  color: $color-text-antracite;
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: 15rem 80px auto;
+  grid-row-gap: 32px;
+  animation: fadeIn 4s ease-in-out;
 
   &__title {
+    align-self: center;
     text-align: center;
-    font-family: "Didot";
-    font-size: 7rem;
-    font-weight: 800;
-    text-transform: capitalize;
-    letter-spacing: 1rem;
-    color: #d28e77;
-    animation: menu-down 2s ease-in-out;
     grid-row-start: 1;
+    text-transform: capitalize;
+    color: $color-primary-dark;
+
+    animation: arriveRight 3s ease-in-out;
+  }
+
+  .step-index {
+    grid-row-start: 2;
+    animation: rise 2s ease-in-out;
   }
 
   &__menus {
@@ -25,50 +34,50 @@
     grid-template-columns: auto auto;
 
     .left-menu {
-      grid-row-start: 2;
-      background-color: $color-secondary-dark;
-      padding: 5rem;
-      width: 90%;
+      position: relative;
+      background-color: $color-white;
+      padding: 32px;
+      padding-left: 80px;
+      padding-right: 80px;
+      grid-row-start: 3;
+      grid-template-rows: 60px auto;
+      transform-origin: center;
+      margin-left: 15%;
       animation: land-from-left 2s ease-in-out;
+
       &--title {
-        font-size: 2.5rem;
-        color: $color-primary-dark;
-        margin-bottom: 5rem;
-        text-align: center;
-        letter-spacing: 0.7rem;
+        align-self: end;
+
+        text-align: start;
       }
+
       form {
+        margin-top: 32px;
+        margin-bottom: 6px;
         .form-group {
-          font-size: 1.4rem;
-          font-weight: 200;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          padding-left: 1rem;
           margin-left: auto;
           margin-right: auto;
-          margin-top: 1.3rem;
-          width: 50rem;
-          height: 3rem;
+          margin-top: 16px;
 
           .field-label {
-            align-self: center;
+            align-self: end;
             justify-self: start;
-            color: $color-primary-light;
-            font-weight: 600;
           }
 
           input {
-            appearance: textfield;
-            background-color: $color-secondary-light;
+            align-self: end;
+            background-color: $color-grey-light-1;
             border-style: unset;
             border-color: unset;
             border-image: unset;
-            color: $color-primary-dark !important;
+            color: $color-grey-dark !important;
             cursor: text;
             display: inline-block;
             font: inherit;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 16px;
+            /* font-weight: 700; */
             justify-self: start;
             letter-spacing: normal;
             padding-left: 1rem;
@@ -78,44 +87,49 @@
             text-transform: none;
             text-shadow: none;
             margin: 0em;
-            min-height: 3.5rem;
-            max-height: 3.5rem;
+            min-height: 32px;
+            max-height: 32px;
             -webkit-appearance: textfield;
             -webkit-rtl-ordering: logical;
             -webkit-writing-mode: horizontal-tb !important;
             word-spacing: normal;
 
             &:focus {
-              background-color: $color-secondary-light;
+              background-color: $color-grey-light-2;
               padding: 2%;
               outline: none;
             }
 
             &::placeholder {
-              color: $color-primary-light !important;
-              font-size: $font-small;
+              color: $color-grey-dark-2 !important;
             }
           }
 
           .srv-validation-message {
+            font-size: 12px;
             position: relative !important;
-            top: -1rem !important;
-            color: $color-primary-light !important;
+            top: 0rem !important;
+            color: #b00101 !important;
           }
         }
 
         .account {
           grid-template-columns: 3rem 1fr;
 
+          .PrivateSwitchBase-root-1 {
+            padding: 9px;
+            padding-left: 0%;
+          }
+
           input {
             align-self: center;
+            cursor: unset !important;
             grid-column-start: 1;
             grid-row-start: 1;
           }
+
           label {
             align-self: center;
-            color: $color-primary-light;
-            font-weight: 600;
             grid-column-start: 2;
             grid-row-start: 1;
           }
@@ -124,45 +138,43 @@
     }
 
     .right-menu {
-      grid-row-start: 2;
-      background-color: $color-secondary-dark;
-      padding: 5rem;
-
+      position: relative;
+      background-color: $color-white;
+      padding: 32px;
+      padding-left: 80px;
+      padding-right: 80px;
+      grid-row-start: 3;
+      grid-template-rows: 60px auto;
+      margin-right: 15%;
+      transform-origin: center;
       animation: land-from-right 2s ease-in-out;
 
       &--title {
-        font-size: 2.5rem;
-        color: $color-primary-dark;
-        margin-bottom: 5rem;
-        text-align: center;
-        letter-spacing: 0.7rem;
+        align-self: end;
+
+        text-align: start;
       }
 
       .checkout-details {
-        color: $color-primary-light;
-        font-size: 1.4rem;
-        font-weight: 600;
-        letter-spacing: 0.2rem;
         text-transform: capitalize;
-        padding: 5rem;
         padding-top: 0rem;
 
         .order-box {
-          padding-bottom: 5rem;
+          padding-bottom: 0%;
           .title-box {
             border-bottom: 1px solid $color-tertiary-dark;
-            font-size: 2rem;
-            margin-top: 5rem;
-            margin-bottom: 2rem;
+            margin-top: 32px;
+            margin-bottom: 6px;
           }
           .qty {
             list-style: none;
             border-bottom: 1px solid $color-tertiary-dark;
-
+            margin-top: 32px;
+            margin-bottom: 6px;
             display: grid;
-            row-gap: 1rem;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+            row-gap: 16px;
+            padding-top: 16px;
+            padding-bottom: 16px;
 
             .title-box {
               border-bottom: 1px solid $color-secondary-dark;
@@ -170,7 +182,7 @@
 
             li {
               display: grid;
-              grid-template-columns: 13rem 3rem 5rem 1fr;
+              grid-template-columns: 35% 5% 35% 30%;
               & > * {
                 align-self: center;
                 justify-self: center;
@@ -195,19 +207,21 @@
             &__number {
               padding-bottom: 1rem;
               display: grid;
-              grid-template-columns: repeat(2, 1fr);
+              grid-template-columns: 75% 30%;
 
               span {
-                color: #d28e77;
-                font-size: 1.5rem;
-                font-weight: 600;
+                // .price
+                font-size: 16px;
+                line-height: 20px;
+                font-family: $old-standard-tt-medium;
+                font-weight: 300;
               }
             }
 
             &__shipping {
               display: grid;
               grid-template-rows: 2rem 1fr;
-              grid-template-columns: 10rem auto;
+              grid-template-columns: 75% 30%;
               margin-top: 3rem;
               padding-top: 3rem;
               border-top: 1px solid $color-tertiary-dark;
@@ -240,101 +254,117 @@
             list-style: none;
             padding-bottom: 1rem;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 75% 30%;
 
             span {
-              color: #d28e77;
-              font-size: 1.5rem;
-              font-weight: 600;
-            }
-          }
-        }
-
-        .payment-box {
-          .payment-options {
-            display: grid;
-            grid-template-columns: auto auto;
-
-            .radio-option {
-              display: grid;
-              grid-template-columns: 2rem auto;
-              input {
-                align-self: center;
-              }
-            }
-
-            .upper-box {
-              margin-bottom: 2rem;
+              //color: #d28e77;
+              //font-size: 1.5rem;
+              //font-weight: 600;
             }
           }
         }
       }
-    }
-  }
-}
 
-.checkout-form {
-  display: grid;
-  grid-template-rows: auto 5rem;
-  margin-top: 3rem;
-  padding: 3rem;
-  background: #fffaf0;
-  background-color: #fffaf0;
-  width: 130%;
-  height: 30rem;
-  transform: translateX(-13%);
-  border-radius: 2rem;
-
-  &__form {
-    .checkout {
-      &--text {
-        color: $color-primary-dark;
-        font-size: 1.5rem;
-        padding-bottom: 1rem;
-      }
-      &--total {
-        display: grid;
-        grid-template-columns: 7rem auto;
-        p {
-          color: $color-primary-dark;
-          grid-column-start: 2;
-        }
-      }
-
-      &--item {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      &--expiration {
+      .buttons {
         display: grid;
         grid-template-columns: auto auto;
+        row-gap: 3rem;
+        padding-top: 3rem;
+
+        a {
+          white-space: nowrap;
+        }
+
+        a:nth-child(1) {
+          grid-row-start: 1;
+          grid-column-start: 2;
+          justify-self: end;
+        }
+
+        a:nth-child(2) {
+          grid-row-start: 1;
+          grid-column-start: 1;
+        }
       }
     }
   }
-  &__button {
-    margin-top: 2rem;
-    align-self: center;
-    justify-self: end;
-    .f-bp {
-      min-width: 15rem;
-      max-width: 15rem;
-      color: #fff;
-      font-weight: bold;
-      font-size: 1.3rem;
-      font-weight: 500;
-      position: relative;
-      align-items: center;
-      display: inline-flex;
-      background-color: #d28e77;
-      padding: -1px 3.125vw 0 4.688vw;
-      padding-left: 4rem;
-      line-height: 5rem;
-      text-transform: uppercase;
-      transition: background-color 0.4s ease-out;
-      transform-origin: 0px 0px;
-      transition: all 2s ease-out;
-      opacity: 1;
+
+  .payment-box {
+    position: relative;
+    background-color: $color-white;
+    padding: 32px;
+    padding-left: 80px;
+    padding-right: 80px;
+    .upper-box {
+      align-self: end;
+      .payment-options {
+        display: grid;
+        grid-template-columns: auto auto;
+
+        .radio-option {
+          display: grid;
+          grid-template-columns: 2rem auto;
+
+          label {
+            align-self: center;
+            margin-left: 12px;
+          }
+
+          input {
+            align-self: center;
+          }
+        }
+      }
+    }
+
+    .checkout-form {
+      display: grid;
+      grid-template-rows: auto 60px;
+      margin-top: 32px;
+      padding: 32px;
+      background: #fffaf0;
+      background-color: #fffaf0;
+      width: 600px;
+      height: 330px;
+      border-radius: 16px;
+
+      &__form {
+        margin-top: 16px;
+        .checkout {
+          &--text {
+          }
+          &--total {
+            display: grid;
+
+            .subtitle-lg {
+              margin-bottom: 6px;
+            }
+            grid-template-columns: 7rem auto;
+            .label {
+              grid-column-start: 1;
+            }
+            .price {
+              grid-column-start: 2;
+            }
+          }
+
+          &--item {
+            margin-top: 16px;
+            margin-bottom: 16px;
+          }
+
+          &--expiration {
+            display: grid;
+            grid-template-columns: auto auto;
+            text-transform: capitalize;
+          }
+        }
+      }
+      &__button {
+        margin-top: 2rem;
+        align-self: center;
+        justify-self: end;
+      }
     }
   }
 }
@@ -348,10 +378,11 @@
 //     -----------   Checkout Success Layout Starts    ---------------------------------------     //
 
 .c-checkout-success {
-  background-color: $color-secondary-light;
+  background-color: $color-white;
   display: block;
+  height: 1200px;
   width: 100%;
-  padding-top: 15vh;
+  padding-top: 0;
   padding-bottom: 5%;
   position: relative;
   font-size: 19px;
@@ -359,75 +390,54 @@
   color: #d28e77;
   animation: arriveLeft 2s ease-in-out;
 
-  .title {
-    margin-top: 5px;
-    margin-bottom: 15px;
+  .b-layout-background-svg {
+    position: absolute;
   }
 
-  &__head {
-    margin-top: 3%;
-    text-align: center;
-    animation: arriveRight 3s ease-in-out;
-    i {
-      font-size: 6rem;
+  .b-layout-card {
+    grid-template-columns: 80px 1fr 80px;
+    grid-template-rows: 64px 220px 80px 80px 40px 40px;
+
+    svg {
+      width: 208px;
+      justify-self: center;
+      grid-column-start: 2;
+      grid-row-start: 2;
     }
 
-    .thanks {
-      margin-top: 3%;
-      text-align: center;
-      font-family: $font-didot;
-      font-size: 7rem;
-      font-weight: 800;
-      text-transform: capitalize;
-      letter-spacing: 1rem;
+    h3 {
+      color: $color-text-antracite;
+      justify-self: center;
+      grid-column-start: 2;
+      grid-row-start: 3;
     }
 
     p {
-      font-size: 32px;
+      color: $color-text-antracite;
+      justify-self: center;
+      grid-column-start: 2;
+      grid-row-start: 4;
+      width: 60%;
+      text-align: center;
+    }
+
+    a {
+      justify-self: center;
+      grid-column-start: 2;
+      grid-row-start: 5;
     }
   }
 
-  &__body {
-    background-color: $color-secondary-dark;
-    border-radius: 2rem;
-    width: 50vw;
-    height: min-content;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5vh;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    display: grid;
+  .title {
+    position: relative;
+    top: 120px;
     text-align: center;
-    animation: rise 4s ease-in-out;
+  }
 
-    .order_detail {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      width: 70%;
-      margin: auto;
-
-      h4 {
-        font-weight: 200;
-        text-align: start;
-      }
+  &__card {
+    h3 {
     }
-
-    .product-order {
-      width: 60%;
-      margin: auto;
-
-      .product-order-detail {
-        font-weight: 300;
-      }
-    }
-
-    .shipping {
-      font-weight: 300;
-
-      h4 {
-        font-weight: inherit;
-      }
+    p {
     }
   }
 }
@@ -435,16 +445,26 @@
 //     -----------   Checkout Success Layout Ends    ---------------------------------------     //
 
 //      Ipad & Tablet Styles Starts Here
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 766px) {
+  .c-checkout {
+    padding-bottom: 200px;
+    position: relative;
+    height: unset;
+  }
   .c-checkout__menus {
     display: grid;
     grid-template-rows: auto auto;
     min-height: 100%;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
     .left-menu {
       grid-row-start: 1;
+      margin-left: auto;
     }
     .right-menu {
       margin-top: 10%;
+      margin-right: auto;
       grid-row-start: 2;
     }
   }
@@ -454,68 +474,166 @@
 //      Mobile Styles Starts Here
 @media (max-width: 765px) and (min-width: 300px) {
   .c-checkout {
+    height: 100%;
     padding: unset;
-    padding-top: 30vh;
-
+    padding-top: 80px;
+    min-height: 900px;
     &__title {
       text-align: center;
-      font-size: 5rem;
       grid-row-start: 1;
+    }
+
+    .step-index {
+      width: 80vw;
+      .step-grid {
+        grid-template-columns: repeat(4, 20vw);
+        width: 80vw;
+
+        .step-line {
+          width: 80vw;
+        }
+      }
+    }
+
+    .payment-box {
+      grid-template-rows: 48px 32px 250px 32px 64px;
+      padding: 16px;
+      min-height: max-content;
+      max-height: max-content;
+      height: max-content;
+      min-width: 95vw;
+      max-width: 95vw;
+      width: 95vw;
+      .h5-didot-reg {
+        text-align: center;
+        max-width: 85vw;
+        min-width: 85vw;
+        width: 85vw;
+      }
+
+      .upper-box {
+        max-width: 85vw;
+        min-width: 85vw;
+        width: 85vw;
+      }
+
+      .text-right {
+        .checkout-form {
+          max-width: 85vw;
+          min-width: 85vw;
+          width: 85vw;
+          height: unset;
+          row-gap: 16px;
+
+          &__form {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+        }
+      }
     }
 
     &__menus {
       display: grid;
       grid-template-columns: unset;
       grid-template-rows: auto auto;
-
+      grid-row-gap: 64px;
       min-height: 100%;
       max-width: 100vw;
 
       .left-menu {
         grid-row-start: 1;
-        padding: 0.5rem;
-        width: 95vw;
-        margin-left: 2.5vw;
+        padding: 16px;
+        width: 90vw;
+        min-width: 90vw;
+        max-width: 90vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
 
-        form .form-group {
-          font-size: 1.4rem;
-          font-weight: 200;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          padding-left: 0.5rem;
-          /* margin-left: auto; */
-          margin-right: auto;
-          margin-top: 1.3rem;
-          width: 90%;
-          height: 3rem;
+        .h5-didot-reg {
+          text-align: center;
+        }
 
-          input {
-            font-size: 18px !important;
-            font-weight: 700;
-            justify-self: start;
-            letter-spacing: normal;
-            padding-left: 1rem;
-            text-align: start;
+        form {
+          .form-group {
+            font-size: 1.4rem;
+            font-weight: 200;
+            display: grid;
+            grid-template-columns: 100px 100px;
+            padding-left: 0.5rem;
+            /* margin-left: auto; */
+            margin-right: auto;
+            margin-top: 1.3rem;
+            width: 90%;
+            height: max-content;
 
-            margin: 0em;
-            width: 160px;
+            input {
+              font-size: 14px !important;
+              font-weight: 700;
+              justify-self: start;
+              letter-spacing: normal;
+              padding-left: 1rem;
+              text-align: start;
+              margin: 0em;
+              width: 40vw;
+            }
+          }
+          .account {
+            margin-top: 30px;
           }
         }
       }
 
       .right-menu {
-        grid-row-start: 2;
-        padding: unset;
-        padding: 0.5rem;
-        width: 95vw;
-        margin-left: 2.5vw;
-        margin-bottom: 10vh;
+        min-height: 680px;
+        padding: 16px;
+        width: 90vw;
+        min-width: 90vw;
+        max-width: 90vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+
+        .h5-didot-reg {
+          text-align: center;
+        }
 
         .checkout-details {
           font-size: 1.4rem;
-
-          padding: 5rem;
+          padding: 12px;
           padding-top: 0rem;
+
+          .order-box {
+            .title-box {
+              width: 70vw;
+            }
+            .qty {
+              width: 70vw;
+            }
+            .title-box {
+              width: 70vw;
+            }
+            .sub-total {
+              width: 70vw;
+            }
+          }
+        }
+
+        .buttons {
+          grid-template-columns: auto;
+          row-gap: 6px;
+          a {
+            &:nth-child(1) {
+              grid-row-start: 1;
+              grid-column-start: 1;
+              justify-self: start;
+            }
+
+            &:nth-child(2) {
+              grid-row-start: 2;
+              grid-column-start: 1;
+              justify-self: start;
+            }
+          }
         }
         .radio-option {
           label {
@@ -525,10 +643,6 @@
         }
       }
     }
-  }
-
-  .checkout-form__button {
-    transform: scale(0.6);
   }
 }
 //      Mobile Styles Ends Here

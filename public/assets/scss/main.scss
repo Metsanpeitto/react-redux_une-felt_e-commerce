@@ -33,13 +33,16 @@
                |                 |___ 2.b. base
                |                 |
                |                 |
-               |                 |___ 2.c. effects    
+               |                 |___ 2.c. effects 
                |                 |
                |                 |                              
-               |                 |___ 2.d. typographic
+               |                 |___ 2.d. layout   
+               |                 |
+               |                 |                              
+               |                 |___ 2.e. typographic
                |                 | 
                |                 |
-               |                 |___ 2.e. utilities
+               |                 |___ 2.f. utilities
                |
                |
                |
@@ -72,7 +75,7 @@
                |                 |
                |                 |
                |                 |___ 3.i. header
-                                 |                 |
+               |                 |
                |                 |
                |                 |___ 3.j. search    
                |                 |
@@ -83,10 +86,16 @@
                |                 |___ 3.l. product
                |                 |
                |                 |
-               |                 |___ 3.m. posts               
+               |                 |___ 3.m. product-card   
                |                 |
                |                 |
-               |                 |___ 3.n. wishlist                               
+               |                 |___ 3.n. posts   
+               |                 |
+               |                 |
+               |                 |___ 3.o. step-index               
+               |                 |
+               |                 |
+               |                 |___ 3.p. wishlist                               
                |
                |
                |___4. layout ____
@@ -132,16 +141,7 @@
                |                 | 
                |                 |
                |                 |___ 4.n. 404                                                       
-               |
-               |
-               |___5. pages _____
-                                 |
-                                 |
-                                 |___ 5.a. home
-                                 |
-                                 |
-                                 |___ 5.b. hugger
-   
+
 */
 @charset "UTF-8";
 
@@ -150,6 +150,7 @@
 
 @import "base/base";
 @import "base/animations";
+@import "base/layout";
 @import "base/typography";
 @import "base/utilities";
 @import "base/effects.scss";
@@ -167,6 +168,8 @@
 @import "components/slider";
 @import "components/posts";
 @import "components/product";
+@import "components/product-card";
+@import "components/step-index";
 @import "components/wishlist";
 
 @import "layout/app";
@@ -183,9 +186,6 @@
 @import "layout/story";
 @import "layout/workshops";
 @import "layout/404";
-
-@import "pages/home";
-@import "pages/hugger";
 
 //  ----  Toastify Files Start  ---- //
 

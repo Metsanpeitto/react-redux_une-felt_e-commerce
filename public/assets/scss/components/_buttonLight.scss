@@ -1,18 +1,20 @@
+// Here Starts the style for the light button
+
 .f-bs {
-  min-width: 400px;
-  max-width: 400px;
+  min-width: 300px;
+  max-width: 300px;
   height: 40px;
+  background-color: unset;
   color: #ae97a2;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
   margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
   display: inline-block;
-  //padding-left: 3.5vw;
   line-height: 0px;
-  letter-spacing: 0.1.5px;
+  letter-spacing: 0.1 0.5px;
   text-transform: uppercase;
   outline: 0 !important;
   border: none !important;
@@ -35,16 +37,16 @@
     }
     &:nth-child(2) {
       opacity: 0;
-      right: 2rem;
+      right: 20px;
       transition: all 0.5s ease-in-out;
     }
   }
 
   .f-bs-line {
-    left: 2rem;
+    left: 10px;
     bottom: 0;
     height: 1px;
-    width: 3.5vw;
+    width: 60px;
     content: "";
     position: absolute;
     background: #ae97a2;
@@ -54,7 +56,7 @@
 
   .f-bs-label {
     top: 0%;
-    left: 8rem;
+    left: 100px;
     bottom: 0;
     height: 1px;
     content: "";
@@ -81,26 +83,26 @@
       }
       &:nth-child(2) {
         opacity: 1;
-        right: 0rem;
+        right: 0px;
         transition: all 0.5s ease-in-out;
       }
     }
 
     .f-bs-line {
-      left: 22rem;
+      left: 220px;
       bottom: 0;
       height: 1px;
-      width: 3.5vw;
+      width: 60px;
       content: "";
       position: absolute;
       background: #ae97a2;
-      transform: translateX(-1rem);
+      transform: translateX(-20px);
     }
 
     .f-bs-label {
       top: 0%;
-      left: 5rem;
-      transform-origin: -10rem 0px;
+      left: 40px;
+      transform-origin: -20px 0px;
       transition: all 0.5s ease-out;
     }
   }

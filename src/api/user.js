@@ -45,7 +45,6 @@ const login = async (user) => {
               token: token,
             };
           }
-          console.log(filledFields);
           return filledFields;
         });
       } else {

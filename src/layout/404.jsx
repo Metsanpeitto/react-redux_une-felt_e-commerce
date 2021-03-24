@@ -5,7 +5,6 @@ import Search from "../components/Search";
 
 class PageNotFound extends Component {
   render() {
-    const { translate } = this.props;
     return (
       <section className="l-404">
         <div className="illustration">

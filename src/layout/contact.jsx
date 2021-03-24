@@ -77,11 +77,9 @@ class Contact extends Component {
   /*   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50059.12775918716!2d72.78534673554945!3d21.16564923510817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1533793756956"
    */
   render() {
-    const { translate } = this.props;
-
     return (
       <section className="l-contact-canvas">
-        <h3 className="title">Contact</h3>
+        <h3 className="h2-didot-reg">Contact</h3>
         <div className="l-contact">
           <iframe
             title="google"
@@ -97,7 +95,7 @@ class Contact extends Component {
           <div className="main--social">
             <h3>Social Media</h3>
             <div className="social--icons">
-              <a href="#">
+              <a href="https://br.pinterest.com/une722/_saved/">
                 {this.state.mobile ? (
                   <i class="fab fa-pinterest-square"></i>
                 ) : (
@@ -118,7 +116,7 @@ class Contact extends Component {
                   <Instagram />
                 )}
               </a>
-              <a href="#">
+              <a href="https://www.facebook.com/une.tw/">
                 {this.state.mobile ? (
                   <i class="fab fa-facebook-f"></i>
                 ) : (

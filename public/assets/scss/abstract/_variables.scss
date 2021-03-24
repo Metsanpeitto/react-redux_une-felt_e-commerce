@@ -7,18 +7,19 @@ $color-secondary-dark: #ffeee3;
 $color-tertiary-dark: #fdd8d3;
 
 $color-grey-light-1: #f7f7f7;
-$color-grey-light-2: #eee;
+$color-grey-light-2: #e3dddd;
 
-$color-grey-dark: #777;
-$color-grey-dark-2: #999;
+$color-grey-dark: #999;
+$color-grey-dark-2: #808080;
 $color-grey-dark-3: #333;
 
 $color-white: #fff;
 $color-black: #000;
+$color-text-antracite: #292929;
 
 // FONT
-$default-font: "PontanoSans-Regular", sans-serif;
-$default-font-size: 1.6rem;
+$default-font: "Lato-Reg", sans-serif;
+$default-font-size: 16px;
 
 // GRID
 $grid-width: 160rem;
@@ -35,4 +36,5 @@ $gutter-horizontal-large: 20rem;
   grid-column-gap: 16px;
   padding-left: 32px;
   padding-right: 32px;
+  table-layout: fixed;
 }

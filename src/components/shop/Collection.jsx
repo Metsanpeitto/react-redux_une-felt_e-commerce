@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getAllProducts } from "../../actions/Index";
+import { getProducts } from "../../actions/Index";
 import ProductListing from "./ProductListing";
-import BlankHeart from "../../icons/BlankHeart";
+import PathAnimated from "../../layout/PathAnimated";
+import LittleHeart from "../../icons/LittleHeart";
 
 class Collection extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Collection extends Component {
       category: null,
       categories: null,
       productsToShow: [],
+      requesting: null,
     };
     this.checkProps = this.checkProps.bind(this);
   }
@@ -37,8 +39,42 @@ class Collection extends Component {
     if (this.props.location.category !== undefined) {
       if (this.props.location.category !== this.state.category) {
         const category = this.props.location.category;
+        var categoryName = null;
+        var type = category.type;
+        if (type === "number") {
+          this.props.state.data2.categorieTree.forEach((c) => {
+            if (c.id === category) {
+              categoryName = c.name;
+            }
+          });
+        } else if (type === undefined) {
+          type = typeof category;
+
+          if (type === "number") {
+            this.props.state.data2.categoryTree.forEach((c) => {
+              if (c.id === category) {
+                categoryName = c.name;
+              }
+            });
+          }
+        }
+        // Tools.category = 81
+        // Pieces.category = 56
+        var categoryId = null;
+        if (category === "tools") {
+          categoryId = 81;
+        } else if (category === "pieces") {
+          categoryId = 56;
+        } else {
+          categoryId = category;
+        }
+        this.props.getProducts(categoryId);
         this.setState(() => {
-          return { category: category };
+          return {
+            category: category,
+            categoryName: categoryName,
+            requesting: true,
+          };
         });
         //  this.setState({...category});
       }
@@ -63,22 +99,39 @@ class Collection extends Component {
                     productsToShow: items,
                     category: category,
                     categories: categories,
+                    requesting: null,
                   };
                 });
               }
             }
           }
         }
+      } // Don't allow the page to stay empty if an error happens and there is not
+      // any product expected.
+      if (!this.state.requesting) {
+        if (!this.state.category && !this.state.categoryName) {
+          this.props.getProducts("56");
+          this.setState(() => {
+            return {
+              requesting: true,
+            };
+          });
+        }
       }
     }
   }
 
   render() {
-    var title = this.state.category;
+    const categoryName = this.state.categoryName;
+    const category = this.state.category;
 
     return (
       <section className="c-collection">
-        <h1 className="c-collection__header">{this.state.category}</h1>
+        <PathAnimated />
+        <LittleHeart />
+        <h1 className="h2-didot-reg">
+          {categoryName ? categoryName : category}
+        </h1>
         <ProductListing
           colSize={this.state.layoutColumns}
           category={this.state.category}
@@ -94,4 +147,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getAllProducts })(Collection);
+export default connect(mapStateToProps, { getProducts })(Collection);

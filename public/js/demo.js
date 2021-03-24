@@ -7,7 +7,7 @@
  * 
  * Copyright 2017, Codrops
  * http://www.codrops.com
- */
+
 {
 	setTimeout(() => document.body.classList.add('render'), 60);
 	const navdemos = Array.from(document.querySelectorAll('nav.demos > .demo'));
@@ -36,3 +36,4 @@
 		navigate(linkEl);
 	});
 }
+ */

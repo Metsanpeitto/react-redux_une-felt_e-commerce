@@ -7,7 +7,7 @@ const Frame = (props) => (
       <img
         // src="https://rino-pelle.com/wp-content/uploads/2020/08/nenna-padded-jacket-side-front-800x1067.jpg"
         src={props.img}
-        alt="Rino &amp; Pelle"
+        alt=""
       />
     </div>
   </div>

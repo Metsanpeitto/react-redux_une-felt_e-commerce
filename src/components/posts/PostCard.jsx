@@ -24,11 +24,22 @@ class Shop extends Component {
       CONFIG: null,
       isActive: null,
       mouseTimeout: null,
-
       loaded: null,
+      cateogry: null,
+      page: null,
     };
   }
   componentDidMount() {
+    var data = this.props.post;
+    var category = data[2];
+    var page = data[3];
+    this.setState(() => {
+      return {
+        categoryId: category,
+        page: page,
+      };
+    });
+
     this.mountScript();
   }
 
@@ -49,7 +60,8 @@ class Shop extends Component {
         CONFIG: null,
         isActive: null,
         mouseTimeout: null,
-
+        page: 0,
+        categoryId: null,
         loaded: null,
       };
     });
@@ -61,16 +73,25 @@ class Shop extends Component {
       return {
         pathname: `${process.env.PUBLIC_URL}/${source}/${key}`,
         category: key,
+        categoryId: this.state.categoryId,
+        page: this.state.page,
       };
     }
   }
 
   mountScript() {
-    const script = document.createElement("script");
-    script.src = "/anime.min.js";
-    script.async = true;
-    script.onload = () => this.scriptLoaded();
-    document.body.appendChild(script);
+    const existingScript = document.getElementById("anime");
+
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = `${process.env.PUBLIC_URL}  /js/anime.min.js`;
+      script.id = "anime";
+      script.async = true;
+      document.body.appendChild(script);
+      script.onload = () => this.scriptLoaded();
+    } else {
+      this.scriptLoaded();
+    }
   }
 
   scriptLoaded() {
@@ -82,6 +103,7 @@ class Shop extends Component {
     var items = Array.from(document.querySelectorAll(".item"));
 
     let thisElement = items[index];
+
     const svg = svgs[index];
 
     var path = svg.querySelector("path");
@@ -101,8 +123,8 @@ class Shop extends Component {
           delay: thisElement.dataset.animationPathDelay || 0,
           easing: thisElement.dataset.animationPathEasing || "easeOutElastic",
           elasticity: thisElement.dataset.pathElasticity || 400,
-          scaleX: thisElement.dataset.pathScalex || 1,
-          scaleY: thisElement.dataset.pathScaley || 1,
+          scaleX: thisElement.dataset.pathScalex || 0.8,
+          scaleY: thisElement.dataset.pathScaley || 0.8,
           translateX: thisElement.dataset.pathTranslatex || 0,
           translateY: thisElement.dataset.pathTranslatey || 0,
           rotate: thisElement.dataset.pathRotate || 0,
@@ -112,8 +134,8 @@ class Shop extends Component {
           delay: thisElement.dataset.animationImageDelay || 0,
           easing: thisElement.dataset.animationImageEasing || "easeOutElastic",
           elasticity: thisElement.dataset.imageElasticity || 400,
-          scaleX: thisElement.dataset.imageScalex || 1.1,
-          scaleY: thisElement.dataset.imageScaley || 1.1,
+          scaleX: thisElement.dataset.imageScalex || 1,
+          scaleY: thisElement.dataset.imageScaley || 1,
           translateX: thisElement.dataset.imageTranslatex || 0,
           translateY: thisElement.dataset.imageTranslatey || 0,
           rotate: thisElement.dataset.imageRotate || 0,
@@ -145,10 +167,10 @@ class Shop extends Component {
       };
     });
 
-    this.initEvents(thisElement, index);
+    this.initEvents(thisElement);
   }
 
-  initEvents(el, index) {
+  initEvents(el) {
     this.mouseenterFn = () => {
       var mouseTimeout = setTimeout(() => {
         this.setState(() => {
@@ -157,7 +179,7 @@ class Shop extends Component {
           };
         });
 
-        this.animate(el, index);
+        this.animate(el);
       }, 75);
       this.setState(() => {
         return {
@@ -174,7 +196,7 @@ class Shop extends Component {
             isActive: null,
           };
         });
-        this.animate(el, index);
+        this.animate(el);
       }
     };
 
@@ -184,7 +206,7 @@ class Shop extends Component {
     el.addEventListener("touchend", this.mouseleaveFn);
   }
 
-  getAnimeObj(targetStr, index, el) {
+  getAnimeObj(targetStr, el) {
     var CONFIG = null;
     var isActive = null;
     var paths = null;
@@ -194,80 +216,85 @@ class Shop extends Component {
     paths = this.state.paths;
 
     var target = null;
-    if (targetStr == "item__deco") {
+    if (targetStr === "item__deco") {
       target = el.getElementsByClassName(".item__deco");
     } else {
       target = el.getElementsByTagName(targetStr);
     }
 
-    let animeOpts = {
-      targets: target,
-      duration: CONFIG.animation[targetStr].duration,
-      delay: CONFIG.animation[targetStr].delay,
-      easing: CONFIG.animation[targetStr].easing,
-      elasticity: CONFIG.animation[targetStr].elasticity,
-      scaleX: isActive ? CONFIG.animation[targetStr].scaleX : 1,
-      scaleY: isActive ? CONFIG.animation[targetStr].scaleY : 1,
-      translateX: isActive ? CONFIG.animation[targetStr].translateX : 0,
-      translateY: isActive ? CONFIG.animation[targetStr].translateY : 0,
-      rotate: isActive ? CONFIG.animation[targetStr].rotate : 0,
-    };
-    if (targetStr === "path") {
-      animeOpts.d = isActive ? paths.end : paths.start;
-    }
-    window.anime.remove(target);
-    return animeOpts;
+    if (CONFIG.animation && window.anime) {
+      let animeOpts = {
+        targets: target,
+        duration: CONFIG.animation[targetStr].duration,
+        delay: CONFIG.animation[targetStr].delay,
+        easing: CONFIG.animation[targetStr].easing,
+        elasticity: CONFIG.animation[targetStr].elasticity,
+        scaleX: isActive ? CONFIG.animation[targetStr].scaleX : 0.8,
+        scaleY: isActive ? CONFIG.animation[targetStr].scaleY : 0.8,
+        translateX: isActive ? CONFIG.animation[targetStr].translateX : 0,
+        translateY: isActive ? CONFIG.animation[targetStr].translateY : 0,
+        rotate: isActive ? CONFIG.animation[targetStr].rotate : 0,
+      };
+      if (targetStr === "path") {
+        animeOpts.d = isActive ? paths.end : paths.start;
+      }
+      window.anime.remove(target);
+      return animeOpts;
+    } else return null;
   }
 
-  animate(el, index) {
-    // Animate the path, the image and deco.
-    window.anime(this.getAnimeObj("path", index, el));
-    window.anime(this.getAnimeObj("image", index, el));
-    window.anime(this.getAnimeObj("deco", index, el));
-    // Title and Subtitle animation
-    var title = null;
-    var isActive = null;
-    var subtitle = null;
+  animate(el) {
+    if (window.anime) {
+      // Animate the path, the image and deco.
+      window.anime(this.getAnimeObj("path", el));
+      window.anime(this.getAnimeObj("image", el));
+      window.anime(this.getAnimeObj("deco", el));
+      // Title and Subtitle animation
+      var title = null;
+      var isActive = null;
+      var subtitle = null;
 
-    title = this.state.title;
-    isActive = this.state.isActive;
-    subtitle = this.state.subtitle;
+      title = this.state.title;
+      isActive = this.state.isActive;
+      subtitle = this.state.subtitle;
 
-    window.anime.remove(title);
-    window.anime({
-      targets: title,
-      easing: "easeOutQuad",
-      translateY: isActive
-        ? [
-            { value: "-50%", duration: 200 },
-            { value: ["50%", "0%"], duration: 200 },
-          ]
-        : [
-            { value: "50%", duration: 200 },
-            { value: ["-50%", "0%"], duration: 200 },
-          ],
-      opacity: [
-        { value: 0, duration: 200 },
-        { value: 1, duration: 200 },
-      ],
-    });
-    window.anime.remove(subtitle);
-    window.anime({
-      targets: subtitle,
-      easing: "easeOutQuad",
-      translateY: isActive
-        ? { value: ["50%", "0%"], duration: 200, delay: 250 }
-        : { value: "0%", duration: 1 },
-      opacity: isActive
-        ? { value: [0, 1], duration: 200, delay: 250 }
-        : { value: 0, duration: 1 },
-    });
+      window.anime.remove(title);
+      window.anime({
+        targets: title,
+        easing: "easeOutQuad",
+        translateY: isActive
+          ? [
+              { value: "-50%", duration: 200 },
+              { value: ["50%", "0%"], duration: 200 },
+            ]
+          : [
+              { value: "50%", duration: 200 },
+              { value: ["-50%", "0%"], duration: 200 },
+            ],
+        opacity: [
+          { value: 0, duration: 200 },
+          { value: 1, duration: 200 },
+        ],
+      });
+      window.anime.remove(subtitle);
+      window.anime({
+        targets: subtitle,
+        easing: "easeOutQuad",
+        translateY: isActive
+          ? { value: ["50%", "0%"], duration: 200, delay: 250 }
+          : { value: "0%", duration: 1 },
+        opacity: isActive
+          ? { value: [0, 1], duration: 200, delay: 250 }
+          : { value: 0, duration: 1 },
+      });
+    } else return null;
   }
 
   render() {
     var post = null;
     var index = null;
     var idPost = null;
+
     if (this.props.post[0]) {
       post = this.props.post[0];
       index = this.props.post[1];
@@ -279,13 +306,18 @@ class Shop extends Component {
         if (post.p.content.rendered) {
           var img = post.thumbnail;
           var title = "title";
-          var date = "date";
-          var id = 0;
+
+          var excerptRaw = post.p.excerpt.rendered;
+          var result1 = excerptRaw.slice(1, -1);
+
+          var mySubString = excerptRaw.substring(
+            result1.indexOf("<p>") + 4,
+            result1.indexOf(".") + 1
+          );
+
           if (post.p.title) {
             var rend = post.p.title.rendered;
             title = rend.replace("&#8211;", "");
-            date = post.p.date;
-            id = post.p.id;
           }
 
           if (img) {
@@ -293,27 +325,27 @@ class Shop extends Component {
               <section className="postcard js ">
                 <div className={`item__meta-${index}`}>
                   <div className="item__number item__blog">
-                    <span className="item__specimen"></span>
-                    <span className="item__reference"> </span>
+                    <span className="item__specimen">.</span>
+                    <span className="item__reference">.</span>
                   </div>
-                  <h2 className="item__title"></h2>
+                  <h2 className="item__title">.</h2>
                 </div>
 
-                <Link to={this.newTo(idPost, "post")}>
-                  <div
-                    id="blog"
-                    className={`item item--style-${index}`}
-                    data-animation-path-duration="1500"
-                    data-animation-path-easing="easeOutElastic"
-                    data-morph-path="M 418.1,159.8 C 460.9,222.9 497,321.5 452.4,383.4 417.2,432.4 371.2,405.6 271.3,420.3 137.2,440 90.45,500.6 42.16,442.8 -9.572,381 86.33,289.1 117.7,215.5 144.3,153.4 145.7,54.21 212.7,36.25 290.3,15.36 373.9,94.6 418.1,159.8 Z"
-                    data-path-scaley=".8"
-                    data-image-scalex="1.2"
-                    data-image-scaley="1.2"
-                    data-animation-deco-duration="2000"
-                    data-animation-deco-delay="100"
-                    data-deco-rotate="-10"
-                    onClick={this.handleClick}
-                  >
+                <div
+                  id="blog"
+                  className={`item item--style-${index}`}
+                  data-animation-path-duration="1500"
+                  data-animation-path-easing="easeOutElastic"
+                  data-morph-path="M 418.1,159.8 C 460.9,222.9 497,321.5 452.4,383.4 417.2,432.4 371.2,405.6 271.3,420.3 137.2,440 90.45,500.6 42.16,442.8 -9.572,381 86.33,289.1 117.7,215.5 144.3,153.4 145.7,54.21 212.7,36.25 290.3,15.36 373.9,94.6 418.1,159.8 Z"
+                  data-path-scaley=".6"
+                  data-image-scalex="1"
+                  data-image-scaley="1"
+                  data-animation-deco-duration="2000"
+                  data-animation-deco-delay="100"
+                  data-deco-rotate="-10"
+                  onClick={this.handleClick}
+                >
+                  <Link to={this.newTo(idPost, "post")}>
                     <svg
                       className="item__svg"
                       width="500px"
@@ -340,15 +372,17 @@ class Shop extends Component {
                         />
                       </g>
                     </svg>
-                    <div className="item__meta">
-                      <div className="item__number item__blog">
-                        <span className="item__specimen">{title}</span>
-                        <span className="item__reference"> </span>
-                      </div>
-                      <h2 className="item__title"></h2>
-                    </div>
+                  </Link>
+                  <div className="item__info">
+                    <h2 className="info-title subtitle-lg">{title}</h2>
+
+                    <p className="info-specimen parraf-lg  ">{mySubString}</p>
+
+                    <p className="info-reference parraf-lg">
+                      {post.month - post.day - post.date.year}
+                    </p>
                   </div>
-                </Link>
+                </div>
               </section>
             );
           }

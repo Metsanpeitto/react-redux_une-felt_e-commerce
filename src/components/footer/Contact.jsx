@@ -48,7 +48,7 @@ class Contact extends Component {
             className="main--subscribe"
             data-tip="Input your email and press Enter to submit"
           >
-            <h3>{translate("subscribe")}</h3>
+            <h3 className="subtitle-lg">{translate("subscribe")}</h3>
             <Input
               type="email"
               handleChange={this.handleChange}
@@ -57,7 +57,7 @@ class Contact extends Component {
               label="email here"
             />
 
-            <p>{translate("enter_email")}</p>
+            <p className="parraf-lg">{translate("enter_email")}</p>
           </div>
         </form>
 

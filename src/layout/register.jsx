@@ -6,6 +6,7 @@ import Login from "../components/register/Login";
 import Signup from "../components/register/Signup";
 import Account from "../components/register/Account";
 import Loader from "../effects/loader/Loader";
+import LayoutBackground from "../icons/LayoutBackground";
 
 class Register extends Component {
   constructor(props) {
@@ -31,8 +32,8 @@ class Register extends Component {
 
   componentDidUpdate() {
     if (this.props.state.user.log) {
-      if (this.state.loader == true) {
-        if (this.props.state.user.log == "error") {
+      if (this.state.loader === true) {
+        if (this.props.state.user.log === "error") {
           this.setState(() => {
             return { loader: null };
           });
@@ -81,6 +82,10 @@ class Register extends Component {
       <Account />
     ) : (
       <div className="l-register">
+        <LayoutBackground />
+
+        <h1 className="h2-didot-reg">User manager</h1>
+
         <Login setLoader={this.setLoader} />
         <Signup setLoader={this.setLoader} />
       </div>

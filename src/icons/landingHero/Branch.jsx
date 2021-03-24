@@ -8,6 +8,7 @@ function Icon() {
       height="124"
       fill="none"
       viewBox="0 0 30 124"
+      className="branch"
     >
       <path
         fill="#E8B4B9"

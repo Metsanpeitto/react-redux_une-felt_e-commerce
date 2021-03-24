@@ -13,19 +13,23 @@
 
 body {
   --text-color: #fff;
-  --background-color: #363dc2;
-  --background-color-2: #282faf;
-  --background-color-3: #202692;
-  --link-color: #03b9f1;
+
   --link-hover-color: #fff;
   font-family: "Roboto Mono", monospace;
   font-weight: 500;
   color: #fff;
   color: var(--text-color);
-  background-color: #363dc2;
+
   background-color: var(--background-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #e0e8ff;
+  --background-color-2: #e2fffa;
+  --background-color-3: #eff7ff;
+  --text-color: #fff;
+  --link-color: #fff;
+  --link-hover-color: #f3f1f9;
 }
 
 /* Page Loader */
@@ -64,18 +68,6 @@ main {
   position: relative;
   width: 100%;
   overflow: hidden;
-}
-
-a {
-  text-decoration: none;
-  color: var(--link-color);
-  outline: none;
-}
-
-a:hover,
-a:focus {
-  color: var(--link-hover-color);
-  outline: none;
 }
 
 .hidden {
@@ -402,29 +394,19 @@ a:focus {
   padding: 0.75em 0.75em 1em;
 }
 
-/* Demo themes */
-.demo-2 {
-  --background-color: #1d1b22;
-  --background-color-2: #342560;
-  --background-color-3: #553e9a;
-  --text-color: #fff;
-  --link-color: #f9ed8a;
-  --link-hover-color: #fff;
-}
-
 .demo-3 {
-  --background-color: #56cccf;
-  --background-color-2: #41e0e4;
-  --background-color-3: #1747c0;
+  --background-color: #e0e8ff;
+  --background-color-2: #e2fffa;
+  --background-color-3: #eff7ff;
   --text-color: #fff;
   --link-color: #fff;
-  --link-hover-color: #17b1b5;
+  --link-hover-color: #f3f1f9;
 }
 
 .demo-3 .morph {
   fill: none;
   stroke-width: 12px;
-  stroke: #22bcc0;
+  stroke: #e0e8ff;
 }
 
 @media screen and (max-width: 50em) {

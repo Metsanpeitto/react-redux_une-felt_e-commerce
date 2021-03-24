@@ -9,6 +9,7 @@ function Frame1() {
       data-name="圖層 1"
       version="1.1"
       viewBox="0 0 800 1007.547"
+      className="frame"
     >
       <path
         fill="#fff"

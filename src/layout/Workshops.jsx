@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { withTranslate } from "react-redux-multilingual";
 
 //import Video from "../layout/landing/pon.webm";
 
-class Workshops extends Component {
+class Workshops extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};

@@ -1,5 +1,6 @@
 import {
   RECEIVE_POSTS,
+  RECEIVE_POST,
   RECEIVE_COMMENTS,
   POST_COMMENT,
   FETCH_CATEGORYTREE_POSTS,
@@ -10,12 +11,16 @@ const initialState = {
   categoryTreePosts: [],
   categoryPost: [],
   posts: "empty",
+  post: "empty",
   comments: "empty",
   postComment: "empty",
 };
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case RECEIVE_POST:
+      return { ...state, post: action.post };
+
     case RECEIVE_POSTS:
       return { ...state, posts: action.posts };
 

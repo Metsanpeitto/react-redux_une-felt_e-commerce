@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Input from "../../effects/input/Input";
-import Button from "../Button";
+import Button from "../ButtonNew";
 import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import { signup } from "../../actions/Index";
@@ -63,8 +63,8 @@ class Signup extends Component {
   render() {
     const { translate } = this.props;
     return (
-      <div className="l-register__register">
-        <h3>{translate("register")}</h3>
+      <div className="l-register__register b-layout-card">
+        <h3 className="h5-didot-reg">{translate("register")}</h3>
         <form onSubmit={this.handleSubmit}>
           <Input
             type="email"

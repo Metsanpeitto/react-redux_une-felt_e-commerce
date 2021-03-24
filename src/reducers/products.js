@@ -2,10 +2,12 @@ import {
   FETCH_SINGLE_PRODUCT,
   CHANGE_CURRENCY,
   RECEIVE_PRODUCTS,
+  RECEIVE_PRODUCT,
   SEARCH_PRODUCT,
 } from "../constants/ActionTypes";
 
 const initialState = {
+  product: [],
   products: [],
   symbol: "$",
   product_details: [],
@@ -18,6 +20,13 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.products,
+        history: state.history,
+      };
+
+    case RECEIVE_PRODUCT:
+      return {
+        ...state,
+        product: action.product,
         history: state.history,
       };
 

@@ -8,6 +8,7 @@ function Icon() {
       height="247"
       fill="none"
       viewBox="0 0 433 247"
+      className="shadow"
     >
       <g opacity="0.505">
         <path

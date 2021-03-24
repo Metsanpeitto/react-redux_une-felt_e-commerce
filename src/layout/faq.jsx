@@ -32,9 +32,6 @@ function NestedList(props) {
     </List>
   );
 }
-var openC = false;
-var openG = false;
-var openZ = false;
 
 export default class Faq extends Component {
   constructor(props) {
@@ -43,25 +40,29 @@ export default class Faq extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  openC = false;
+  openG = false;
+  openZ = false;
+
   componentWillMount() {
     if (this.props.location.pathname) {
       var key = this.props.location.pathname;
       key = key.replace("/info/", "");
 
       if (key === "gastos") {
-        openG = true;
-        openC = false;
-        openZ = false;
+        this.openG = true;
+        this.openC = false;
+        this.openZ = false;
       }
       if (key === "time") {
-        openG = false;
-        openC = true;
-        openZ = false;
+        this.openG = false;
+        this.openC = true;
+        this.openZ = false;
       }
       if (key === "delivery") {
-        openG = false;
-        openC = false;
-        openZ = true;
+        this.openG = false;
+        this.openC = false;
+        this.openZ = true;
       }
     }
   }
@@ -75,13 +76,13 @@ export default class Faq extends Component {
   render() {
     return (
       <section className="l-privacy">
-        <h1>FAQ</h1>
+        <h1 className="h2-didot-reg">FAQ</h1>
         <div className="l-privacy--canvas">
           <NestedList
             className="card-header"
             text="How can I maintain the woolen product?"
             form={maintain}
-            open={openC}
+            open={this.openC}
           />
           <NestedList
             className="card-header"
@@ -119,7 +120,7 @@ export default class Faq extends Component {
 
 const maintain = (
   <div className="card-body">
-    <p>
+    <p className="parraf-reg">
       If there is some dust on it, you can using some soft brush to remove it.
     </p>
   </div>
@@ -127,7 +128,7 @@ const maintain = (
 
 const stain = (
   <div className="card-body">
-    <p>
+    <p className="parraf-reg">
       If the woolen product is stained with drink, using tissue clean the liquid
       first. Generally wool fiber has a bit water repellency, before it suck the
       liquid. If unfortunately the woolen product still get some stains, you can
@@ -141,7 +142,7 @@ const stain = (
 
 const custom = (
   <div className="card-body">
-    <p>
+    <p className="parraf-reg">
       You can request a custom order if you want to change some details of a
       work: change a color of elements of the work. In case you wish something
       brand new, I will be happy to fulfill the custom order for you after
@@ -153,7 +154,7 @@ const custom = (
 
 const wrapping = (
   <div className="card-body">
-    <p>
+    <p className="parraf-reg">
       All my works are well packaged in a craft box, if you need any gift card
       we also happy to provide one card with wishing words like Happy Birthday
       or Thank you.
@@ -163,7 +164,7 @@ const wrapping = (
 
 const pet = (
   <div className="card-body">
-    <p>
+    <p className="parraf-reg">
       We know most of the pets like playing fluffy toy, especially cats. If you
       can save the doll before it is almost damaged. We offer repair require,
       but it depends on its repairable possibility. Sending us the image and we

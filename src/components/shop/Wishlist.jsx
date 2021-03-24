@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
 import { withTranslate } from "react-redux-multilingual";
-import Button from "../Button";
-import Empty from "../../icons/EmptyWishlist";
+import Empty from "./common/Empty";
 import {
   addToCartAndRemoveWishlist,
   removeFromWishlist,
 } from "../../actions/Index";
+import LayoutBackground from "../../icons/LayoutBackground";
+import ButtonNewLightBack from "../../components/ButtonNewLightBack";
+import ButtonNew from "../../components/ButtonNew";
 
 class Wishlist extends Component {
   constructor(props) {
@@ -30,9 +31,10 @@ class Wishlist extends Component {
       <div>
         {Items.length > 0 ? (
           <section className="c-wishlist">
-            {" "}
-            <h1> {translate("wishlist")}</h1>
-            <div className="c-wishlist__table ">
+            <LayoutBackground />
+
+            <h1 className="h2-didot-reg"> {translate("wishlist")}</h1>
+            <div className="c-wishlist__table b-layout-card">
               <div className="table-head">
                 <h4>{translate("image")}</h4>
                 <h4>{translate("product_name")}</h4>
@@ -40,7 +42,6 @@ class Wishlist extends Component {
                 <h4>{translate("availability")}</h4>
                 <h4>{translate("action")}</h4>
               </div>
-
               {Items.map((item, index) => {
                 return (
                   <div key={index} className="table-item">
@@ -81,9 +82,8 @@ class Wishlist extends Component {
                     </div>
 
                     <div>
-                      <a
-                        href="#"
-                        className="qty-box__btn right-plus"
+                      <button
+                        className="qty-box__btn right-plus invisible-button"
                         onClick={() =>
                           this.props.addToCartAndRemoveWishlist(item, 1)
                         }
@@ -91,36 +91,32 @@ class Wishlist extends Component {
                         disabled={item.qty >= item.stock ? true : false}
                       >
                         <i className="fas fa-plus"></i>{" "}
-                      </a>{" "}
-                      <a
-                        href="#"
-                        className="remove"
+                      </button>{" "}
+                      <button
+                        className="remove invisible-button"
                         onClick={() => this.props.removeFromWishlist(item)}
                       >
                         <i className="fa fa-times" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 );
-              })}
-            </div>
-            <div className="c-wishlist__buttons">
-              <Link to={`${process.env.PUBLIC_URL}/collection`}>
-                <Button label={translate("back_shop")} />
-              </Link>
+              })}{" "}
+              <div className="c-wishlist__buttons">
+                <ButtonNewLightBack
+                  href={`${process.env.PUBLIC_URL}/collection`}
+                  label={translate("back_shop")}
+                />
 
-              <Link to={`${process.env.PUBLIC_URL}/cart`}>
-                <Button label={translate("cart")} />
-              </Link>
+                <ButtonNew
+                  href={`${process.env.PUBLIC_URL}/cart`}
+                  label={translate("cart")}
+                />
+              </div>
             </div>
           </section>
         ) : (
-          <section className="c-wishlist__empty">
-            <h1> {translate("empty_wishlist")}</h1>
-            <div className="panel">
-              <Empty />
-            </div>
-          </section>
+          <Empty text="Whislist" longText="Empty wishlist" />
         )}
       </div>
     );
