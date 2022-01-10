@@ -16,6 +16,7 @@ var module = {
       action: "action",
       address: "Address",
       any_doubt: "Any doubt?",
+      availability: "availability",
       back_home: "back home",
       back_shop: "back to shop",
       banking_acceptance: "Banking acceptance",

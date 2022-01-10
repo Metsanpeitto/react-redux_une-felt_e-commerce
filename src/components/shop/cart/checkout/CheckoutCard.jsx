@@ -46,9 +46,13 @@ class CheckoutCard extends Component {
 
   componentDidMount() {
     this.mountScript();
+    var propsString = this.props.location.pathname;
+    const email = propsString.replace("/cart-payment/", "");
     if (this.props.cartItems.length > 0) {
       this.setState(() => {
         return {
+          email: email,
+          orderData: this.props.location.orderData,
           cart: this.props.cartItems,
           total: this.props.total,
         };
@@ -64,7 +68,6 @@ class CheckoutCard extends Component {
 
   mountScript() {
     const existingScript = document.getElementById("stripe-js");
-
     if (!existingScript) {
       const script = document.createElement("script");
       script.src = "https://js.stripe.com/v3/";
@@ -135,8 +138,8 @@ class CheckoutCard extends Component {
     }
   }
 
-  doOrder = (flag) => {
-    this.props.placeOrder(this.createOrderData());
+  doOrder = () => {
+    this.props.placeOrder(this.state.orderData);
   };
 
   render() {

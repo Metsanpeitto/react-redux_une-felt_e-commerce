@@ -8,6 +8,12 @@ import LittleHeartHappy from "../../../../icons/LittleHeartHappy";
 import ButtonNewLight from "../../../ButtonNewLightBack";
 
 class CheckoutSuccess extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.goBack = this.goBack.bind(this);
+  }
+
   render() {
     return (
       <div className="c-checkout-success">
@@ -16,9 +22,9 @@ class CheckoutSuccess extends Component {
           {/*translate("succesfully_ordered")*/}
           Done!
         </h3>
-        <StepIndex />
+        <StepIndex index="4" />
 
-        <div className="l-layout-card">
+        <div className="b-layout-card">
           <LittleHeartHappy />
           <h3 className="h5-didot-reg">
             {/*translate("succesfully_ordered")*/}
@@ -28,7 +34,7 @@ class CheckoutSuccess extends Component {
             Thank you for your order, you should receive an e-mail confirmation
             soon :)
           </p>
-          <ButtonNewLight />
+          <ButtonNewLight label="Go Back" href={`${process.env.PUBLIC_URL}/`} />
         </div>
       </div>
     );

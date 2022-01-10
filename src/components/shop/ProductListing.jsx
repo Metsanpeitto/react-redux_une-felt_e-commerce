@@ -31,7 +31,7 @@ class ProductListing extends Component {
     mounted = null;
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     mounted = true;
     var products = null;
     if (this.props.state.data.products.length > 0) {

@@ -379,7 +379,7 @@ class Shop extends Component {
                     <p className="info-specimen parraf-lg  ">{mySubString}</p>
 
                     <p className="info-reference parraf-lg">
-                      {post.month - post.day - post.date.year}
+                      {`${post.date.monthWord} - ${post.date.day} - ${post.date.year}`}
                     </p>
                   </div>
                 </div>

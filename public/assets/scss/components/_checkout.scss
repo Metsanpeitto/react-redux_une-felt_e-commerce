@@ -379,14 +379,14 @@
 
 .c-checkout-success {
   background-color: $color-white;
-  display: block;
+  display: grid;
+  grid-template-rows: 15rem 80px auto;
+  grid-row-gap: 32px;
   height: 1200px;
   width: 100%;
   padding-top: 0;
   padding-bottom: 5%;
   position: relative;
-  font-size: 19px;
-  text-transform: capitalize;
   color: #d28e77;
   animation: arriveLeft 2s ease-in-out;
 
@@ -394,9 +394,26 @@
     position: absolute;
   }
 
+  .title {
+    align-self: end;
+    text-align: center;
+    grid-row-start: 1;
+    text-transform: capitalize;
+    color: $color-primary-dark;
+    animation: arriveRight 1.5s ease-in-out;
+  }
+
+  .step-index {
+    grid-row-start: 2;
+  }
+
   .b-layout-card {
     grid-template-columns: 80px 1fr 80px;
     grid-template-rows: 64px 220px 80px 80px 40px 40px;
+    grid-row-start: 3;
+    max-width: 700px;
+    max-height: 550px;
+    min-height: 550px;
 
     svg {
       width: 208px;
@@ -426,18 +443,13 @@
       grid-column-start: 2;
       grid-row-start: 5;
     }
-  }
 
-  .title {
-    position: relative;
-    top: 120px;
-    text-align: center;
-  }
-
-  &__card {
-    h3 {
+    .f-bp-label {
+      min-width: max-content;
     }
-    p {
+
+    .f-bp-new-light-back .right {
+      transform: translateX(28px) scaleX(-1);
     }
   }
 }
@@ -466,6 +478,25 @@
       margin-top: 10%;
       margin-right: auto;
       grid-row-start: 2;
+    }
+  }
+
+  .c-checkout-success {
+    grid-template-rows: 20rem 80px auto;
+    .step-index {
+      grid-row-start: 2;
+      width: 400px;
+      .step-grid {
+        grid-template-columns: repeat(4, 100px);
+        width: 400px;
+        .step-line {
+          width: 400px;
+        }
+      }
+    }
+    .b-layout-card {
+      max-width: 500px;
+      min-width: 500px;
     }
   }
 }
@@ -641,6 +672,29 @@
             margin-left: 4px;
           }
         }
+      }
+    }
+  }
+
+  .c-checkout-success {
+    grid-template-rows: 20rem 80px auto;
+    height: unset;
+    .step-index {
+      grid-row-start: 2;
+      width: 80vw;
+      .step-grid {
+        grid-template-columns: repeat(4, 20vw);
+        width: 80vw;
+        .step-line {
+          width: 80vw;
+        }
+      }
+    }
+    .b-layout-card {
+      max-width: 80vw;
+      min-width: 80vw;
+      p {
+        width: unset;
       }
     }
   }

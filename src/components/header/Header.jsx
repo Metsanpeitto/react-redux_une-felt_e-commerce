@@ -30,6 +30,7 @@ class Header extends Component {
       productName: "",
       productId: null,
       request: null,
+      mobile: null,
     };
     this.openMenu = this.openMenu.bind(this);
     this.menuTrigger = this.menuTrigger.bind(this);
@@ -37,6 +38,7 @@ class Header extends Component {
     this.menuRead = this.menuRead.bind(this);
     this.menuSearch = this.menuSearch.bind(this);
     this.closeMenuTrigger = this.closeMenuTrigger.bind(this);
+    this.closeMenuTriggerMobile = this.closeMenuTriggerMobile.bind(this);
     this.closeSubmenu = this.closeSubmenu.bind(this);
     this.parseProps = this.parseProps.bind(this);
     this.hoverItem = this.hoverItem.bind(this);
@@ -74,6 +76,15 @@ class Header extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll); // Adds an event listener when the component is mount.
+    const width = window.innerWidth;
+    if (width <= 765) {
+      this.setState(() => {
+        return {
+          visible: null,
+          mobile: true,
+        };
+      });
+    }
   }
 
   componentDidUpdate() {
@@ -323,6 +334,26 @@ class Header extends Component {
     });
   }
 
+  // Closes the menu in mobile version
+  closeMenuTriggerMobile() {
+    document.querySelector(".menu-slide").classList.remove("visible");
+    //document.querySelector(".subitem__shop").classList.remove("visible");
+    //document.querySelector(".subitem__read").classList.remove("visible");
+    document.querySelector(".menu-slide__1").classList.remove("visible");
+    document.querySelector(".menu-slide__2").classList.remove("visible");
+    document.querySelector(".menu-slide__3").classList.remove("visible");
+    document.querySelector(".menu-search").classList.remove("visible");
+
+    this.setState(() => {
+      return {
+        menuOpen: null,
+        menuShopOpen: null,
+        menuReadOpen: null,
+        visible: null,
+      };
+    });
+  }
+
   // When mouse hover over a item in the sidemenu it display the items it contents
   hoverItem(e) {
     const name = e.target.name;
@@ -506,7 +537,7 @@ class Header extends Component {
     return (
       <div className="c-header" value={9}>
         <div
-          className={this.state.visible ? "burger__close " : "burger"}
+          className={this.state.visible ? "burger__close" : "burger"}
           onClick={this.openMenu}
         >
           <Menu />
@@ -593,15 +624,32 @@ class Header extends Component {
             )}
           </Link>
 
-          {this.state.menuOpen ? (
-            <button
-              className="invisible-button"
-              onClick={this.closeMenuTrigger}
-              data-tip="Close Menus"
-            >
-              X
-            </button>
-          ) : null}
+          {
+            // When the app is in mobile version the scenario changes at the time of showing
+            // the menu.
+            // Mobile menu must always show the X 'close' button and give the option of open and
+            // close when needed.
+
+            !this.state.mobile ? (
+              this.state.menuOpen ? (
+                <button
+                  className="invisible-button"
+                  onClick={this.closeMenuTrigger}
+                  data-tip="Close Menus"
+                >
+                  X
+                </button>
+              ) : null
+            ) : this.state.visible ? (
+              <button
+                className="invisible-button"
+                onClick={this.closeMenuTriggerMobile}
+                data-tip="Close Menus"
+              >
+                X
+              </button>
+            ) : null
+          }
         </header>
         <div>
           <ul className="menu-slide">

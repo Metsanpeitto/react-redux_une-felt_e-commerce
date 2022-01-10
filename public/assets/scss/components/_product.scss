@@ -25,8 +25,8 @@
     grid-column-start: 2;
     grid-template-columns: 1fr 1fr;
     max-width: 1300px;
-    min-height: 700px;
-    max-height: 500px;
+    min-height: 750px;
+    max-height: 750px;
     padding-bottom: 0px;
     width: 90vw;
     animation: rise 2s ease-in-out;
@@ -58,8 +58,8 @@
             position: absolute;
             top: 0%;
             left: 0%;
-            width: 500px;
-            height: 600px;
+            width: 300px;
+            height: 400px;
             z-index: 1;
             svg {
               position: absolute;
@@ -201,12 +201,11 @@
 
   &__related-products {
     align-self: center;
-    min-width: 90vw;
-    width: 90vw;
+    min-width: 1200px;
+    width: 1300px;
     grid-row-gap: 0px;
     height: 476px;
     min-height: 400px;
-    width: 90vw;
     background-color: #ffffff;
     border: 1px solid #faccd48a;
     display: grid;
@@ -249,7 +248,7 @@
         grid-template-columns: auto;
         grid-row-start: 2;
         column-gap: unset;
-        width: 80vw;
+        width: 1200px;
         height: 260px;
         justify-self: center;
         align-self: center;
@@ -418,8 +417,8 @@
               }
 
               img {
-                top: 95px;
-                left: 66px;
+                top: 60px;
+                left: 30px;
                 margin-top: unset;
               }
             }
@@ -545,9 +544,8 @@
     }
 
     .product {
-      min-height: max-content;
+      min-height: 1200px;
       height: max-content;
-      min-height: max-content;
       grid-template-rows: 550px 645px;
       padding-bottom: 0px;
 

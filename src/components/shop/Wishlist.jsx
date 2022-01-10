@@ -105,7 +105,7 @@ class Wishlist extends Component {
               <div className="c-wishlist__buttons">
                 <ButtonNewLightBack
                   href={`${process.env.PUBLIC_URL}/collection`}
-                  label={translate("back_shop")}
+                  label={"Go Back"}
                 />
 
                 <ButtonNew

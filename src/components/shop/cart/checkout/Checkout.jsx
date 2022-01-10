@@ -22,7 +22,6 @@ import { getCartTotal } from "../../../../services";
 class CheckOut extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       payment: "stripe",
       username: "",
@@ -75,6 +74,16 @@ class CheckOut extends Component {
       if (this.props.user.log.username) {
         this.fillFields(this.props);
       }
+    }
+  }
+
+  // This helps to open the selected produt in a dedicated window
+  newTo(email) {
+    if (email && email !== undefined) {
+      return {
+        pathname: `${process.env.PUBLIC_URL}/cart-payment/${email}`,
+        orderData: this.state.orderData,
+      };
     }
   }
 
@@ -144,20 +153,20 @@ class CheckOut extends Component {
   };
 
   setStateFromCheckbox = (event) => {
-    console.log(event);
+    const name = event.currentTarget.name;
     var obj = {};
-    if (event.name === "free_shipping" || event.name === "local_pickup") {
-      if (event.name === "free_shipping" && event.target.checked) {
+    if (name === "free-shipping" || name === "local-pickup") {
+      if (name === "free-shipping" && event.currentTarget.checked) {
         this.setState(() => {
           return {
             free_shipping: true,
-            local_pickup: null,
+            local_pickup: false,
           };
         });
       } else {
         this.setState(() => {
           return {
-            free_shipping: null,
+            free_shipping: false,
             local_pickup: true,
           };
         });
@@ -174,7 +183,6 @@ class CheckOut extends Component {
   };
 
   checkhandle(value) {
-    console.log(value);
     this.setState({
       payment: value,
     });
@@ -201,8 +209,6 @@ class CheckOut extends Component {
       total,
     } = this.state;
 
-    console.log(this.state);
-
     if (
       first_name &&
       last_name &&
@@ -215,11 +221,12 @@ class CheckOut extends Component {
       postcode &&
       total
     ) {
-      console.log("Form filled");
+      const orderData = this.createOrderData();
 
       this.setState(() => {
         return {
           formFilled: true,
+          orderData: orderData,
         };
       });
 
@@ -604,7 +611,7 @@ class CheckOut extends Component {
             <div className="buttons">
               <ButtonNew
                 label={"Payment"}
-                href={`${process.env.PUBLIC_URL}/cart-payment`}
+                href={this.newTo(this.state.email)}
                 class={
                   this.state.formFilled
                     ? "f-bp-new"

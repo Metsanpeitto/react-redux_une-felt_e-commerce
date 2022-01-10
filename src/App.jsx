@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import Draw from "./icons/Logo2";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import { ToastContainer } from "react-toastify";
 import ReactTooltip from "react-tooltip";
 import "font-awesome/css/font-awesome.min.css";
 import sync from "css-animation-sync";
+import { Helmet } from "react-helmet";
+import Draw from "./icons/Logo2";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
-sync("spinner");
+sync("animation-footer", "lift-plant");
 
 // <section style={style2}>{props.children}</section>
 function App(props) {
-  const [section1Visible, set1Visible] = useState(true);
-  const [section2Visible, set2Visible] = useState(false);
+  const [section1Visible, set1Visible] = useState(false);
+  const [section2Visible, set2Visible] = useState(true);
   const animation = new sync("animation-footer", "lift-plant");
 
   useEffect(
@@ -35,7 +35,7 @@ function App(props) {
   const style1 = section1Visible ? { display: "block" } : { display: "none" };
   const style2 = section2Visible ? { display: "block " } : { display: "none" };
   animation.start();
-  // <CheckoutSuccess />
+
   return (
     <div>
       <ToastContainer />
@@ -51,7 +51,9 @@ function App(props) {
           <Header />
         </section>
         <section className="section__content" style={style2}>
-          <section style={style2}>{props.children}</section>
+          <section style={style2}>
+            <section style={style2}>{props.children}</section>
+          </section>
         </section>
         <section className="section__footer" style={style2}>
           <Footer />

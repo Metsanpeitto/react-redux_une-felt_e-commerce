@@ -252,13 +252,13 @@
         /* margin: 0 0 0 auto; */
         cursor: pointer;
         -webkit-user-select: none;
-        user-select: none;
+        //user-select: none;
         grid-column: span 2;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
         &__meta {
           .item__specimen {
-            visibility: hidden;
+            visibility: visible;
           }
         }
 
@@ -275,7 +275,7 @@
           z-index: 1;
           color: $color-white;
           .item__title {
-            visibility: hidden;
+            visibility: visible;
           }
         }
 
@@ -294,7 +294,7 @@
           z-index: 1;
 
           .item__title {
-            visibility: hidden;
+            visibility: visible;
           }
 
           .item__reference {
@@ -314,13 +314,13 @@
         &__specimen {
           font-size: 56px;
           font-weight: 700;
-          cursor: unset;
-          user-select: none;
+          //cursor: unset;
+          //user-select: none;
         }
 
         &__reference {
-          cursor: unset;
-          user-select: none;
+          //cursor: unset;
+          //user-select: none;
         }
 
         &__blog {

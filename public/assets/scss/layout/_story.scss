@@ -1,21 +1,21 @@
 .l-story {
-  column-gap: 3rem;
-  display: grid;
-  grid-template-rows: 15rem auto;
-  grid-template-columns: repeat(3, 33vw);
-  padding-top: 80px;
-  padding-bottom: 400px;
+  position: relative;
+  display: block;
+  padding-top: 120px;
   margin-bottom: 300px;
   z-index: 1;
 
   h1 {
     align-self: center;
     text-align: center;
-    grid-row-start: 1;
-    grid-column-start: 2;
     justify-self: center;
     text-transform: capitalize;
     color: $color-primary-dark;
+    position: relative;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 64px;
     animation: arriveRight 3s ease-in-out;
   }
 
@@ -24,10 +24,12 @@
     display: grid;
     grid-column-start: 1;
     grid-column-end: 3;
-    grid-template-columns: repeat(2, 40vw);
-    grid-template-rows: auto 300px auto auto;
-    row-gap: 64px;
-    margin-left: 10vw;
+    grid-template-columns: repeat(2, 500px);
+    grid-template-rows: auto auto auto auto;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-row-gap: 64px;
     position: relative;
     animation: rise 4s ease-in-out;
 
@@ -35,20 +37,21 @@
       grid-row-start: 1;
       grid-column-start: 2;
       transform: translateX(-50%);
+      width: 1000px;
     }
 
     .image-2 {
       grid-row-start: 3;
       grid-column-start: 1;
       margin-top: 64px;
-      width: 40vw;
+      width: 500px;
     }
 
     .image-3 {
       grid-row-start: 4;
       grid-column-start: 2;
       margin-top: 64px;
-      width: 40vw;
+      width: 500px;
     }
 
     .text-1 {
@@ -57,21 +60,20 @@
       grid-column-start: 2;
       margin-top: 64px;
       transform: translateX(-50%);
-      width: 80%;
+      width: 700px;
     }
 
     .text-2 {
-      align-self: center;
       grid-row-start: 3;
       grid-column-start: 2;
       margin-top: 64px;
       width: 80%;
       justify-self: center;
-      align-self: center;
+      align-self: start;
     }
 
     .text-3 {
-      align-self: center;
+      align-self: start;
       grid-row-start: 4;
       grid-column-start: 1;
       margin-top: 64px;
@@ -90,6 +92,8 @@
     padding-bottom: 0px;
     margin-bottom: 50%;
     &__main {
+      grid-template-columns: repeat(2, 300px);
+      width: 600px;
       .image-1 {
         width: 80vw;
       }
@@ -130,6 +134,7 @@
 
     h1 {
       grid-column-start: 1;
+      margin-bottom: 0px;
     }
     &__main {
       grid-column-start: 1;
@@ -149,9 +154,10 @@
 
       .text-1 {
         margin-top: 0%;
-        width: 75vw;
+        width: 80vw;
         grid-column-start: 1;
         transform: unset;
+        text-align: center;
       }
       .image-2 {
         margin-top: 0%;
@@ -163,6 +169,9 @@
         margin-top: 0%;
         grid-column-start: 1;
         grid-row-start: 4;
+        text-align: center;
+        width: 80vw;
+        justify-self: unset;
       }
 
       .image-3 {

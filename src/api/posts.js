@@ -281,10 +281,11 @@ const deletePost = async (id) => {
 
 const getComments = async (id) => {
   return await axios
-    .get(process.env.REACT_APP_WORDPRESS + `wp/v2/comments`)
+    .get(process.env.REACT_APP_WORDPRESS + `wp/v2/comments?post=${id}`)
     .then((result) => {
       if (result.status === 200) {
         if (result.data) {
+          console.log(result.data);
           var commentsReady = [];
           result.data.forEach((comment) => {
             var render = comment.content.rendered;
@@ -343,22 +344,24 @@ const createComment = async (data) => {
   const author = data.author;
   // const url = data.url;
   const comment = data.postComment;
-  //const postId = data.postId;
+  const postId = data.postId;
+  console.log(data);
   return await axios
     // .post(process.env.REACT_APP_WORDPRESS + `wp/v2/comments/${id}`)
     .post(
       process.env.REACT_APP_WORDPRESS +
         `wp/v2/comments` +
-        `?post=1&content=${comment}&author_name=${author}&author_email=${email}`
+        `?post=${postId}&content=${comment}&author_name=${author}&author_email=${email}`
     )
     .then((result) => {
+      //  console.log(result);
       if (result.status === 200) {
       } else {
-        alert("error");
+        //    console.log("error");
       }
     })
     .catch((e) => {
-      // alert(e.response.data.message);
+      alert(e.response.data.message);
     });
 };
 

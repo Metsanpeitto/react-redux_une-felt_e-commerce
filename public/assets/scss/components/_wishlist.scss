@@ -2,7 +2,7 @@
   width: 100vw;
   padding: 0;
   padding-top: 60px;
-  padding-bottom: 400px;
+
   margin-bottom: 300px;
   background: unset;
   color: $color-text-antracite;
@@ -27,6 +27,7 @@
     padding-right: 128px;
     grid-row-start: 3;
     transform-origin: center;
+    width: 1200px;
     animation: rise 2s ease-in-out;
 
     .table-head {
@@ -107,24 +108,25 @@
   }
 
   &__buttons {
-    border-bottom: 1px solid $color-tertiary-dark;
+    border-top: 1px solid $color-tertiary-dark;
     grid-row-start: 3;
     display: grid;
     grid-template-columns: auto 30rem;
     grid-template-rows: repeat(2, 1fr);
-    row-gap: 3rem;
-    padding-top: 3rem;
+    padding-top: 32px;
+
     a {
+      justify-self: end;
       white-space: nowrap;
     }
 
     a:nth-child(1) {
-      grid-row-start: 1;
+      grid-row-start: 2;
       grid-column-start: 2;
     }
 
     a:nth-child(2) {
-      grid-row-start: 2;
+      grid-row-start: 1;
       grid-column-start: 2;
     }
   }

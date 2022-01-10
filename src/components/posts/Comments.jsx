@@ -22,6 +22,7 @@ class Comments extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.postId);
     if (this.props.postId) {
       const postId = this.props.postId;
       this.setState(() => {
@@ -39,6 +40,16 @@ class Comments extends Component {
           return { comments: comments };
         });
       }
+    }
+
+    if (this.props.postId !== this.state.postId) {
+      console.log(this.props.postId);
+
+      const postId = this.props.postId;
+      this.setState(() => {
+        return { postId: postId };
+      });
+      this.props.getPostComments(postId);
     }
   }
 

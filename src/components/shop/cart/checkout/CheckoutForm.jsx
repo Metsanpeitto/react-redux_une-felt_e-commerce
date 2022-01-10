@@ -45,6 +45,7 @@ const CheckoutForm = ({
     var amount = total * 100;
     amount = amount.toString();
     const { token } = await stripe.createToken();
+
     const order = await axios
       .post(urlCharge, {
         amount: amount,
