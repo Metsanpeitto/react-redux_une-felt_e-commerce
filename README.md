@@ -25,14 +25,18 @@ that the environment provides out of the box.
 =======
 
 ### Screenshots
-Main page
-![https://i.imgur.com/ueP13ao.png](https://i.imgur.com/ueP13ao.png)
 
-Signup page
-![https://i.imgur.com/DkMI117.png](https://i.imgur.com/DkMI117.png)
+Main page
+
+![https://i.imgur.com/UKrStub.png](https://i.imgur.com/UKrStub.png)
+
+Gallery
+
+![https://i.imgur.com/kt9n4EJ.jpg](https://i.imgur.com/kt9n4EJ.jpg)
 
 Details page
-![https://i.imgur.com/NOJezfx.png](https://i.imgur.com/NOJezfx.png)
+
+![https://i.imgur.com/vfnlbin.png](https://i.imgur.com/vfnlbin.png)
 
 
 
