@@ -1,68 +1,128 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# UNE felt - Ecommerce 
 
-## Available Scripts
+![Microverse](https://img.shields.io/website?url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fwww.une.waldenberginc.com%2Findex.html.svg.)
 
-In the project directory, you can run:
 
-### `npm start`
+ This App is a eCommerce and blog created to promote and share the creations of
+the Taiwanese artist Ponpon.
+  
+ The App design was created by me, using Figma to create the design system and using 
+SCSS to apply it. You can visit the design system and case study in the following link:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Case study](https://uxfol.io/project/034b93cd/Une-Felt-Case-Study) 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+ The eCommerce part was created using ReactJs and Redux in the frontend and uses Wordpress
+and Woocommerce in the backend. For the payments Stripe payment was implemented.
 
-### `npm test`
+ The blog part, uses Wordpress as well, in a way of giving easy access to all the advantages 
+that the environment provides out of the box.  
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Deployed App
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Une](https://une.waldenberginc.com/)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+=======
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Screenshots
+Main page
+![https://i.imgur.com/ueP13ao.png](https://i.imgur.com/ueP13ao.png)
 
-### `npm run eject`
+Signup page
+![https://i.imgur.com/DkMI117.png](https://i.imgur.com/DkMI117.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Details page
+![https://i.imgur.com/NOJezfx.png](https://i.imgur.com/NOJezfx.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Built With 
 
-## Learn More
+- HTML/CSS
+- React.JS
+- Redux
+- Node.JS
+- Wordpress
+- WooCommerce
+- Figma
+- Scss
+- Stripe
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you want a copy of this file go to the github repository and download it from there
 
-### Code Splitting
+- [`https://github.com/Metsanpeitto/react-une-felt`](https://github.com/Metsanpeitto/react-une-felt)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+### Setup
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```cmd
+git clone  https://github.com/Metsanpeitto/react-une-felt.git
+cd ./react-une-felt
+```
 
-### Making a Progressive Web App
+### Install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```cmd
+npm install
+```
 
-### Advanced Configuration
+### Usage
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```cmd
+npm start
+```
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Verify linters
 
-### `npm run build` fails to minify
+```cmd
+npx eslint .
+npx stylelint "**/*.{css,scss}"
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Autofix linters errors
+
+```cmd
+npx eslint . --fix
+npx stylelint "**/*.{css,scss}" --fix
+```
+
+
+### Prerequisites
+
+- Node.JS
+
+### Design
+
+[Case study](https://uxfol.io/project/034b93cd/Une-Felt-Case-Study) 
+
+## Authors
+
+👤 **Abraham Rodriguez**
+
+- GitHub: [@metsanpeitto](https://github.com/Metsanpeitto)
+- LinkedIn: [Abraham Rodriguez](https://www.linkedin.com/in/abraham-rodriguez-3283a319a/)
+- Portfolio: [Waldenberg](https://portfolio.waldenberginc.com)
+
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+
+## Acknowledgments
+
+- Microverse for helping to improve daily.
+
+
+[![License: CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)
